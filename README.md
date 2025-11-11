@@ -26,7 +26,7 @@
 ├─ mypage 
 │  ├─ change_password.html  // 비밀번호 변경
 │  └─ user_update.html      // 개인정보 수정
-├─ score_info.html          // 성적 조
+├─ score_info.html          // 성적 조회 
 └─ static
    └─ favicon.png
 ```
