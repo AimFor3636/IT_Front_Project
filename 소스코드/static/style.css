@@ -1,0 +1,386 @@
+/* ========================================
+   DSA Classroom - 커스텀 스타일
+   ======================================== */
+
+:root {
+  /* 색상 변수 */
+  --primary-color: #405189;
+  --secondary-color: #3577f1;
+  --success-color: #0ab39c;
+  --danger-color: #f06548;
+  --warning-color: #f7b84b;
+  --info-color: #299cdb;
+  --dark-color: #212529;
+  --light-color: #f3f6f9;
+
+  /* 사이드바 색상 */
+  --sidebar-bg: #212529;
+  --sidebar-menu-item-color: #a6b0cf;
+  --sidebar-menu-item-hover-bg: rgba(255, 255, 255, 0.05);
+  --sidebar-menu-item-active-bg: rgba(255, 255, 255, 0.1);
+
+  /* 텍스트 색상 */
+  --text-muted: #878a99;
+  --heading-color: #495057;
+
+  /* 기타 */
+  --border-color: #e9ebec;
+  --card-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
+  
+  /* 오버레이 색상 */
+  --overlay-bg: rgba(0, 0, 0, 0.5);
+}
+
+/* ========================================
+   레이아웃
+   ======================================== */
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  color: #495057;
+  background-color: #f3f6f9;
+}
+
+#layout-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ========================================
+   헤더 / 상단바
+   ======================================== */
+
+#page-topbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1003;
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgba(56, 65, 74, 0.15);
+}
+
+.user-dropdown {
+  background-color: var(--light-color);
+  
+}
+
+.navbar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5rem;
+  height: 70px;
+}
+
+.navbar-brand-box {
+  width: 205px;
+  transition: width 0.3s ease;
+}
+
+/* 사이드바 닫혔을 때 헤더 로고 영역 축소 */
+.sidebar-enable .navbar-brand-box {
+  width: 30px;
+}
+
+.logo {
+  text-decoration: none;
+  color: var(--dark-color);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.logo img {
+  height: 22px;
+  transition: opacity 0.2s ease;
+}
+
+.logo {
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+/* 사이드바 닫혔을 때 로고 이미지는 JavaScript에서 변경 */
+
+/* 사이드바 오버레이 */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--overlay-bg);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.sidebar-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 데스크톱에서는 오버레이 숨김 */
+@media (min-width: 992px) {
+  .sidebar-overlay {
+    display: none !important;
+  }
+}
+
+/* 햄버거 메뉴 버튼 */
+.vertical-menu-btn {
+  border: none;
+  background-color: transparent;
+  font-size: 1.5rem;
+  color: var(--dark-color);
+  cursor: pointer;
+}
+
+.vertical-menu-btn:hover {
+  color: var(--primary-color);
+}
+
+/* ========================================
+   사이드바 / 앱 메뉴
+   ======================================== */
+
+.app-menu {
+  position: fixed;
+  top: 70px;
+  bottom: 0;
+  left: 0;
+  width: 250px;
+  background-color: var(--sidebar-bg);
+  box-shadow: 0 2px 4px rgba(15, 34, 58, 0.12);
+  z-index: 1001;
+  transition: all 0.3s ease;
+}
+
+/* 사이드바 스크롤 영역 */
+.app-menu .simplebar-content-wrapper {
+  overflow-x: hidden !important;
+}
+
+/* 사이드바 메뉴 */
+.navbar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-title {
+  padding: 1rem 1.5rem 0.5rem;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  color: var(--sidebar-menu-item-color);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+  background-color: var(--sidebar-menu-item-hover-bg);
+  color: #fff;
+}
+
+.nav-link:not(:hover):not(.active) {
+  color: var(--sidebar-menu-item-color);
+}
+
+.nav-link.active {
+  /* background-color: var(--sidebar-menu-item-active-bg); */
+  color: #fff;
+}
+
+.nav-link i {
+  font-size: 1.1rem;
+  margin-right: 0.75rem;
+  min-width: 1.5rem;
+}
+
+/* 서브메뉴 */
+.menu-dropdown {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.menu-dropdown .nav-link {
+  padding-left: 3.5rem;
+  font-size: 0.875rem;
+}
+
+.menu-dropdown .nav-item {
+  position: relative;
+}
+
+.menu-dropdown .nav-item::before {
+  content: "\F2EA"; /* bi-dash 아이콘 */
+  font-family: "bootstrap-icons";
+  position: absolute;
+  left: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--sidebar-menu-item-color);
+  font-size: 1rem;
+}
+
+/* 메뉴 chevron 아이콘 */
+.nav-link.menu-link {
+  position: relative;
+}
+
+.nav-link.menu-link i:last-child {
+  margin-left: auto;
+  transition: transform 0.3s ease;
+}
+
+.nav-link.menu-link[aria-expanded="true"] i:last-child {
+  transform: rotate(90deg);
+}
+
+/* ========================================
+   메인 콘텐츠
+   ======================================== */
+
+.main-content {
+  margin-left: 250px;
+  margin-top: 70px;
+  min-height: calc(100vh - 70px);
+  transition: all 0.3s ease;
+}
+
+.page-content {
+  padding: 1.5rem;
+}
+
+/* 페이지 타이틀 */
+.page-title-box {
+  padding: 1.5rem 0;
+}
+
+.page-title-box h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--heading-color);
+  margin: 0;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  background-color: transparent;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+.breadcrumb-item {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.breadcrumb-item.active {
+  color: var(--heading-color);
+}
+
+/* ========================================
+   반응형 디자인
+   ======================================== */
+
+/* 사이드바 닫힘 상태 */
+.sidebar-enable .app-menu {
+  transform: translateX(-250px);
+}
+
+.sidebar-enable .main-content {
+  margin-left: 0;
+}
+
+/* 모바일 (< 992px) */
+@media (max-width: 991.98px) {
+  .app-menu {
+    transform: translateX(-250px);
+  }
+
+  .app-menu.show {
+    transform: translateX(0);
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+
+  .navbar-brand-box {
+    width: auto;
+  }
+}
+
+/* 태블릿 (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .page-content {
+    padding: 1.25rem;
+  }
+}
+
+/* 모바일 (< 768px) */
+@media (max-width: 767.98px) {
+  .navbar-header {
+    padding: 0 1rem;
+  }
+
+  .page-content {
+    padding: 1rem;
+  }
+
+  .page-title-box {
+    padding: 1rem 0;
+  }
+
+  .page-title-box h4 {
+    font-size: 1.125rem;
+  }
+}
+
+/* ========================================
+   유틸리티
+   ======================================== */
+
+.fs-13 {
+  font-size: 0.8125rem !important;
+}
+
+.fs-15 {
+  font-size: 0.9375rem !important;
+}
+
+.text-muted {
+  color: var(--text-muted) !important;
+}
+
+/* 애니메이션 */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slide-in {
+  animation: slideInRight 0.3s ease-out;
+}
