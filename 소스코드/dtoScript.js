@@ -1,6 +1,7 @@
 export const userDto = {
     userNo: "",         // 유저 PK 값
     userName: "",       // 성함
+    userId: "",         // 유저 ID
     password: "",       // 비밀번호 (암호화)
     emailAddress: "",   // 이메일 (암호화)
     birthday: "",       // 생년월일
@@ -38,6 +39,30 @@ export const messageFileDto = {
     insertDate: ""          // 생성 일자
 }
 
-export let userPk = 1;
-export let boardPk = 1;
-export let messagePk = 1;
+let userPk = 1;
+let boardPk = 1;
+let messagePk = 1;
+
+export function getUserPk() {
+    const today = new Date();
+    const curUserPk = `${today.getMonth()}${today.getDay()}${today.getMilliseconds}${userPk}`;
+    userPk += 1;
+
+    return curUserPk;
+}
+
+export function getBoardPk() {
+    const today = new Date();
+    const curBoardPk = `${today.getMonth()}${today.getDay()}${today.getMilliseconds}${boardPk}`;
+    boardPk += 1;
+
+    return curBoardPk;
+}
+
+export function getMessagePk() {
+    const today = new Date();
+    const curMessagePk = `${today.getMonth()}${today.getDay()}${today.getMilliseconds}${messagePk}`;
+    messagePk += 1;
+
+    return curMessagePk;
+}
