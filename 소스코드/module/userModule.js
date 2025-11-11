@@ -2,16 +2,30 @@ import { userDto, getUserPk} from "../dtoScript.js";
 import { findArrayInLocalStorage } from "./commonModule.js";
 
 
-
+saveUser({userNo: '1', zipCode: '2'});
 /*
   User Data
 */
 // create user
-export function saveUser(userObj) {
+export function saveUser(userParam) {
+  
+  // userDto 깊은 복사
+  const userObj = JSON.parse(JSON.stringify(userDto));
 
+  // userParam 에 있는 값만 저장
+  for (let key in userObj) {
+      
+      const paramVal = userParam[key];
+
+      if (paramVal != null || paramVal != null) {
+          userObj[key] = paramVal;
+      }
+  }
+  // userNo (PK) 값 및 registerDate는 별도로 저장
+  
 } 
 
-// Find user by userNo (PK)
+// userNo (PK) 로 유저 정보 조회
 export function findUserByUserNo(userNo) {
 
     // 로컬 스토리지에서 user-list 값 가져오기
@@ -28,7 +42,7 @@ export function findUserByUserNo(userNo) {
     return userObj;
 
 }
-// Find user by userId
+// userId로 조회
 export function findUserByUserId(userId) {
 
     // 로컬 스토리지에서 user-list 값 가져오기
@@ -45,7 +59,7 @@ export function findUserByUserId(userId) {
     return userObj;
 }
 
-// user Info Update
+// user 정보 업데이트
 export function updateUser(updateObj, userId) {
   
     const userObj = findUserByUserId(userId);
@@ -68,14 +82,3 @@ export function isPossibleToLogin(id, password) {
   }
   return false;
 }
-
-
-/*
-  Board Data
-*/
-
-
-
-/*
-  Message Data
-*/
