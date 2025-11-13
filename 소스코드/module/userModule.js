@@ -73,11 +73,30 @@ export function findUserByUserId(userId) {
     return userObj;
 }
 
+// ID 찾기
+export function findUserId(email, telNumber) {
+
+  const userList = findArrayInLocalStorage(dataKeyObj.USER_LIST);
+  
+  const userObj = {}
+  for (let user of userList) {
+
+    // 전화번호는 - 제외하고 비교
+    // 첫번째 찾아지면 그냥 반환
+    if (user.email == email && user.telNumber.replace("-", "") == telNumber.replace("-", "")) {
+      userObj = user;
+      break;
+    } 
+  }
+
+  return userObj;
+}
+
 // user 정보 업데이트
 export function updateUser(updateParam) {
   
   // 현재 접속중인 user 체크
-  const userObj = findObjectInLocalStorage(dataKeyObj.CUR_USER);
+  const curUser = findObjectInLocalStorage(dataKeyObj.CUR_USER);
     
   // userParam 에 있는 값만 저장
   for (let key in updateParam) {
@@ -85,27 +104,53 @@ export function updateUser(updateParam) {
       const paramVal = updateParam.key;
 
       if (paramVal != null || paramVal != undefined) {
-          userObj.key = paramVal;
+          curUser.key = paramVal;
       }
-  }
-
+  }  
   // user-list 해당 위치에 교체
   const userList = findArrayInLocalStorage(dataKeyObj.USER_LIST);
 
   let isSuccess = false;
   for (let idx in userList) {
-    if (userList[idx].userNo == userObj.userNo) {
-      userList[idx] = userObj;
+    if (userList[idx].userNo == curUser.userNo) {
+      userList[idx] = curUser;
       isSuccess = true;
     }
   }
   
   // 현재 접속중 상태도 같이 변경
   localStorage.setItem(dataKeyObj.USER_LIST, userList);
-  localStorage.setItem(dataKeyObj.CUR_USER, userObj);
+  localStorage.setItem(dataKeyObj.CUR_USER, curUser);
 
   return isSuccess;
 } 
+
+// 패스워드 변경 현재 비밀번호 다르면 false 반환
+export function updateUserPassword(curPassword, newPassword) {
+
+  const curUser = findObjectInLocalStorage(dataKeyObj.CUR_USER);
+  
+  if (curUser.password != CryptoJS.SHA256(curPassword).toString()) {
+    return false;
+  }
+
+  // 비밀번호 일치하면 새로운 비밀번호로 업데이트
+  curUser.password = CryptoJS.SHA256(newPassword).toString();
+
+  const userList = findArrayInLocalStorage(dataKeyObj.USER_LIST);
+
+  for (let idx in userList) {
+    if (userList[idx].userNo == curUser.userNo) {
+      userList[idx] = curUser;
+      break;
+    }
+  }
+  // 다시 저장
+  localStorage.setItem(dataKeyObj.USER_LIST, userList);
+  localStorage.setItem(dataKeyObj.CUR_USER, curUser);
+
+  return true;
+}
 
 // user Info Check
 // 로그인시에 입력한 id, password 를 이용하여 체크
