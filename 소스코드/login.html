@@ -7,6 +7,8 @@
   <!-- Favicon -->
   <link rel="icon" href="./static/favicon.png">
   <title>Aim Data Academy</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <style>
     body {
       display: grid;
@@ -15,25 +17,25 @@
       place-items: center;
       height: 100%;
       margin: 0;
-      margin-top: 200px;
+      margin-top: 60px;
     }
 
     .card {
       place-items: center;
        float: none;
             margin-top: 30px;
-      width: 420px;
-      /* 상자 가로 */
+      width: 460px;
+      
       max-width: calc(100% - 32px);
-      /* 모바일 여백 */
+     
       background: #fff;
-      /* 하얀 배경 */
-      border-radius: 12px;
-      /* 둥근 모서리 */
+     
+      border-radius: 5px;
+      
       box-shadow: 0 20px 40px rgba(0, 0, 0, .15);
-      /* 그림자 */
+      
       padding: 28px 32px;
-      /* 안쪽 여백 */
+      
       font-size: small;
     }
 
@@ -45,9 +47,11 @@
 
     .box {
       width: 350px;
+      height: 35px;
     }
 
     button {
+      border-radius: 15px;
       border: 0;
       width: 350px;
       height: 35px;
@@ -65,27 +69,34 @@ margin-top: 50px;
     #dontYouHave{
       font-size: small;
     }
-    
+    #checkbox{
+      accent-color: #405189;
+    }
+    #userId{
+       padding-left: 12px;  
+    }
+    #userPassword{
+       padding-left: 12px;  
+    }
   </style>
 
   <!-- 부트스트랩 CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  
 </head>
 
 <body>
-  <p><a href="" target="_blank"><img src="Datascience.png" id="data" width="170" height="20"></a></p>
+  <p><a href="" target="_blank"><img src="Datascience.png" id="data" width="190" height="21"></a></p>
   <div class="card">
     <p class="firstname">환영합니다 !</p><br>
 
     <form>
       <label for="userId" class="form-label"> Username </label>
-      <p><input type="text" id="userId" class="box" placeholder="&nbsp;Enter Username"></p>
+      <p><input type="text" id="userId" class="box" placeholder="Enter Username"></p>
 
       <label class="form-label" for="userPassword">Password</label>
-      <p><input type="password" id="userPassword" class="box" placeholder="&nbsp;Enter Password"></p>
+      <p><input type="password" id="userPassword" class="box" placeholder="Enter Password"></p>
 
-      <label><input type="checkbox"> id 기억하기 </label></p>
+      <label><input type="checkbox" id="checkbox"> id 기억하기 </label></p>
 
       <button type="button"> 회원가입 </button>
 
