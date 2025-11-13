@@ -264,17 +264,19 @@ body {
 }
 
 .page-content {
-  padding: 1.5rem;
+  /* padding: 1.5rem; */
 }
 
 /* 페이지 타이틀 */
 .page-title-box {
-  padding: 1.5rem 0;
+  padding: 0.6rem 0.6rem;
 }
 
 .page-title-box h4 {
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-family: Poppins,sans-serif;
   color: var(--heading-color);
   margin: 0;
 }
