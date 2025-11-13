@@ -163,7 +163,7 @@
 
     menuLinks.forEach(link => {
       link.addEventListener("click", e => {
-        e.preventDefault();
+        //e.preventDefault();
 
         // 메뉴 텍스트 가져오기
         const menuText = link.querySelector("span")?.textContent.trim() || link.textContent.trim();
@@ -193,7 +193,7 @@
     // 사용자 프로필 드롭다운 메뉴 이벤트 리스너
     userDropdownLinks.forEach(link => {
       link.addEventListener("click", e => {
-        e.preventDefault();
+        //e.preventDefault();
 
         // 메뉴 텍스트 가져오기 (아이콘 제외)
         const menuText = link.textContent.trim();
