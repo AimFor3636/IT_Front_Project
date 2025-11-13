@@ -1,5 +1,5 @@
 /* ========================================
-   DSA Classroom - 커스텀 스타일
+   Aim Data Academy - 커스텀 스타일
    ======================================== */
 
 :root {
@@ -12,6 +12,20 @@
   --info-color: #299cdb;
   --dark-color: #212529;
   --light-color: #f3f6f9;
+  --class-color: #0ab39c;
+  --lecture-color: #299cdb;
+  --test-color: #f7b84b;
+  --holiday-color: #f06548;
+  --jobfair-color: #6f42c1;
+  --etc-color: #212529;
+
+  /* 배경 색상 변수 */
+  --bg-class-color: #daf4f0;
+  --bg-lecture-color: #dff0fa;
+  --bg-test-color: #fef4e4;
+  --bg-holiday-color: #fde8e4;
+  --bg-jobfair-color: #e2e5ed;
+  --bg-etc-color: #e9ebec;
 
   /* 사이드바 색상 */
   --sidebar-bg: #212529;
@@ -24,7 +38,9 @@
   --heading-color: #495057;
 
   /* 기타 */
+  --active-color: #e9ebec;
   --border-color: #e9ebec;
+  --hover-color: #d1e9ff;
   --card-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
   
   /* 오버레이 색상 */
@@ -39,7 +55,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
   color: #495057;
-  background-color: #f3f6f9;
+  background-color: var(--light-color);
 }
 
 #layout-wrapper {
@@ -387,4 +403,438 @@ body {
 
 .slide-in {
   animation: slideInRight 0.3s ease-out;
+}
+
+/* ========================================
+   캘린더 스타일
+   ======================================== */
+
+/* 캘린더 컨테이너 */
+.calendar-container {
+  background-color: var(--light-color);
+  min-height: 100vh;
+}
+
+/* 캘린더 그리드 */
+.calendar-grid {
+  width: 100%;
+  background-color: #fff;
+}
+
+/* 요일 헤더 */
+.calendar-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border-bottom: 2px solid var(--border-color);
+  background-color: var(--light-color);
+}
+
+.calendar-day-header {
+  padding: 12px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: #495057;
+  text-transform: uppercase;
+}
+
+/* 캘린더 본문 */
+.calendar-body {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 1px;
+  background-color: #e9ebec;
+  border: 1px solid #e9ebec;
+}
+
+/* 날짜 셀 */
+.calendar-cell {
+  background-color: #fff;
+  min-height: 100px;
+  padding: 8px;
+  position: relative;
+  transition: background-color 0.2s ease;
+  overflow: hidden;
+}
+
+.calendar-cell:hover {
+  background-color: #f8f9fa;
+}
+
+/* 비활성 날짜 셀 (이전/다음 달) */
+.calendar-cell.calendar-disabled {
+  background-color: #f1f3f5;
+  pointer-events: none;
+  cursor: default;
+}
+
+.calendar-cell.calendar-disabled:hover {
+  background-color: #f1f3f5;
+}
+
+.calendar-cell.calendar-disabled .calendar-date {
+  color: #adb5bd;
+}
+
+/* 날짜 번호 */
+.calendar-date {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: #212529;
+  border-radius: 50%;
+  margin-bottom: 4px;
+}
+
+/* 오늘 날짜 */
+.calendar-today {
+  background-color: #f0f7ff;
+}
+
+.calendar-today .calendar-date {
+  background-color: #405189;
+  color: #fff;
+}
+
+/* 이전/다음 달 날짜 */
+.calendar-cell.text-muted .calendar-date {
+  color: #adb5bd;
+}
+
+/* 캘린더 이벤트 */
+.calendar-event {
+  font-size: 0.75rem;
+  padding: 3px 6px;
+  margin-bottom: 3px;
+  border-radius: 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  white-space: nowrap;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.calendar-event:hover {
+  transform: translateX(2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 이벤트 타입별 색상 */
+.event-class {
+  background-color: var(--bg-class-color);
+  color: var(--class-color);
+}
+
+.event-lecture {
+  background-color: var(--bg-lecture-color);
+  color: var(--lecture-color);
+}
+
+.event-test {
+  background-color: var(--bg-test-color);
+  color: var(--test-color);
+}
+
+.event-holiday {
+  background-color: var(--bg-holiday-color);
+  color: var(--holiday-color);
+}
+
+.event-jobfair {
+  background-color: var(--bg-jobfair-color);
+  color: var(--jobfair-color);
+}
+
+.event-etc {
+  background-color: var(--bg-etc-color);
+  color: var(--etc-color);
+}
+
+/* ========================================
+   Index 패널 스타일
+   ======================================== */
+
+.index-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.index-item:hover {
+  background-color: var(--light-color);
+  transform: translateX(4px);
+}
+
+.index-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+/* Index 카테고리별 색상 */
+.index-class {
+  background-color: var(--bg-class-color);
+}
+
+.index-class .index-dot {
+  background-color: var(--class-color);
+}
+
+.index-lecture {
+  background-color: var(--bg-lecture-color);
+}
+
+.index-lecture .index-dot {
+  background-color: var(--lecture-color);
+}
+
+.index-test {
+  background-color: var(--bg-test-color);
+}
+
+.index-test .index-dot {
+  background-color: var(--test-color);
+}
+
+.index-holiday {
+  background-color: var(--bg-holiday-color);
+}
+
+.index-holiday .index-dot {
+  background-color: var(--holiday-color);
+}
+
+.index-jobfair {
+  background-color: var(--bg-jobfair-color);
+}
+
+.index-jobfair .index-dot {
+  background-color: var(--jobfair-color);
+}
+
+.index-etc {
+  background-color: var(--bg-etc-color);
+}
+
+.index-etc .index-dot {
+  background-color: var(--etc-color);
+}
+
+/* ========================================
+   캘린더 반응형
+   ======================================== */
+
+/* 태블릿 */
+@media (max-width: 991.98px) {
+  .calendar-cell {
+    min-height: 80px;
+    padding: 6px;
+  }
+
+  .calendar-event {
+    font-size: 0.7rem;
+    padding: 2px 4px;
+  }
+}
+
+/* 모바일 */
+@media (max-width: 767.98px) {
+  .calendar-day-header {
+    font-size: 0.75rem;
+    padding: 8px 4px;
+  }
+
+  .calendar-cell {
+    min-height: 60px;
+    padding: 4px;
+  }
+
+  .calendar-date {
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 0.75rem;
+  }
+
+  .calendar-event {
+    font-size: 0.65rem;
+    padding: 2px 3px;
+    margin-bottom: 2px;
+  }
+
+  /* 모바일에서 Index 패널 하단 배치 */
+  .col-lg-3 {
+    order: 2;
+  }
+
+  .col-lg-9 {
+    order: 1;
+  }
+}
+
+/* ========================================
+   List 뷰 스타일
+   ======================================== */
+
+.list-view {
+  padding: 1rem 0;
+}
+
+.list-date-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: var(--light-color);
+  border-radius: 6px;
+  margin-bottom: 8px;
+  margin-top: 16px;
+}
+
+.list-date-header:first-child {
+  margin-top: 0;
+}
+
+.list-date {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.list-day {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.list-event {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: #fff;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  border: 1px solid var(--border-color);
+  transition: all 0.2s ease;
+}
+
+.list-event:hover {
+  background-color: var(--hover-color);
+  transform: translateX(4px);
+}
+
+.list-event.event-class {
+  background-color: var(--bg-class-color);
+}
+
+.list-event.event-lecture {
+  background-color: var(--bg-lecture-color);
+}
+
+.list-event.event-test {
+  background-color: var(--bg-test-color);
+}
+
+.list-event.event-holiday {
+  background-color: var(--bg-holiday-color);
+}
+
+.list-event.event-jobfair {
+  background-color: var(--bg-jobfair-color);
+}
+
+.list-event.event-etc {
+  background-color: var(--bg-etc-color);
+}
+
+.list-time {
+  font-size: 0.875rem;
+  min-width: 140px;
+  margin-right: 16px;
+}
+
+.list-time.event-class {
+  color: var(--class-color);
+}
+
+.list-time.event-lecture {
+  color: var(--lecture-color);
+}
+
+.list-time.event-test {
+  color: var(--test-color);
+}
+
+.list-time.event-holiday {
+  color: var(--holiday-color);
+}
+
+.list-time.event-jobfair {
+  color: var(--jobfair-color);
+}
+
+.list-time.event-etc {
+  color: var(--etc-color);
+}
+
+.list-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+/* List 뷰 이벤트 타입별 색상 */
+.list-dot.event-class {
+  background-color: var(--class-color);
+}
+
+.list-dot.event-lecture {
+  background-color: var(--lecture-color);
+}
+
+.list-dot.event-test {
+  background-color: var(--test-color);
+}
+
+.list-dot.event-holiday {
+  background-color: var(--holiday-color);
+}
+
+.list-dot.event-jobfair {
+  background-color: var(--jobfair-color);
+}
+
+.list-dot.event-etc {
+  background-color: var(--etc-color);
+}
+
+.list-event-name {
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+/* ========================================
+   Index 필터 활성화 스타일
+   ======================================== */
+
+.index-item.index-active {
+  background-color: var(--active-color);
+  border: 1px solid var(--info-color);
+}
+
+.index-item.index-active:hover {
+  background-color: var(--hover-color);
 }
