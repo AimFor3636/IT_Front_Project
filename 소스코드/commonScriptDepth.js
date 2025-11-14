@@ -1,6 +1,9 @@
 /**
  * Aim Data Classroom - Main JavaScript
  * Created by Kamil Lee
+ * 
+ * 게시판, 메시지, 개인정보는 depth 가 달라 별도 파일 사용
+ * 
  */
 
 (function () {
@@ -19,7 +22,7 @@
     if (headerLogo) {
       if (window.innerWidth >= 992) {
         // 데스크톱: 사이드바 열린 상태이므로 logo
-        headerLogo.src = "./static/img/logo.png";
+        headerLogo.src = "../static/img/logo.png";
       } else {
         // 모바일: 로고 삭제
         logoBox.remove();
@@ -42,10 +45,10 @@
         if (headerLogo && window.innerWidth >= 992) {
           if (isSidebarEnabled) {
             // sidebar-enable = 사이드바 닫힘 → logoSmall
-            headerLogo.src = "./static/img/logoSmall.png";
+            headerLogo.src = "../static/img/logoSmall.png";
           } else {
             // sidebar-enable 해제 = 사이드바 열림 → logo
-            headerLogo.src = "./static/img/logo.png";
+            headerLogo.src = "../static/img/logo.png";
           }
         }
 
@@ -72,7 +75,7 @@
 
         // 로고 복원 (데스크톱에서만) - sidebar-enable 제거 = 사이드바 열림 = logo
         if (headerLogo && window.innerWidth >= 992) {
-          headerLogo.src = "./static/img/logo.png";
+          headerLogo.src = "../static/img/logo.png";
         }
       });
     }
@@ -90,7 +93,7 @@
 
           // 로고 원래대로 복원 (데스크톱에서만)
           if (headerLogo && window.innerWidth >= 992) {
-            headerLogo.src = "./static/img/logo.png";
+            headerLogo.src = "../static/img/logo.png";
           }
         }
       }
@@ -105,7 +108,6 @@
     const menuLinks = document.querySelectorAll(".nav-link");
 
     menuLinks.forEach(link => {
-      
       const href = link.getAttribute("href");
       if (href && currentPath.includes(href) && href !== "/") {
         link.classList.add("active");
@@ -259,7 +261,7 @@
 
       // 데스크톱: 로고 표시 (사이드바 열린 상태 = logo)
       if (headerLogo) {
-        headerLogo.src = "./static/img/logo.png";
+        headerLogo.src = "../static/img/logo.png";
       }
     } else {
       // 모바일: 사이드바 숨김
