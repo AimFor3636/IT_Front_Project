@@ -109,6 +109,45 @@
           return false;
         }
 
+        // 특수 일정 처리: 팀 프로젝트 / 취업전략 단독 진행일
+        // 2026-02-05~06, 12~13, 19~20, 26~27, 2026-03-05~06
+        if (year === 2026) {
+          const isFeb = month === 1; // 0: Jan, 1: Feb, 2: Mar
+          const isMar = month === 2;
+
+          const teamOnlyDaysInFeb = [5, 12, 19, 26];
+          const careerOnlyDaysInFeb = [6, 13, 20, 27];
+
+          const isTeamProject = schedule.name === "팀 프로젝트";
+          const isCareerStrategy = schedule.name === "취업전략";
+
+          if (isFeb) {
+            if (teamOnlyDaysInFeb.includes(day)) {
+              // 이 날에는 팀 프로젝트만 표시
+              if (!isTeamProject) {
+                return false;
+              }
+            } else if (careerOnlyDaysInFeb.includes(day)) {
+              // 이 날에는 취업전략만 표시
+              if (!isCareerStrategy) {
+                return false;
+              }
+            }
+          } else if (isMar) {
+            if (day === 5) {
+              // 03-05: 팀 프로젝트만 진행
+              if (!isTeamProject) {
+                return false;
+              }
+            } else if (day === 6) {
+              // 03-06: 취업전략만 진행
+              if (!isCareerStrategy) {
+                return false;
+              }
+            }
+          }
+        }
+
         // 휴강/공휴일이 있으면 제외
         if (hasHoliday) {
           return false;
@@ -148,34 +187,6 @@
   // ========================================
   // 모달 표시 함수
   // ========================================
-  // const showEventModal = (event, year, month, day) => {
-  //   // 모달 요소 가져오기
-  //   const modal = document.getElementById("eventModal");
-  //   if (!modal) return;
-
-  //   // 모달 내용 업데이트
-  //   const modalTitle = document.getElementById("eventModalLabel");
-  //   const eventDate = document.getElementById("eventDate");
-  //   const eventTime = document.getElementById("eventTime");
-  //   const eventDomain = document.getElementById("eventDomain");
-  //   const eventDescription = document.getElementById("eventDescription");
-
-  //   if (modalTitle) modalTitle.textContent = event.name;
-  //   if (eventDate)
-  //     eventDate.textContent = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
-  //   if (eventTime) eventTime.textContent = event.time || "시간 정보 없음";
-  //   if (eventDomain) eventDomain.textContent = event.domain || "도메인 정보 없음";
-  //   if (eventDescription) eventDescription.textContent = event.description || "설명 없음";
-
-  //   // SweetAlert2 모달 표시
-  //   // const Swal = require("sweetalert2");
-  //   // Swal.fire({
-  //   //   title: event.name,
-  //   //   text: `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`,
-  //   //   icon: "success",
-  //   //   confirmButtonText: "OK",
-  //   // });
-  // };
   const showEventModal = (event, year, month, day) => {
     // 모달 요소 가져오기
     const modal = document.getElementById("eventModal");
@@ -357,7 +368,7 @@
       events.forEach(event => {
         const eventItem = document.createElement("div");
         eventItem.className = "list-event";
-        
+
         // Index 필터 적용 (indexClassMap 활용)
         eventItem.classList.add(indexClassMap[event.index] || "event-etc");
 
@@ -366,19 +377,19 @@
 
         const timeSpan = document.createElement("span");
         timeSpan.className = "list-time";
-        
+
         // Index 필터 적용 (indexClassMap 활용)
         timeSpan.classList.add(indexClassMap[event.index] || "event-etc");
         timeSpan.textContent = event.time;
-        
+
         // Index 색상 점
         const dotSpan = document.createElement("span");
         dotSpan.className = `list-dot ${indexClassMap[event.index] || "event-etc"}`;
-        
+
         // 이벤트 이름
         const nameSpan = document.createElement("span");
         nameSpan.className = "list-event-name";
-        
+
         // Index 필터 적용 (indexClassMap 활용)
         nameSpan.classList.add(indexClassMap[event.index] || "event-etc");
         nameSpan.textContent = event.name;
@@ -521,14 +532,14 @@
             title: "WIP",
             text: "Week 뷰는 준비 중입니다.",
             icon: "warning",
-            confirmButtonText: 'OK',
+            confirmButtonText: "OK",
           });
         } else if (index === 2) {
           Swal.fire({
             title: "WIP",
             text: "Day 뷰는 준비 중입니다.",
             icon: "warning",
-            confirmButtonText: 'OK',
+            confirmButtonText: "OK",
           });
         } else if (index === 3) {
           currentView = "list";
