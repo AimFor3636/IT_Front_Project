@@ -380,11 +380,15 @@ form .btn-primary {
 }
 
 .board-read {
-  font-size: 0.8rem;
+    font-size: 0.8rem;
 }
 
-.form-container .input-group {
-  height: 20rem;
+.form-container textarea{
+    resize: none;
+}
+
+.form-select option:hover{
+    background-color: #3577f1;
 }
 
 /* ========================================
