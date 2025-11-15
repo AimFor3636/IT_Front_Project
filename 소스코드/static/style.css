@@ -360,6 +360,16 @@ a {
   width: 200px;
 }
 
+form .btn-primary {
+    background-color: #405189;
+    border-color: #405189;
+}
+
+.active>.page-link {
+    background-color: #405189;
+    border-color: #405189;
+}
+
 
 /* ========================================
    반응형 디자인
