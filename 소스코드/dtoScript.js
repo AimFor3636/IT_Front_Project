@@ -20,10 +20,13 @@ export const boardDto = {
     content: '',         // 게시판 내용
     userNo: '',          // 작성자 userNo
     categoryNo: '',      // 게시판 Category
+    boardCount: 0,       // 조회수 0 부터 시작
     insertDate: '',      // 최초 작성일자
     updateDate: '',      // 최종 수정일자
     insertTimeStamp: '', // 정렬용 작성일자
-    updateTimeStamp: ''  // 정렬용 수정일자
+    updateTimeStamp: '', // 정렬용 수정일자
+    startDate:'',        // 시작시간 ( 평가 게시글 용)
+    endDate:''           // 종료시간 ( 평가 게시글 용)
 };
 
 export const messageDto = {

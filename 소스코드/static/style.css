@@ -356,11 +356,15 @@ a {
 
 .gridjs-footer {
   margin: 0 auto;
-  padding: 2.5rem 0 0;
+  padding: 1.2rem 0 0;
   width: 200px;
 }
 
 form .btn-primary {
+    background-color: #405189;
+    border-color: #405189;
+}
+.gridjs-footer .btn-primary {
     background-color: #405189;
     border-color: #405189;
 }
@@ -370,6 +374,18 @@ form .btn-primary {
     border-color: #405189;
 }
 
+.submit-btn {
+    background-color: #405189;
+    border-color: #405189;
+}
+
+.board-read {
+  font-size: 0.8rem;
+}
+/* 
+.input-group {
+  height: 20rem;
+} */
 
 /* ========================================
    반응형 디자인

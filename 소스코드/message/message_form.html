@@ -10,16 +10,15 @@
 
 
   <!-- Sweet Alert2 CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
   <!-- 부트스트랩 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-
   <!-- 부트스트랩 아이콘 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css" />
-
   <!-- 커스텀 CSS -->
   <link rel="stylesheet" href="../static/style.css" />
+
 </head>
 
 <body>
@@ -94,16 +93,16 @@
               <div class="collapse menu-dropdown" id="menuMessage">
                 <ul class="nav nav-sm flex-column">
                   <li class="nav-item">
-                    <a href="./message_form.html" class="nav-link">메시지 보내기</a>
+                    <a href="../message/message_form.html" class="nav-link">메시지 보내기</a>
                   </li>
                   <li class="nav-item">
-                    <a href="./recieve_list.html" class="nav-link">받은 메시지</a>
+                    <a href="../message/recieve_list.html" class="nav-link">받은 메시지</a>
                   </li>
                   <li class="nav-item">
-                    <a href="./sent_list.html" class="nav-link">보낸 메시지</a>
+                    <a href="../message/sent_list.html" class="nav-link">보낸 메시지</a>
                   </li>
                   <li class="nav-item">
-                    <a href="./alarm_list.html" class="nav-link">알림</a>
+                    <a href="../message/alarm_list.html" class="nav-link">알림</a>
                   </li>
                 </ul>
               </div>
@@ -128,19 +127,19 @@
               <div class="collapse menu-dropdown" id="menuBoard">
                 <ul class="nav nav-sm flex-column">
                   <li class="nav-item">
-                    <a href="../board/notice.html" class="nav-link">공지사항</a>
+                    <a href="./it_notice.html" class="nav-link">공지사항</a>
                   </li>
                   <li class="nav-item">
-                    <a href="../board/it_notice.html" class="nav-link">IT 게시판</a>
+                    <a href="./it_notice.html" class="nav-link">IT 게시판</a>
                   </li>
                   <li class="nav-item">
-                    <a href="../board/it_score.html" class="nav-link">IT 평가/과제 게시판</a>
+                    <a href="./it_score.html" class="nav-link">IT 평가/과제 게시판</a>
                   </li>
                   <li class="nav-item">
-                    <a href="../board/japanese_notice.html" class="nav-link">일본어 게시판</a>
+                    <a href="./japanese_notice.html" class="nav-link">일본어 게시판</a>
                   </li>
                   <li class="nav-item">
-                    <a href="../board/japanese_score.html" class="nav-link">일본어 평가/과제 게시판</a>
+                    <a href="./japanese_score.html" class="nav-link">일본어 평가/과제 게시판</a>
                   </li>
                 </ul>
               </div>
@@ -177,7 +176,7 @@
                 <h4 class="mb-sm-0">SMART Cloud IT마스터 48기</h4>
                 <div class="page-title-right">
                   <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item">클래스룸</li>
+                    <li class="breadcrumb-item">메시지</li>
                     <li class="breadcrumb-item active">메시지 보내기</li>
                   </ol>
                 </div>
@@ -186,26 +185,75 @@
           </div>
 
           <!-- 콘텐츠 영역 -->
-          <!-- TODO: 여기서부터 각자 추가하면 됩니다! -->
-
-          
-
+          <!-- TODO: 여기서부터 각자 추가하면 됩니다! -->   
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="card">
+                <div class="card-header align-items-center d-flex">
+                  <h4 class="card-title mb-0 flex-grow-1" id="boardTitle">글 제목 올 자리</h4>
+                  <span class="text-muted" id="category" style="font-size: 0.8rem;">IT 게시판</span>
+                </div>
+                <!-- end card header -->
+                <div class="card-body">
+                  <form id="boardForm" method="post" action="#">
+                      <div class="container-fluid">
+                          <div class="row mb-3">
+                              <div class="col-md-1 text-center">
+                                  <label for="title" class="pt-2">제목</label>
+                              </div>
+                              <div class="col-md-8">
+                                  <input class="form-control" type="text" id="title" name="title" value="">
+                              </div>
+                          </div>
+                          <div class="row mb-3">
+                              <div class="col-md-1 text-center">
+                                  <label for="contents" class="pt-2">내용</label>
+                              </div>
+                              <div class="col-md-11">
+                                  <textarea class="form-control" id="contents" name="contents" style="width:100%; height:300px; border-color: lightgrey;"></textarea>
+                              </div>
+                          </div>
+                          <div class="row mb-3">
+                              <div class="col-md-1 text-center">
+                                  <label class="pt-2">첨부파일</label>
+                              </div>
+                              <div class="col-lg-11 col-md-11">
+                                  <label for="uploadFiles" class="form-label text-muted">첨부파일 (Ctrl 또는 Shift키를 이용하여 여러 개 선택 가능)</label>
+                                  <input class="form-control" id="uploadFiles" name="uploadFiles" type="file" multiple>
+                              </div>
+                          </div>
+                      </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <!--end col-->
+          </div>
+          <div class="row" id="boardBtnGroup">
+            <div class="col-lg-8">
+              <button class="btn btn-primary my-3 mx-2 col-2 submit-btn" type="button" id="createBoard">
+                작성
+              </button>                 
+            </div>
+          </div>
+          <!-- 콘텐츠 엔드 -->
         </div>
       </div>
     </div>
   </div>
   <!-- 레이아웃 끝 -->
-   
   <!-- 공통 js -->
   <script src="../commonScriptDepth.js"></script>
   <!-- CrpytoJS 암호화 툴 -->
    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.js"></script>  
+   
   <!-- 부트스트랩 Javascript  -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>
   <!-- Sweet Alert2  -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>    
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+  </script>
 </body>
 
 </html>

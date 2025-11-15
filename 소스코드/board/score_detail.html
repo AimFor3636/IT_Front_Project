@@ -190,58 +190,43 @@
             <div class="col-lg-12">
               <div class="card">
                 <div class="card-header align-items-center d-flex">
-                  <h4 class="card-title mb-0 flex-grow-1">일본어 게시판</h4>
-                </div>
-                <div class="col-lg-12 d-flex flex-wrap mx-3">
-                  <!-- 검색 폼 -->
-                  <form id="searchForm" action="/classroom/student/classroom/9/42" method="get">
-                    <input type="hidden" id="currentPage" name="currentPage" value="0">
-                    <div class="d-flex flex-wrap col-lg-12 col-sm-12">
-                      <label for="searchType"style="margin-top:25px;">검색대상</label>
-                      <div class="my-3 mx-3">
-                        <select id="searchType" name="searchType" class="form-select">
-                          <option value="title">제목</option>
-                          <option value="contents">내용</option>
-                          <option value="createId">작성ID</option>
-                        </select>
-                      </div>
-                      <div class="my-3">
-                        <input type="text" class="form-control" id="searchWord" name="searchWord" value="">
-                      </div>
-                      <button class="btn btn-primary my-3 mx-2" type="button" id="searchFormButton">
-                        검색
-                      </button>
-                      <!-- Admin, Teacher 에게만 보여지도록 -->
-                      <button class="btn btn-primary my-3 mx-2" type="button" id="createBoard" style="visibility: hidden;">
-                        글 작성
-                      </button>                     
-                    </div>
-                  </form>
-                  <!-- 검색 폼 끝 -->
+                  <h4 class="card-title mb-0 flex-grow-1" id="boardTitle">글 제목 올 자리</h4>
+                  <span class="text-muted" id="category" style="font-size: 0.8rem;">IT 게시판</span>
                 </div>
                 <!-- end card header -->
                 <div class="card-body">
                   <div class="live-preview">
                     <div class="table-responsive">
-                      <table class="table caption-top table-nowrap mb-0">
-                        <thead class="table-light">
+                      <table class="table align-middle table-nowrap mb-0 board-read" style="width:100%;">
+                        <thead>
                           <tr>
-                            <th style="width:5%;">No.</th>
-                            <th>Title</th>
-                            <th>Name</th>
-                            <th>Date</th>
+                            <td>작성자</td>
+                            <th> <span id="userName">김기열</span>
+                                                      (<span class="text-muted" id="userId">speedly</span>)</th>
+                            <td>작성일</td>
+                            <th id="insertDate">2025.11.14 12:53</th>
+                          </tr>
+                          <tr>
+                            <td>만점</td>
+                            <th>100점</th>
+                            <td>과락</td>
+                            <th>70점</th>                            
+                          </tr>
+                          <tr>
+                            <td>시작시간</td>
+                            <th id="startDate">2025.10.29 09:00</th>
+                            <td>종료시간</td>
+                            <th id="endDate">2025.11.14 12:53</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
-                            <td>378</td>
-                            <td>
-                              <a href="#">SpringBoot 수업 참고자료</a>
-                            </td>
-                            <td>
-                              <span title="sypark" data-toggle="tooltip">박수연</span>
-                            </td>
-                            <td>25.11.12 08:43</td>
+                              <td style="white-space: pre-wrap;" colspan="6"><p>설정 참고사항입니다.</p></td>
+                          </tr>
+                          <tr>
+                              <td><label>첨부파일</label></td>
+                              <td colspan="5">
+                              </td>
                           </tr>
                         </tbody>
                       </table>
@@ -252,29 +237,17 @@
             </div>
             <!--end col-->
           </div>
-          <!-- 페이지이동 -->
-          <div class="row">
-              <div class="col-lg-12">
-                  <!-- 페이지 이동 -->
-                  <div class="gridjs-footer">
-                      <div class="gridjs-pagination">
-                          <div class="gridjs-pages">
-                              <div class="dataTables_paginate paging_simple_numbers" id="fixed-header_paginate">
-                                  <ul class="pagination">
-                                      <li class="paginate_button page-item previous" id="fixed-header_previous">
-                                      </li>
-                                      <li class="paginate_button page-item active">
-                                          <a href="#" aria-controls="fixed-header" data-dt-idx="1" tabindex="0" class="page-link">1</a>
-                                      </li>
-                                      <li class="paginate_button page-item next" id="fixed-header_next">                 
-                                      </li>
-                                  </ul>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <!-- 페이지 이동 끝 -->
-              </div>
+
+          <!-- 작성자에게만 보여지도록 처리 -->
+          <div class="row gridjs-footer" id="boardBtnGroup" style="visibility: hidden;">
+            <div class="col-lg-12">
+              <button class="btn btn-primary my-3 mx-2" type="button" id="updateBoard">
+                수정
+              </button>
+              <button class="btn btn-danger my-3 mx-2" type="button" id="deleteBoard">
+                삭제
+              </button>                    
+            </div>
           </div>  
           <!-- 콘텐츠 엔드 -->
         </div>

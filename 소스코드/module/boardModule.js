@@ -132,3 +132,18 @@ export function getBoardListByTitle(searchUserId) {
   return searchBoardList;
 }
 
+export const categoryMapping = {
+  NOTICE: 'board01',
+  IT_NOTICE: 'board02',
+  IT_SCORE: 'board03',
+  JP_NOTICE: 'board04',
+  JP_SCORE: 'board05'
+}
+
+export const boardCategory = {
+  'board01': '공지사항',
+  'board02': 'IT 게시판',
+  'board03': 'IT 평가/과제 게시판',
+  'board04': '일본어 게시판',
+  'board05': '일본어 평가/과제 게시판'
+}
