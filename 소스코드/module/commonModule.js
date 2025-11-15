@@ -9,6 +9,7 @@ export function findObjectInLocalStorage(dataKey) {
   const tmpJson = localStorage.getItem(dataKey);
   let dataObj = {};
 
+  // 조회되는게 없으면 그냥 빈 오브젝트 반환
   if (tmpJson != undefined && tmpJson != null) {
     dataObj = JSON.parse(tmpJson);
   }
@@ -21,9 +22,9 @@ export function findObjectInLocalStorage(dataKey) {
 export function findArrayInLocalStorage(dataKey) {
   
   const tmpJson = localStorage.getItem(dataKey);
-  // 위에서 조회 안되면 빈배열 반환
   let dataList = [];
 
+  // 조회되는게 없으면 빈 배열 반환
   if (tmpJson != undefined && tmpJson != null) {
     dataList = JSON.parse(tmpJson);
   }
@@ -46,6 +47,8 @@ export const dataKeyObj = {
   CACHE_ID   : 'cache-id',      // 캐시에서 저장중인 ID
   ADMIN_USER: 'admin-user',     // 학사 관리자
   USER_LIST : 'user-list',      // 전체 유저 목록
+  CUR_BOARD : 'cur_board',      // 현재 조회하려는 글 목록
   BOARD_LIST: 'board-list',     // 전체 글 목록
+  CUR_MESSAGE: 'cur_message',   // 현재 조회하려는 메시지
   MESSAGE_LIST : 'message-list' // 전체 메시지 목록
 }
