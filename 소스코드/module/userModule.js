@@ -78,7 +78,7 @@ export function findUserId(email, telNumber) {
 
   const userList = findArrayInLocalStorage(dataKeyObj.USER_LIST);
   
-  const userObj = {}
+  let userObj = {}
   for (let user of userList) {
 
     // 전화번호는 - 제외하고 비교
