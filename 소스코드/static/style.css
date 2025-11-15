@@ -382,10 +382,10 @@ form .btn-primary {
 .board-read {
   font-size: 0.8rem;
 }
-/* 
-.input-group {
+
+.form-container .input-group {
   height: 20rem;
-} */
+}
 
 /* ========================================
    반응형 디자인
