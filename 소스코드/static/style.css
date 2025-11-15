@@ -31,16 +31,16 @@
   --bg-class-color: #daf4f0;
   --bg-lecture-color: #dff0fa;
   --bg-test-color: #fef4e4;
-  --bg-holiday-color: #fde8e4;
+    --bg-etc-color: #e9ebec;
+
+    /* 사이드바 색상 */
+    --sidebar-bg: #212529;
+    --sidebar-menu-item-color: #a6b0cf;
+    --sidebar-menu-item-hover-bg: rgba(255, 255, 255, 0.05);
+    --sidebar-menu-item-active-bg: rgba(255, 255, 255, 0.1);
+
+    --bg-holiday-color: #fde8e4;
   --bg-jobfair-color: #e2e5ed;
-  --bg-etc-color: #e9ebec;
-
-  /* 사이드바 색상 */
-  --sidebar-bg: #212529;
-  --sidebar-menu-item-color: #a6b0cf;
-  --sidebar-menu-item-hover-bg: rgba(255, 255, 255, 0.05);
-  --sidebar-menu-item-active-bg: rgba(255, 255, 255, 0.1);
-
   /* 텍스트 색상 */
   --text-muted: #878a99;
   --heading-color: #495057;
@@ -50,7 +50,7 @@
   --border-color: #e9ebec;
   --hover-color: #d1e9ff;
   --card-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
-  
+
   /* 오버레이 색상 */
   --overlay-bg: rgba(0, 0, 0, 0.5);
 }
@@ -99,7 +99,7 @@ a {
 
 .user-dropdown {
   background-color: var(--light-color);
-  
+
 }
 
 .navbar-header {
@@ -910,3 +910,11 @@ form .btn-primary {
 .index-item.index-active:hover {
   background-color: var(--hover-color);
 }
+
+/* ========================================
+   커스텀 체크박스
+   ======================================== */
+
+.form-check-input:checked {
+    background-color: var(--primary-color, #405189);
+    border-color: var(--primary-color, #405189);}
