@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon -->
+    <link rel="icon" href="./static/favicon.png">
+    <title>Aim Data Academy</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <style>
+        body {
+            display: grid;
+            background-image: url(background.png);
+            background-size: cover;
+            place-items: center;
+            height: 100%;
+            margin: 0;
+            margin-top: 60px;
+        }
+
+        .card {
+            place-items: center;
+            float: none;
+            margin-top: 30px;
+            width: 460px;
+
+            max-width: calc(100% - 32px);
+
+            background: #fff;
+
+            border-radius: 5px;
+
+            box-shadow: 0 20px 40px rgba(0, 0, 0, .15);
+
+            padding: 28px 32px;
+
+            font-size: small;
+        }
+
+        .firstname {
+            font-size: medium;
+            font-weight: 700;
+            color: #405189;
+        }
+
+        .box {
+            width: 350px;
+            height: 35px;
+        }
+
+        button {
+            border-radius: 15px;
+            border: 0;
+            width: 350px;
+            height: 35px;
+            background-color: #0ab39c;
+            color: white;
+        }
+
+        #graycolor {
+            font-size: x-small;
+            color: gray;
+        }
+
+        #data {
+            margin-top: 50px;
+        }
+
+        #dontYouHave {
+            font-size: small;
+        }
+
+        #checkbox {
+            accent-color: #405189;
+        }
+
+
+        .redstar {
+            color: red;
+            float: right;
+        }
+
+        .box form-control {
+            border-color: black;
+            padding-left: 12px;
+        }
+        
+    </style>
+
+    <!-- Sweet Alert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+    <!-- 부트스트랩 CSS -->
+
+</head>
+
+<body>
+    <p><a href="./login.html"><img src="Datascience.png" id="data" width="190" height="21"></a></p>
+    <div class="card">
+        <p class="firstname">회원가입</p><br>
+
+        <form novalidate onsubmit="return validateForm()">
+            <label for="birthday" class="form-label"> 생년월일 </label> <span class="redstar">* 필수</span>
+            <p><input type="date" id="birthday" class="box form-control" placeholder="Enter Username">
+            <div class="invalid-feedback">생년월일을 입력하세요.</div>
+            </p>
+
+            <label for="user_phone_num" class="form-label"> 휴대폰번호 </label> <span class="redstar">* 필수</span>
+            <p>
+                <input type="text" id="user_phone_num" class="box form-control" placeholder="숫자만 입력하세요">
+            <div class="invalid-feedback">휴대폰 번호를 입력하세요.</div>
+            </p>
+
+            <label for="user_tele_num" class="form-label"> 전화번호 </label>
+            <p><input type="text" id="user_tel_num" class="box form-control" placeholder="000-000-0000"></p>
+
+            <label for="email" class="form-label"> 이메일 </label> <span class="redstar">* 필수</span>
+            <p><input type="email" id="email" class="box form-control" placeholder="xxx@xxx.xxx">
+            <div class="invalid-feedback">이메일 주소를 입력하세요.</div>
+            </p>
+
+            <label for="poster_code" class="form-label"> 우편번호 </label>
+            <p><input type="text" id="poster_code" class="box form-control" placeholder="00000"></p>
+
+            <label class="form-label" for="address">주소</label>
+            <p><input type="text" id="address" class="box form-control" placeholder="주소"></p>
+
+            <label class="form-label" for="detail_address">상세 주소</label>
+            <p><input type="text" id="detail_address" class="box form-control" placeholder="상세주소"></p>
+
+            <button type="submit"> 가입하기 </button>
+
+        </form>
+    </div>
+    <br>
+
+    <!-- 공통 js -->
+    <script src="./commonScript.js"></script>
+    <script>
+    // 숫자만 입력 가능 (핸드폰 번호)
+    document.getElementById("user_phone_num").addEventListener("input", function () {
+        this.value = this.value.replace(/[^0-9]/g, "");
+    });
+
+    // Bootstrap 오류 표시용
+    function showError(input, message) {
+        input.classList.add("is-invalid");
+        const feedback = input.nextElementSibling;
+        if (feedback && feedback.classList.contains("invalid-feedback")) {
+            feedback.textContent = message;
+        }
+    }
+
+    function clearError(input) {
+        input.classList.remove("is-invalid");
+    }
+
+    function validateForm() {
+
+        const birth = document.getElementById("birthday");
+        const phone = document.getElementById("user_phone_num");
+        const tel = document.getElementById("user_tel_num");
+        const email = document.getElementById("email");
+        const zipcode = document.getElementById("poster_code");
+        // 주소, 상세주소는 지금은 모양만 맞추고 검사는 안 함
+
+        let valid = true;
+
+        // ✅ 생년월일 (필수)
+        if (!birth.value) {
+    // 아무 것도 안 선택했을 때
+    showError(birth, "생년월일은 필수 입력 항목입니다.");
+    valid = false;
+} else {
+    const birthDate = new Date(birth.value); // input type="date" → YYYY-MM-DD
+    const today = new Date();
+    // 오늘 날짜만 비교하도록 시·분·초 0으로 맞춰줌
+    today.setHours(0, 0, 0, 0);
+
+    if (isNaN(birthDate.getTime())) {
+        // 형식이 이상해서 날짜로 변환이 안 되는 경우
+        showError(birth, "올바른 생년월일을 선택하세요.");
+        valid = false;
+    } else if (birthDate > today) {
+        // 미래 날짜인 경우
+        showError(birth, "생년월일은 오늘 이후일 수 없습니다.");
+        valid = false;
+    } else {
+        // 정상인 경우
+        clearError(birth);
+    }
+}
+
+        // ✅ 휴대폰 번호 (필수)
+        const phoneRegex = /^[0-9]{10,11}$/;
+        if (!phone.value) {
+            showError(phone, "휴대폰 번호는 필수입니다.");
+            valid = false;
+        } else if (!phoneRegex.test(phone.value)) {
+            showError(phone, "휴대폰 번호는 숫자 10~11자리여야 합니다.");
+            valid = false;
+        } else {
+            clearError(phone);
+        }
+
+        // 🔹 전화번호 (선택: 값이 있을 때만 형식 검사)
+        const telRegex = /^\d{2,3}-\d{3,4}-\d{4}$/;
+        if (tel.value && !telRegex.test(tel.value)) {
+            showError(tel, "전화번호는 000-0000-0000 형식입니다.");
+            valid = false;
+        } else {
+            clearError(tel);
+        }
+
+        // ✅ 이메일 (필수)
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email.value) {
+            showError(email, "이메일은 필수 입력 항목입니다.");
+            valid = false;
+        } else if (!emailRegex.test(email.value)) {
+            showError(email, "올바른 이메일 주소를 입력하세요.");
+            valid = false;
+        } else {
+            clearError(email);
+        }
+
+        // 🔹 우편번호 (선택: 있을 때만 숫자 5자리 체크)
+        const zipRegex = /^[0-9]{5}$/;
+        if (zipcode.value && !zipRegex.test(zipcode.value)) {
+            showError(zipcode, "우편번호는 숫자 5자리입니다.");
+            valid = false;
+        } else {
+            clearError(zipcode);
+        }
+
+        return valid;
+    }
+</script>
+    <!-- CrpytoJS 암호화 툴 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.js"></script>
+    <!-- 부트스트랩 Javascript  -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <!-- Sweet Alert2  -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+</body>
+
+</html>

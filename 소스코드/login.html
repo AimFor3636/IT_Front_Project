@@ -45,7 +45,7 @@
       color: #405189;
     }
 
-    .box {
+    .box form-control{
       width: 350px;
       height: 35px;
     }
@@ -62,6 +62,7 @@
     #graycolor {
       font-size: x-small;
       color: gray;
+      margin-bottom: 30px;
     }
     #data{
 margin-top: 50px;
@@ -93,10 +94,10 @@ margin-top: 50px;
 
     <form>
       <label for="userId" class="form-label"> Username </label>
-      <p><input type="text" id="userId" class="box" placeholder="Enter Username"></p>
+      <p><input type="text" id="userId" class="box form-control" placeholder="Enter Username"></p>
 
       <label class="form-label" for="userPassword">Password</label>
-      <p><input type="password" id="userPassword" class="box" placeholder="Enter Password"></p>
+      <p><input type="password" id="userPassword" class="box form-control" placeholder="Enter Password"></p>
 
       <label><input type="checkbox" id="checkbox"> id 기억하기 </label></p>
 
@@ -105,8 +106,8 @@ margin-top: 50px;
     </form>
   </div>
   <br>
-  <span id = "dontYouHave">계정이 없으신가요 ? <a href="">회원가입</a></span>
-  <span id="graycolor"><a href="">아이디 찾기</a>&nbsp;&nbsp;|&nbsp;&nbsp; <a href="">비밀번호 찾기</a></span>
+  <span id = "dontYouHave">계정이 없으신가요 ? <a href="./join_membership_real.html">회원가입</a></span>
+  <span id="graycolor"><a href="find_id.html">아이디 찾기</a>&nbsp;&nbsp;|&nbsp;&nbsp; <a href="">비밀번호 찾기</a></span>
   
   
   <!-- 공통 js -->

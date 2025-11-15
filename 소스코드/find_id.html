@@ -5,35 +5,127 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Favicon -->
-  <link rel="icon" href="./static/img/favicon.png">
+  <link rel="icon" href="./static/favicon.png">
   <title>Aim Data Academy</title>
-
-
-  <!-- Sweet Alert2 CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">  
-  <!-- 부트스트랩 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <style>
+    body {
+      display: grid;
+      background-image: url(background.png);
+      background-size: cover;
+      place-items: center;
+      height: 100%;
+      margin: 0;
+      margin-top: 60px;
+    }
 
-  <!-- 부트스트랩 아이콘 -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css" />
+    .card {
+      place-items: center;
+       float: none;
+            margin-top: 30px;
+      width: 460px;
+      
+      max-width: calc(100% - 32px);
+     
+      background: #fff;
+     
+      border-radius: 5px;
+      
+      box-shadow: 0 20px 40px rgba(0, 0, 0, .15);
+      
+      padding: 28px 32px;
+      
+      font-size: small;
+    }
 
-  <!-- 커스텀 CSS -->
-  <link rel="stylesheet" href="./static/style.css" />
+    .firstname {
+      font-size:medium;
+      font-weight: 700;
+      color: #405189;
+    }
+
+    .box {
+      width: 350px;
+      height: 35px;
+    }
+
+    button {
+      border-radius: 15px;
+      border: 0;
+      width: 350px;
+      height: 35px;
+      background-color: #0ab39c;
+      color: white;
+    }
+
+    #graycolor {
+      font-size: x-small;
+      color: gray;
+    }
+    #data{
+margin-top: 50px;
+    }
+    #dontYouHave{
+      font-size: small;
+    }
+    #checkbox{
+      accent-color: #405189;
+    }
+    #userId{
+       padding-left: 12px;  
+    }
+    #userPassword{
+       padding-left: 12px;  
+    }
+  </style>
+
+  <!-- Sweet Alert2 CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+  <!-- 부트스트랩 CSS -->
+  
 </head>
 
 <body>
+  <p><a href="" target="_blank"><img src="Datascience.png" id="data" width="190" height="21"></a></p>
+  <div class="card">
+    <p class="firstname">아이디 찾기</p><br>
 
+    <form>
+      <label for="userId" class="form-label"> Email </label>
+      <p><input type="text" id="userId" class="box" placeholder="이메일 주소를 입력하세요"></p>
+
+      <label class="form-label" for="userPassword">Phone</label>
+      <p><input type="password" id="userPassword" class="box" placeholder="휴대폰 번호를 숫자로만 입력하세요"></p>
+
+   <br>
+
+      <button type="button"> ID 찾기 </button>
+
+    </form>
+  </div>
+  <br>
+  <span id = "dontYouHave">계정이 없으신가요 ? <a href="./join_membership_real.html">회원가입</a></span>
+  <span id="graycolor"><a href="">로그인</a>&nbsp;&nbsp;|&nbsp;&nbsp; <a href="">비밀번호 찾기</a></span>
+  
+  
   <!-- 공통 js -->
-  <script src="./commonScript.js"></script>
+  <script src="./commonScript.js">
+
+
+
+
+    
+  </script>
+  
   <!-- CrpytoJS 암호화 툴 -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.js"></script>  
   <!-- 부트스트랩 Javascript  -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>
   <!-- Sweet Alert2  -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>    
 </body>
 
 </html>
