@@ -45,7 +45,7 @@
       color: #405189;
     }
 
-    .box {
+    .box form-control {
       width: 350px;
       height: 35px;
     }
@@ -87,16 +87,16 @@ margin-top: 50px;
 </head>
 
 <body>
-  <p><a href="" target="_blank"><img src="Datascience.png" id="data" width="190" height="21"></a></p>
+  <p><a href="./login.html"><img src="Datascience.png" id="data" width="190" height="21"></a></p>
   <div class="card">
     <p class="firstname">아이디 찾기</p><br>
 
     <form>
       <label for="userId" class="form-label"> Email </label>
-      <p><input type="text" id="userId" class="box" placeholder="이메일 주소를 입력하세요"></p>
+      <p><input type="text" id="userId" class="box form-control" placeholder="이메일 주소를 입력하세요"></p>
 
       <label class="form-label" for="userPassword">Phone</label>
-      <p><input type="password" id="userPassword" class="box" placeholder="휴대폰 번호를 숫자로만 입력하세요"></p>
+      <p><input type="password" id="userPassword" class="box form-control" placeholder="휴대폰 번호를 숫자로만 입력하세요"></p>
 
    <br>
 
@@ -106,17 +106,11 @@ margin-top: 50px;
   </div>
   <br>
   <span id = "dontYouHave">계정이 없으신가요 ? <a href="./join_membership_real.html">회원가입</a></span>
-  <span id="graycolor"><a href="">로그인</a>&nbsp;&nbsp;|&nbsp;&nbsp; <a href="">비밀번호 찾기</a></span>
+  <span id="graycolor"><a href="./login.html">로그인</a>&nbsp;&nbsp;|&nbsp;&nbsp; <a href="">비밀번호 찾기</a></span>
   
   
   <!-- 공통 js -->
-  <script src="./commonScript.js">
-
-
-
-
-    
-  </script>
+  <script src="./commonScript.js"> </script>
   
   <!-- CrpytoJS 암호화 툴 -->
    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.js"></script>  
