@@ -50,7 +50,7 @@
   --border-color: #e9ebec;
   --hover-color: #d1e9ff;
   --card-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
-  
+
   /* 오버레이 색상 */
   --overlay-bg: rgba(0, 0, 0, 0.5);
 }
@@ -99,7 +99,7 @@ a {
 
 .user-dropdown {
   background-color: var(--light-color);
-  
+
 }
 
 .navbar-header {
@@ -894,3 +894,11 @@ form .btn-primary {
 .index-item.index-active:hover {
   background-color: var(--hover-color);
 }
+
+/* ========================================
+   커스텀 체크박스
+   ======================================== */
+
+.form-check-input:checked {
+    background-color: var(--primary-color, #405189);
+    border-color: var(--primary-color, #405189);}
