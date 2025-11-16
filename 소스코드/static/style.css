@@ -348,23 +348,23 @@ a {
   font-family: sans-serif;
 }
 
+.card-body {
+  font-size: 0.9rem
+}
+
+
 .table-light {
   --bs-table-bg: #f3f6f9;
   --bs-table-border-color: #e9ebec;
   color: #000;
 }
 
-.gridjs-footer {
-  margin: 0 auto;
-  padding: 1.2rem 0 0;
-  width: 200px;
-}
-
 form .btn-primary {
     background-color: #405189;
     border-color: #405189;
 }
-.gridjs-footer .btn-primary {
+
+.btnGroup .btn-primary {
     background-color: #405189;
     border-color: #405189;
 }
