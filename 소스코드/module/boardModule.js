@@ -98,7 +98,7 @@ export function getBoardListByTitle(searchTitle) {
 }
 
 // 게시글 내용 조회 LIKE 검색
-export function getBoardListByTitle(searchContent) {
+export function getBoardListByContent(searchContent) {
 
   const searchBoardList = [];
   const boardList = findArrayInLocalStorage(dataKeyObj.BOARD_LIST);
@@ -117,7 +117,7 @@ export function getBoardListByTitle(searchContent) {
 }
 
 // 게시글 userId 조회 일치하는 경우에만 검색
-export function getBoardListByTitle(searchUserId) {
+export function getBoardListByUserId(searchUserId) {
 
   const searchBoardList = [];
   const boardList = findArrayInLocalStorage(dataKeyObj.BOARD_LIST);
