@@ -47,8 +47,6 @@ export const dataKeyObj = {
   CACHE_ID   : 'cache-id',      // 캐시에서 저장중인 ID
   ADMIN_USER: 'admin-user',     // 학사 관리자
   USER_LIST : 'user-list',      // 전체 유저 목록
-  CUR_BOARD : 'cur_board',      // 현재 조회하려는 글 목록
   BOARD_LIST: 'board-list',     // 전체 글 목록
-  CUR_MESSAGE: 'cur_message',   // 현재 조회하려는 메시지
   MESSAGE_LIST : 'message-list' // 전체 메시지 목록
 }

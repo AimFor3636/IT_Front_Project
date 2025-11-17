@@ -211,6 +211,10 @@
                       <button class="btn btn-primary my-3 mx-2" type="button" id="searchFormButton">
                         검색
                       </button>
+                      <!-- Admin, Teacher 에게만 보여지도록 -->
+                      <button class="btn btn-primary my-3 mx-2" type="button" id="createBoard">
+                        글 작성
+                      </button>                     
                     </div>
                   </form>
                   <!-- 검색 폼 끝 -->
@@ -239,16 +243,6 @@
                             </td>
                             <td>25.11.12 08:43</td>
                           </tr>
-                          <tr>
-                            <td>377</td>
-                            <td>
-                              <a href="#">IntelliJ Community로 SpringBoot 프로젝트 생성하기</a>
-                            </td>
-                            <td>
-                              <span title="sypark" data-toggle="tooltip">박수연</span>
-                            </td>
-                            <td>25.11.11 17:39</td>
-                          </tr>
                         </tbody>
                       </table>
                     </div>
@@ -262,7 +256,7 @@
           <div class="row">
               <div class="col-lg-12">
                   <!-- 페이지 이동 -->
-                  <div class="gridjs-footer">
+                  <div class="gridjs-footer my-3">
                       <div class="gridjs-pagination">
                           <div class="gridjs-pages">
                               <div class="dataTables_paginate paging_simple_numbers" id="fixed-header_paginate">

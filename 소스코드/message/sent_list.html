@@ -177,8 +177,8 @@
                 <h4 class="mb-sm-0">SMART Cloud IT마스터 48기</h4>
                 <div class="page-title-right">
                   <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item">클래스룸</li>
-                    <li class="breadcrumb-item active">메시지 보내기</li>
+                    <li class="breadcrumb-item">메시지</li>
+                    <li class="breadcrumb-item active">보낸 메시지</li>
                   </ol>
                 </div>
               </div>
@@ -187,8 +187,62 @@
 
           <!-- 콘텐츠 영역 -->
           <!-- TODO: 여기서부터 각자 추가하면 됩니다! -->
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="card">
+                <div class="card-header align-items-center d-flex">
+                  <h4 class="card-title mb-0 flex-grow-1">보낸 메시지</h4>
+                </div>
+                <div class="col-lg-12 d-flex flex-wrap mx-3">
+                  <!-- 검색 폼 -->
+                  <form id="searchForm" action="/classroom/student/message" method="get" style="width: 100%;">
+                      <input type="hidden" id="currentPage" name="currentPage" value="0">
+                      <input type="hidden" name="searchType" value="title">
 
-          
+                      <div class="d-flex align-items-center col-lg-12 col-sm-12" style="margin-top: 25px; width:100%;">
+                          <label for="searchWord" style="width:100px; margin-right: 10px;">제목 검색</label>
+                          <input type="text" class="form-control" id="searchWord" name="searchWord" value="" style="width: 50%;">
+
+                          <button class="btn btn-primary my-3 mx-3" type="button" id="searchFormButton" style="width:120px;">
+                              검색
+                          </button>
+                      </div>
+                  </form>
+                  <!-- 검색 폼 끝 -->
+                </div>
+                <!-- end card header -->
+                <div class="card-body">
+                  <div class="live-preview">
+                    <div class="table-responsive">
+                      <table class="table caption-top table-nowrap mb-0">
+                        <thead class="table-light">
+                          <tr>
+                            <th style="width:10%;">구분</th>
+                            <th>제목</th>
+                            <th>발신인</th>
+                            <th>보낸시간</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>츨결증빙자료제출</td>
+                            <td>
+                              <a href="#">메시지 제목</a>
+                            </td>
+                            <td>
+                              <span title="sypark" data-toggle="tooltip">박수연</span>
+                            </td>
+                            <td>25.11.12 08:43</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--end col-->
+          </div>
 
         </div>
       </div>
