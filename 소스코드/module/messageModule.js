@@ -1,5 +1,5 @@
 import { messageDto, getMessagePk} from "../dtoScript.js";
-import { dataKeyObj, findArrayInLocalStorage, findObjectInLocalStorage,  getCurDateString } from "./commonModule.js";
+import { dataKeyObj, findArrayInLocalStorage, saveDataInLocalStorage, findObjectInLocalStorage,  getCurDateString } from "./commonModule.js";
 
 
 /*
@@ -31,7 +31,7 @@ export function saveMessage(messageParam) {
   messageList.push(messageObj);
 
   // 다시 저장
-  localStorage.setItem(dataKeyObj.MESSAGE_LIST, messageObj);
+  saveDataInLocalStorage(dataKeyObj.MESSAGE_LIST, messageObj);
 
   return messageObj;
 }

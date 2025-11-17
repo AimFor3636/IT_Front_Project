@@ -32,6 +32,12 @@ export function findArrayInLocalStorage(dataKey) {
   return dataList;
 }
 
+export function saveDataInLocalStorage(dataKey, data) {
+
+  localStorage.setItem(dataKey, JSON.stringify(data));
+
+}
+
 // 현재 일자 yyyy-mm-dd hh:mm 형태로 반환
 export function getCurDateString() {
   const today = new Date();
