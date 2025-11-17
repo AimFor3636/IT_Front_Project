@@ -106,22 +106,22 @@
             <div class="invalid-feedback">생년월일을 입력하세요.</div>
             </p>
 
-            <label for="user_phone_num" class="form-label"> 휴대폰번호 </label> <span class="redstar">* 필수</span>
+            <label for="phoneNumber" class="form-label"> 휴대폰번호 </label> <span class="redstar">* 필수</span>
             <p>
-                <input type="text" id="user_phone_num" class="box form-control" placeholder="숫자만 입력하세요">
+                <input type="text" id="phoneNumber" class="box form-control" placeholder="숫자만 입력하세요">
             <div class="invalid-feedback">휴대폰 번호를 입력하세요.</div>
             </p>
 
-            <label for="user_tele_num" class="form-label"> 전화번호 </label>
-            <p><input type="text" id="user_tel_num" class="box form-control" placeholder="000-000-0000"></p>
+            <label for="telNumber" class="form-label"> 전화번호 </label>
+            <p><input type="text" id="telNumber" class="box form-control" placeholder="000-000-0000"></p>
 
-            <label for="email" class="form-label"> 이메일 </label> <span class="redstar">* 필수</span>
-            <p><input type="email" id="email" class="box form-control" placeholder="xxx@xxx.xxx">
+            <label for="emailAddress" class="form-label"> 이메일 </label> <span class="redstar">* 필수</span>
+            <p><input type="email" id="emailAddress" class="box form-control" placeholder="xxx@xxx.xxx">
             <div class="invalid-feedback">이메일 주소를 입력하세요.</div>
             </p>
 
-            <label for="poster_code" class="form-label"> 우편번호 </label>
-            <p><input type="text" id="poster_code" class="box form-control" placeholder="00000"></p>
+            <label for="zipCode" class="form-label"> 우편번호 </label>
+            <p><input type="text" id="zipCode" class="box form-control" placeholder="00000"></p>
 
             <label class="form-label" for="address">주소</label>
             <p><input type="text" id="address" class="box form-control" placeholder="주소"></p>
@@ -139,7 +139,7 @@
     <script src="./commonScript.js"></script>
     <script>
     // 숫자만 입력 가능 (핸드폰 번호)
-    document.getElementById("user_phone_num").addEventListener("input", function () {
+    document.getElementById("phoneNumber").addEventListener("input", function () {
         this.value = this.value.replace(/[^0-9]/g, "");
     });
 
@@ -159,10 +159,10 @@
     function validateForm() {
 
         const birth = document.getElementById("birthday");
-        const phone = document.getElementById("user_phone_num");
-        const tel = document.getElementById("user_tel_num");
-        const email = document.getElementById("email");
-        const zipcode = document.getElementById("poster_code");
+        const phone = document.getElementById("phoneNumber");
+        const tel = document.getElementById("telNumber");
+        const email = document.getElementById("emailAddress");
+        const zipcode = document.getElementById("zipCode");
         // 주소, 상세주소는 지금은 모양만 맞추고 검사는 안 함
 
         let valid = true;
@@ -215,14 +215,14 @@
 
         // ✅ 이메일 (필수)
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!email.value) {
-            showError(email, "이메일은 필수 입력 항목입니다.");
+        if (!emailAddress.value) {
+            showError(emailAddress, "이메일은 필수 입력 항목입니다.");
             valid = false;
-        } else if (!emailRegex.test(email.value)) {
-            showError(email, "올바른 이메일 주소를 입력하세요.");
+        } else if (!emailRegex.test(emailAddress.value)) {
+            showError(emailAddress, "올바른 이메일 주소를 입력하세요.");
             valid = false;
         } else {
-            clearError(email);
+            clearError(emailAddress);
         }
 
         // 🔹 우편번호 (선택: 있을 때만 숫자 5자리 체크)
