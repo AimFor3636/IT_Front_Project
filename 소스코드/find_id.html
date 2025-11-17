@@ -96,27 +96,31 @@ margin-top: 50px;
   <div class="card">
     <p class="firstname">아이디 찾기</p><br>
 
-    <form>
+    <form id="findIdForm">
       <label for="userId" class="form-label"> Email </label>
       <p><input type="text" id="userId" class="box form-control" placeholder="이메일 주소를 입력하세요"></p>
 
-      <label class="form-label" for="userPassword">Phone</label>
-      <p><input type="password" id="userPassword" class="box form-control" placeholder="휴대폰 번호를 숫자로만 입력하세요"></p>
+      <label class="form-label" for="phoneNumber">Phone</label>
+      <p><input type="text" id="phoneNumber" class="box form-control" placeholder="휴대폰 번호를 숫자로만 입력하세요" maxlength="12"></p>
 
    <br>
-
-      <button type="button"> ID 찾기 </button>
-
+      <button type="submit"> ID 찾기 </button>
     </form>
   </div>
   <br>
   <div id="question"><span id = "dontYouHave">계정이 없으신가요 ? <a href="./join_membership.html">회원가입</a></span></div>
-  <span id="graycolor"><a href="./login.html">로그인</a>&nbsp;&nbsp;|&nbsp;&nbsp; <a href="">비밀번호 찾기</a></span>
+  <span id="graycolor"><a href="./login.html">로그인</a></span>
+  </body>
   
   
   <!-- 공통 js -->
   <script src="./commonScript.js"> </script>
-  
+  <script>
+     // 숫자만 입력 가능 (핸드폰 번호)
+    document.getElementById("phoneNumber").addEventListener("input", function () {
+        this.value = this.value.replace(/[^0-9]/g, "");
+    });
+  </script>
   <!-- CrpytoJS 암호화 툴 -->
    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.js"></script>  
   <!-- 부트스트랩 Javascript  -->
@@ -125,6 +129,8 @@ margin-top: 50px;
     crossorigin="anonymous"></script>
   <!-- Sweet Alert2  -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>    
+<script type="module" src="./find_id.js"></script>
+
 </body>
 
 </html>
