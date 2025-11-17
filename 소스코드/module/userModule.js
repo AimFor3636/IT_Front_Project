@@ -1,5 +1,5 @@
 import { userDto, getUserPk} from "../dtoScript.js";
-import { findArrayInLocalStorage, findObjectInLocalStorage,  getCurDateString, dataKeyObj } from "./commonModule.js";
+import { findArrayInLocalStorage, findObjectInLocalStorage, saveDataInLocalStorage, getCurDateString, dataKeyObj } from "./commonModule.js";
 
 
 //saveUser({userNo: '1', zipCode: '2'});
@@ -33,7 +33,7 @@ export function saveUser(userParam) {
   userList.push(userObj);
 
   // 다시 저장
-  localStorage.setItem(dataKeyObj.USER_LIST, userList);
+  saveDataInLocalStorage(dataKeyObj.USER_LIST, JSON.stringify(userList));
 
   // 추후에 필수값 여부 체크하는 로직 추가
   return userObj;
@@ -119,8 +119,8 @@ export function updateUser(updateParam) {
   }
   
   // 현재 접속중 상태도 같이 변경
-  localStorage.setItem(dataKeyObj.USER_LIST, userList);
-  localStorage.setItem(dataKeyObj.CUR_USER, curUser);
+  saveDataInLocalStorage(dataKeyObj.USER_LIST, userList);
+  saveDataInLocalStorage(dataKeyObj.CUR_USER, curUser);
 
   return isSuccess;
 } 
@@ -146,8 +146,8 @@ export function updateUserPassword(curPassword, newPassword) {
     }
   }
   // 다시 저장
-  localStorage.setItem(dataKeyObj.USER_LIST, userList);
-  localStorage.setItem(dataKeyObj.CUR_USER, curUser);
+  saveDataInLocalStorage(dataKeyObj.USER_LIST, userList);
+  saveDataInLocalStorage(dataKeyObj.CUR_USER, curUser);
 
   return true;
 }
@@ -166,7 +166,7 @@ export function login(id, password) {
     // password 동일여부 비교
     if (userObj.password == passwordEnc) {
       // true 반환 후 localStrage에 현재 로그인한 유저정보 저장
-      localStorage.setItem(dataKeyObj.CUR_USER, JSON.stringify(userObj));
+      saveDataInLocalStorage(dataKeyObj.CUR_USER, userObj);
       return true;
     }
   }

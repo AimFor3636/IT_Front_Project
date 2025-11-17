@@ -1,5 +1,5 @@
 import { boardDto, getBoardPk} from "../dtoScript.js";
-import { findArrayInLocalStorage, findObjectInLocalStorage,  getCurDateString, dataKeyObj } from "./commonModule.js";
+import { findArrayInLocalStorage, findObjectInLocalStorage, saveDataInLocalStorage, getCurDateString, dataKeyObj } from "./commonModule.js";
 
 
 /*
@@ -33,7 +33,7 @@ export function saveBoard(boardParam) {
   boardList.push(boardObj);
 
   // 다시 저장
-  localStorage.setItem(dataKeyObj.BOARD_LIST, boardList);
+  saveDataInLocalStorage(dataKeyObj.BOARD_LIST, boardList);
 
   return boardObj;
 } 
@@ -58,8 +58,7 @@ export function updateBoard(updateParam) {
       boardList[idx] = boardObj;
     }
   }
-  localStorage.setItem(dataKeyObj.BOARD_LIST, boardList);
-  
+  saveDataInLocalStorage(dataKeyObj.BOARD_LIST, boardList);
   return true;
 }
 
