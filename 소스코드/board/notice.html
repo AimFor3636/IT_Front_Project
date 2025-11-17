@@ -232,8 +232,8 @@
                             <th>Date</th>
                           </tr>
                         </thead>
-                        <tbody>
-                          <tr>
+                        <tbody id="data-body">
+                          <tr id="data-form"> 
                             <td>378</td>
                             <td>
                               <a href="#">SpringBoot 수업 참고자료</a>
@@ -242,16 +242,6 @@
                               <span title="sypark" data-toggle="tooltip">박수연</span>
                             </td>
                             <td>25.11.12 08:43</td>
-                          </tr>
-                          <tr>
-                            <td>377</td>
-                            <td>
-                              <a href="#">IntelliJ Community로 SpringBoot 프로젝트 생성하기</a>
-                            </td>
-                            <td>
-                              <span title="sypark" data-toggle="tooltip">박수연</span>
-                            </td>
-                            <td>25.11.11 17:39</td>
                           </tr>
                         </tbody>
                       </table>
@@ -263,14 +253,14 @@
             <!--end col-->
           </div>
           <!-- 페이지이동 -->
-          <div class="row">
+          <div class="row ">
               <div class="col-lg-12">
                   <!-- 페이지 이동 -->
                   <div class="gridjs-footer my-3">
                       <div class="gridjs-pagination">
                           <div class="gridjs-pages">
                               <div class="dataTables_paginate paging_simple_numbers" id="fixed-header_paginate">
-                                  <ul class="pagination">
+                                  <ul class="pagination d-flex justify-content-center">
                                       <li class="paginate_button page-item previous" id="fixed-header_previous">
                                       </li>
                                       <li class="paginate_button page-item active">
@@ -303,7 +293,7 @@
     crossorigin="anonymous"></script>
   <!-- Sweet Alert2  -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
-  </script>
+  <script type="module" src="./script/notice.js"></script>
 </body>
 
 </html>

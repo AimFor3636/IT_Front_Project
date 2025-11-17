@@ -1,0 +1,48 @@
+import {userAuth, dataKeyObj, findObjectInLocalStorage, findArrayInLocalStorage, saveDataInLocalStorage} from "../../module/commonModule.js";
+import * as BOARD_MODULE from "../../module/boardModule.js"; 
+import { saveUser } from "../../module/userModule.js";
+
+
+const userObj = {
+    userNo: '',         // 유저 PK 값
+    userName: '이상우',       // 성함
+    userId: 'okqwaszx',         // 유저 ID
+    password: '123123',       // 비밀번호 (암호화)
+    emailAddress: 'okqwaszx123@naver.com',   // 이메일 (암호화)
+    birthday: '19920626',       // 생년월일
+    telNumber: '',      // 전화번호
+    phoneNumber: '01053562594',    // 핸드폰 번호
+    zipCode: '12312',        // 우편 주소
+    address: '우리집 어디게',        // 주소
+    userAuth: userAuth.ADMIN,     // 권한
+    registerDate: '',   // 가입 일자
+    registerTimestamp: "", // 정렬용 일자
+};
+
+saveUser(userObj);
+saveDataInLocalStorage(dataKeyObj.CUR_USER, userObj);
+
+// 권한 체크
+function checkAuthority(){
+
+    const curUser = findObjectInLocalStorage(dataKeyObj.CUR_USER);
+    const authCheck = [userAuth.ADMIN, userAuth.TEACHER];
+
+    const createBtnTag = document.getElementById('createBoard');
+    // 클래스 이름 전체가 나옴
+    const curClass = createBtnTag.className;         
+    
+    // ADMIN, TEACHER 의 경우 글 생성 버튼 노출
+    if (authCheck.includes(curUser.userAuth)) {
+        // invisible 있으면 제거
+        if (curClass.includes('invisible')) {
+            createBtnTag.classList.toggle('invisible');
+        } 
+    } else {
+        // invisible 없으면 추가
+        if (!curClass.includes('invisible')) {
+            createBtnTag.classList.toggle('invisible');
+        } 
+    }
+
+}

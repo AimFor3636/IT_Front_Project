@@ -30,6 +30,7 @@ export function saveUser(userParam) {
 
   // 현재 userList 에 저장
   const userList = findArrayInLocalStorage(dataKeyObj.USER_LIST);
+  console.log(`userList=${userList}`);
   userList.push(userObj);
 
   // 다시 저장
@@ -185,7 +186,7 @@ export function setUserAutor(userNo, author) {
   const targetUser = findUserByUserNo(userNo);
 
   if (targetUser != null && targetUser != undefined) {
-    targetUser.userAuthor = author
+    targetUser.userAuth = author
     return true;
   }
   // 조회 안되면 false 반환 예외처리 해야함
