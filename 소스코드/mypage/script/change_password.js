@@ -1,21 +1,43 @@
-import { updateUserPassword } from "../../module/userModule.js"
 
+// 1. userModule.js에서 함수 가져오기
+import { updateUserPassword } from '../module/userModule.js';
 
-// 버튼클릭 addEventListner
-// 
-버튼.addEventListner("click", () => {
+// 2. 버튼 요소 가져오기
+const btn = document.getElementById('changePwdBtn');
 
-  // 바꿀password, 재확인 password 체크 다르면 여기서 바로 alert
+// 3. 클릭 이벤트 연결
+btn.addEventListener('click', function(event) {
+    event.preventDefault(); // 폼 전송(새로고침) 막기
 
+    // ID 대소문자 수정됨 (current-password, new-password)
+    const curPwdInput = document.getElementById('current-password');
+    const newPwdInput = document.getElementById('new-password');
+    const confirmPwdInput = document.getElementById('confirm-password'); // 확인용 비밀번호
 
-  // 기존 password , 바꿀 password 
-  if (updateUserPassword(예전꺼 , 지금꺼)) {
-    "성공" alert 
-    // 화면은 main 전환 
+    const curPwd = curPwdInput.value;
+    const newPwd = newPwdInput.value;
+    const confirmPwd = confirmPwdInput.value;
 
-    window.location.href = "화면경로" // 이 흐름으로
+    // 유효성 검사 1: 빈 값 체크
+    if (!curPwd || !newPwd) {
+        alert("비밀번호를 모두 입력해주세요.");
+        return;
+    }
 
-  } else {
-    "현재 비밀번호 다르다" alert
-  }
-})
+    // 유효성 검사 2: 새 비밀번호와 확인 비밀번호 일치 여부
+    if (newPwd !== confirmPwd) {
+        alert("새 비밀번호가 일치하지 않습니다. 다시 확인해주세요.");
+        return;
+    }
+
+    // 4. 모듈 함수 실행
+    const result = updateUserPassword(curPwd, newPwd);
+
+    if (result === false) {
+        alert("현재 비밀번호가 틀렸습니다.");
+    } else {
+        alert("비밀번호가 성공적으로 변경되었습니다.");
+        // 따옴표 추가됨
+        window.location.href = '../main_page.html';
+    }
+});
