@@ -1,5 +1,5 @@
 /**
- * Aim Data Classroom - Calendar Script - 동적 캘린더 시스템
+ * Aim Data Academy - Calendar Script - 동적 캘린더 시스템
  * Created by Kamil Lee
  */
 
