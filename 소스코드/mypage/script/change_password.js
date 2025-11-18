@@ -20,13 +20,21 @@ btn.addEventListener('click', function(event) {
 
     // 유효성 검사 1: 빈 값 체크
     if (!curPwd || !newPwd) {
-        alert("비밀번호를 모두 입력해주세요.");
+        Swal.fire({
+            icon: "error",    // 에러 aler면 요거 사용
+            title: "입력 오류",    // 요건 타이틀
+            text: "입력하지 않은 부분이 있습니다.",  // 요게 내용
+        });
         return;
     }
 
     // 유효성 검사 2: 새 비밀번호와 확인 비밀번호 일치 여부
     if (newPwd !== confirmPwd) {
-        alert("새 비밀번호가 일치하지 않습니다. 다시 확인해주세요.");
+        Swal.fire({
+            icon: "error",    // 에러 aler면 요거 사용
+            title: "신규 비밀번호 불일치",    // 요건 타이틀
+            text: "변경 할 비빌번호를 다시 확인하세요.",  // 요게 내용
+        });
         return;
     }
 
