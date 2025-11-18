@@ -37,7 +37,6 @@ btn.addEventListener('click', function(event) {
         alert("현재 비밀번호가 틀렸습니다.");
     } else {
         alert("비밀번호가 성공적으로 변경되었습니다.");
-        // 따옴표 추가됨
         window.location.href = '../main_page.html';
     }
 });
