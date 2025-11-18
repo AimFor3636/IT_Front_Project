@@ -63,7 +63,7 @@ export function updateBoard(updateParam) {
 }
 
 // boardNo (pk) 값으로 조회
-export function getBoardByBoardNo(boardNo) {
+export function findBoardByBoardNo(boardNo) {
   const boardList = findArrayInLocalStorage(dataKeyObj.BOARD_LIST);
 
   let boardObj = {};
@@ -78,7 +78,7 @@ export function getBoardByBoardNo(boardNo) {
 }
 
 // 게시글 제목 조회 LIKE 검색
-export function getBoardListByTitle(searchTitle) {
+export function findBoardListByTitle(searchTitle) {
 
   const searchBoardList = [];
   const boardList = findArrayInLocalStorage(dataKeyObj.BOARD_LIST);
@@ -97,7 +97,7 @@ export function getBoardListByTitle(searchTitle) {
 }
 
 // 게시글 내용 조회 LIKE 검색
-export function getBoardListByContent(searchContent) {
+export function findBoardListByContent(searchContent) {
 
   const searchBoardList = [];
   const boardList = findArrayInLocalStorage(dataKeyObj.BOARD_LIST);
@@ -116,7 +116,7 @@ export function getBoardListByContent(searchContent) {
 }
 
 // 게시글 userId 조회 일치하는 경우에만 검색
-export function getBoardListByUserId(searchUserId) {
+export function findBoardListByUserId(searchUserId) {
 
   const searchBoardList = [];
   const boardList = findArrayInLocalStorage(dataKeyObj.BOARD_LIST);

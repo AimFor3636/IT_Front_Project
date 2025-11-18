@@ -68,7 +68,7 @@ export const userAuth = {
 // 데이터 조회 Key
 export const dataKeyObj = {
   CUR_USER     : 'cur-user',       // 현재 로그인 유저
-  CACHED_ID    : 'cached-id',      // 캐시에서 저장중인 ID
+  CACHED_ID    : 'cached-id',      // 저장중인 ID
   ADMIN_USER   : 'admin-user',     // 학사 관리자
   USER_LIST    : 'user-list',      // 전체 유저 목록
   BOARD_LIST   : 'board-list',     // 전체 글 목록

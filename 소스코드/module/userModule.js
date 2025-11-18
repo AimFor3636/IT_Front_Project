@@ -30,7 +30,6 @@ export function saveUser(userParam) {
 
   // 현재 userList 에 저장
   const userList = findArrayInLocalStorage(dataKeyObj.USER_LIST);
-  console.log(`userList=${userList}`);
   userList.push(userObj);
 
   // 다시 저장
