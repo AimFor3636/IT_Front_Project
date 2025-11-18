@@ -205,6 +205,11 @@
         document.querySelectorAll(".navbar-nav .nav-link").forEach(l => l.classList.remove("active"));
       });
     });
+
+      // 로그아웃
+    document.getElementById("logout").addEventListener("click", () => {
+      console.log("온다.");
+    })  
   };
 
   const updateBreadcrumb = (parentMenu, currentMenu) => {
