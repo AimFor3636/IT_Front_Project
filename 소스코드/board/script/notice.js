@@ -3,24 +3,9 @@ import * as BOARD_MODULE from "../../module/boardModule.js";
 import { saveUser } from "../../module/userModule.js";
 
 
-const userObj = {
-    userNo: '',         // 유저 PK 값
-    userName: '이상우',       // 성함
-    userId: 'okqwaszx',         // 유저 ID
-    password: '123123',       // 비밀번호 (암호화)
-    emailAddress: 'okqwaszx123@naver.com',   // 이메일 (암호화)
-    birthday: '19920626',       // 생년월일
-    telNumber: '',      // 전화번호
-    phoneNumber: '01053562594',    // 핸드폰 번호
-    zipCode: '12312',        // 우편 주소
-    address: '우리집 어디게',        // 주소
-    userAuth: userAuth.ADMIN,     // 권한
-    registerDate: '',   // 가입 일자
-    registerTimestamp: "", // 정렬용 일자
-};
-
-saveUser(userObj);
-saveDataInLocalStorage(dataKeyObj.CUR_USER, userObj);
+/*
+  함수
+*/
 
 // 권한 체크
 function checkAuthority(){
@@ -46,3 +31,29 @@ function checkAuthority(){
     }
 
 }
+
+
+
+
+
+
+
+
+
+/*
+  이벤트 리스너
+*/
+
+// 검색
+document.getElementById('searchFormButton').addEventListener('click', () => {
+
+}); 
+
+// 글 작성
+document.getElementById('createBoard').addEventListener('click', () => {
+  
+  window.location.href = `./notice_form.html?category=${BOARD_MODULE.categoryMapping.NOTICE}`;
+
+});
+
+
