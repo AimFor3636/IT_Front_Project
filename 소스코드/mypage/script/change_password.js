@@ -1,6 +1,6 @@
 
 // 1. userModule.js에서 함수 가져오기
-import { updateUserPassword } from '../module/userModule.js';
+import { updateUserPassword } from '../../module/userModule.js';
 
 // 2. 버튼 요소 가져오기
 const btn = document.getElementById('changePwdBtn');

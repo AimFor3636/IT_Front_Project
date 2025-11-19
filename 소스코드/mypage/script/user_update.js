@@ -1,4 +1,5 @@
-import { updateUser, findObjectInLocalStorage, dataKeyObj } from '../module/userModule.js';
+import { updateUser} from '../../module/userModule.js';
+import { dataKeyObj, findObjectInLocalStorage} from "../../module/commonModule";
 
 // 1. 페이지 로딩 시: 현재 사용자 정보를 인풋창에 채워넣기
 window.addEventListener('DOMContentLoaded', () => {
