@@ -14,13 +14,11 @@ export function saveUser(userParam) {
 
   // userParam 에 있는 값만 저장
   for (let key in userObj) {
-      
-      const paramVal = userParam.key;
-
-      if (paramVal != null || paramVal != undefined) {
-          userObj.key = paramVal;
-      }
+  const paramVal = userParam[key];  // userParam.userId, userParam.emailAddress ...
+  if (paramVal != null) {          // null / undefined 아니면
+    userObj[key] = paramVal;       // userObj.userId = paramVal 이런 식으로 덮어쓰기
   }
+}
   // userNo (PK) 값, password 및 일자 별도로 저장
   userObj.userNo = getUserPk();
   // 암호화하여 저장
