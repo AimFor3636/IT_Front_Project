@@ -17,7 +17,7 @@ export function saveBoard(boardParam) {
       
       const paramVal = boardParam.key;
 
-      if (paramVal != null || paramVal != undefined) {
+      if (paramVal != null && paramVal != undefined) {
           boardObj.key = paramVal;
       }
   }

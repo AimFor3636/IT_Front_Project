@@ -17,7 +17,7 @@ export function saveMessage(messageParam) {
       
       const paramVal = messageParam[key];
 
-      if (paramVal != null || paramVal != undefined) {
+      if (paramVal != null && paramVal != undefined) {
           messageParam.key = paramVal;
       }
   }
