@@ -2,7 +2,6 @@ import {userAuth, dataKeyObj, findObjectInLocalStorage, findArrayInLocalStorage,
 import * as BOARD_MODULE from "../../module/boardModule.js"; 
 import { saveUser } from "../../module/userModule.js";  // 테스트용 테스트후 삭제
 
-
 // 초기 세팅
 init();
 
@@ -36,24 +35,6 @@ function checkAuthority(){
     }
 
 }
-
-// 글 검색
-document.getElementById('searchFormButton').addEventListener('click', () => {
-    
-    const searchOption = document.getElementById('searchType').value;
-    const searchWord   = document.getElementById('searchWord').value;
-
-    const searchList = [];
-    switch (searchOption) {
-        case 'title': searchList = BOARD_MODULE.findBoardListByTitle(searchWord, BOARD_MODULE.categoryMapping.NOTICE);
-                    break;
-        case 'contents': searchList = BOARD_MODULE.findBoardListByContent(searchWord, BOARD_MODULE.categoryMapping.NOTICE); 
-                    break;
-        case 'createId': searchList = BOARD_MODULE.findBoardListByUserId(searchWord, BOARD_MODULE.categoryMapping.NOTICE); 
-                    break;
-    }
-    setBoardList(searchList);
-});
 
 // 글 배치
 function setBoardList(boardList) {
@@ -91,9 +72,9 @@ function setBoardList(boardList) {
         }
         pagingBodyTag.appendChild(nextdBtnTag);
 
-        // 1페이지로 세팅
-        setPaging(boardList, 1);
     }
+    // 기본은 1페이지로 세팅
+    setPaging(boardList, 1);    
 }
 
 function setPaging(boardList, pageNum) {
@@ -112,17 +93,13 @@ function setPaging(boardList, pageNum) {
         return;
     }
 
-    let isLastPag = false;
+    let isLastPage = false;
     // 마지막 페이지
-    if (startNum < boardCnt && boardCnt <= endNum) {
-        isLastPag = true;
+    if (startNum <= boardCnt && boardCnt <= endNum) {
+        isLastPage = true;
     }
-
-    // slice (시작 인덱스, 종료 인덱스) 종료 인덱스는 포함 X
-    const pagingList = boardList.slice(startNum, endNum);
-
-    // 첫번째 페이지라면 Next 만 노출
-    if (pageNum == 1) {
+    // 마지막페이지가 아니고, 첫번째 페이지라면 Next 만 노출
+    if (pageNum == 1 && !isLastPage) {
         // invisible 없으면 추가
         if (!prevBtnTag.className.includes('invisible')) {
             prevBtnTag.classList.toggle('invisible');
@@ -131,7 +108,7 @@ function setPaging(boardList, pageNum) {
         if (nextdBtnTag.className.includes('invisible')) {
             nextdBtnTag.classList.toggle('invisible');
         }       
-    } else if (isLastPag) { // Prev 만 노출
+    } else if (pageNum != 1 && isLastPage) { // Prev 만 노출
         // invisible 있으면 삭제
         if (prevBtnTag.className.includes('invisible')) {
             prevBtnTag.classList.toggle('invisible');
@@ -156,7 +133,6 @@ function setPaging(boardList, pageNum) {
     
     pagingTag.forEach((curPageTag) => {
         const aTag = curPageTag.querySelector('.page-link');
-        console.log(aTag);
         if (aTag.innerText == pageNum) {
             // active 없으면 추가
             if (!curPageTag.className.includes('active')) {
@@ -170,8 +146,66 @@ function setPaging(boardList, pageNum) {
         }
     })
 
+    const dataBodyTag = document.getElementById('data-body');
+    const dataFormTag = document.getElementById('data-form');
+    // slice (시작 인덱스, 종료 인덱스) 종료 인덱스는 포함 X
+    const pagingBoardList = boardList.slice(startNum, endNum);
+    
+    dataBodyTag.innerHTML = '';
+
+    // 데이터 세팅하여 추가
+    for (const board of pagingBoardList) {
+
+        const curDataTag = dataFormTag.cloneNode(true);
+        curDataTag.innerHTML = '';
+
+        // boardNo
+        const boardNoTag = document.createElement('td'); 
+        boardNoTag.innerText = board.boardNo;
+
+        // 제목
+        const titleTag = document.createElement('td'); 
+        const titleLinkTag = document.createElement('a');
+        titleLinkTag.innerText = board.title;
+        titleLinkTag.href = `./notice_detail.html?boardNo=${board.boardNo}`;
+        titleTag.appendChild(titleLinkTag);
+        
+        // 이름
+        const nameTag = document.createElement('td'); 
+        nameTag.innerText = board.userName;
+
+        // 등록 시간
+        const timeTag = document.createElement('td');      
+        timeTag.innerText = board.insertDate;
+        
+        curDataTag.appendChild(boardNoTag);
+        curDataTag.appendChild(titleTag);
+        curDataTag.appendChild(nameTag);
+        curDataTag.appendChild(timeTag);
+
+        dataBodyTag.appendChild(curDataTag);
+    }
+
+    // 페이징 버튼 이벤트 세팅 페이징 버튼 동적생성되므로 다 생성 되고나서 부착
+    setPagingBtn(boardList);
 }
 
+function setPagingBtn(boardList) {
+    
+    const pagingBtnList = document.querySelectorAll('.paginate_button.page-item.paging');
+    
+    // 페이징에 따른 이벤트 장착
+    pagingBtnList.forEach((pagingBtn) => {
+        const aTag = pagingBtn.querySelector('.page-link');
+        const pagingNum = aTag.innerText;
+        pagingBtn.addEventListener('click', () => {
+            setPaging(boardList, pagingNum)
+        })
+    });
+
+}
+
+// 테스트용
 function test() {
     localStorage.clear();
 
@@ -199,22 +233,38 @@ function test() {
 function init() {
     // 최초 페이지 설정
     const searchList = BOARD_MODULE.findBoardByCategory(BOARD_MODULE.categoryMapping.NOTICE);
+    // 데이터 세팅
     setBoardList(searchList);
-
+    
+    // 권한 체크
+    checkAuthority();
 }
 
 /*
   이벤트 리스너
 */
-
-// 검색
+// 글 검색
 document.getElementById('searchFormButton').addEventListener('click', () => {
+    
+    const searchOption = document.getElementById('searchType').value;
+    const searchWord   = document.getElementById('searchWord').value;
 
-}); 
+    const searchList = [];
+    switch (searchOption) {
+        case 'title': searchList = BOARD_MODULE.findBoardListByTitle(searchWord, BOARD_MODULE.categoryMapping.NOTICE);
+                    break;
+        case 'contents': searchList = BOARD_MODULE.findBoardListByContent(searchWord, BOARD_MODULE.categoryMapping.NOTICE); 
+                    break;
+        case 'createId': searchList = BOARD_MODULE.findBoardListByUserId(searchWord, BOARD_MODULE.categoryMapping.NOTICE); 
+                    break;
+    }
+    setBoardList(searchList);
+});
+
 
 // 글 작성
 document.getElementById('createBoard').addEventListener('click', () => {
   
-  window.location.href = `./notice_form.html?category=${BOARD_MODULE.categoryMapping.NOTICE}`;
+    window.location.href = `./notice_form.html?category=${BOARD_MODULE.categoryMapping.NOTICE}`;
 
 });

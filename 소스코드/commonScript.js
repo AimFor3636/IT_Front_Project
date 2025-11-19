@@ -204,9 +204,10 @@
       });
     });
 
-    // 로그아웃
+    // 로그아웃, cur-user 날리고 로그인 페이지로
     document.getElementById("logout").addEventListener("click", () => {
-      console.log("온다.");
+      localStorage.removeItem("cur-user");
+      window.location.href = "./login.html";
     })
   };
 
