@@ -126,7 +126,6 @@ export function findBoardListByContent(searchContent, category) {
 
   return searchBoardList;
 }
-
 // 게시글 userId 조회 일치하는 경우에만 검색
 export function findBoardListByUserId(searchUserId, category) {
 
@@ -141,9 +140,39 @@ export function findBoardListByUserId(searchUserId, category) {
     return boardB.registerTimestamp - boardA.registerTimestamp;
   })
 
-
-
   return searchBoardList;
+}
+
+// 게시글 조회수 증가
+export function addBoardCount(boardObj) {
+
+  boardObj.boardCount = boardObj.boardCount+1;
+
+  const boardList = findArrayInLocalStorage(dataKeyObj.BOARD_LIST);
+  for (let idx in boardList) {
+    if (boardList[idx].boardNo == boardObj.boardNo) {
+      boardList[idx] = boardObj;
+      break;
+    }
+  }
+  saveDataInLocalStorage(dataKeyObj.BOARD_LIST, boardList);
+
+}
+
+// 게시글 삭제
+export function deleteBoard(boardObj) {
+
+  if (!boardObj || boardObj == null || boardObj == undefined) {
+    return;
+  }
+
+  const boardList = findArrayInLocalStorage(dataKeyObj.BOARD_LIST);
+  for (let idx in boardList) {
+    // 삭제
+    boardList.splice(idx, idx);
+    break;
+  }
+  saveDataInLocalStorage(dataKeyObj.BOARD_LIST, boardList);
 }
 
 export const categoryMapping = {

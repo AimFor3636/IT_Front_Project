@@ -44,6 +44,7 @@ export function getMessageByMessageNo(messageNo) {
   for (let message of messageList) {
     if (message.messageNo == messageNo) {
       messageObj = message;
+      break;
     }
   }
 
