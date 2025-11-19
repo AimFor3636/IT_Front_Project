@@ -160,25 +160,6 @@ window.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  // USER_LIST 배열 보정 (없으면 [])
-  (function ensureUserListArray() {
-    const key = dataKeyObj.USER_LIST;
-    const raw = localStorage.getItem(key);
-
-    if (!raw) {
-      localStorage.setItem(key, JSON.stringify([]));
-      return;
-    }
-
-    try {
-      const parsed = JSON.parse(raw);
-      if (!Array.isArray(parsed)) {
-        localStorage.setItem(key, JSON.stringify([]));
-      }
-    } catch (e) {
-      localStorage.setItem(key, JSON.stringify([]));
-    }
-  })();
 
   // 숫자만 입력 가능 (핸드폰/전화)
   phone.addEventListener("input", function () {
