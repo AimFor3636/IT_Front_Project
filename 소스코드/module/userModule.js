@@ -30,7 +30,6 @@ export function saveUser(userParam) {
 
   // 현재 userList 에 저장
   const userList = findArrayInLocalStorage(dataKeyObj.USER_LIST);
-  console.log(`userList=${userList}`);
   userList.push(userObj);
 
   // 다시 저장
@@ -177,6 +176,26 @@ export function login(id, password) {
 // 로그아웃처리 그냥 localStorage에 현재 유저정보 삭제
 export function logout() {
   localStorage.removeItem(dataKeyObj.CUR_USER);
+}
+
+
+// 전체 인원 조회 ( 권한부여 설정 확인 용)
+export function findUserAll() {
+
+  const userList = findArrayInLocalStorage(dataKeyObj.USER_LIST);
+
+  // 이름 오름차순
+  userList.sort((userA, userB) => {
+    if (userA.userName < userB.userName) {
+      return -1;
+    } else if (userA.userName > userB.userName) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+
+  return userList;
 }
 
 // 권한 설정 ( ADMIN 에게만 권한 부여 됨)
