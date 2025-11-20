@@ -8,15 +8,17 @@ import { findArrayInLocalStorage, findObjectInLocalStorage, saveDataInLocalStora
 */
 // 유저 저장 후 해당 Obj 반환
 export function saveUser(userParam) {
-  
+
   // userDto 깊은 복사
   const userObj = JSON.parse(JSON.stringify(userDto));
 
   // userParam 에 있는 값만 저장
   for (let key in userObj) {
-  const paramVal = userParam[key];  // userParam.userId, userParam.emailAddress ...
-  if (paramVal != null) {          // null / undefined 아니면
-    userObj[key] = paramVal;       // userObj.userId = paramVal 이런 식으로 덮어쓰기
+
+      const paramVal = userParam[key];
+      if (paramVal != null && paramVal != undefined) {
+          userObj[key] = paramVal;
+      }
   }
 }
   // userNo (PK) 값, password 및 일자 별도로 저장
@@ -26,28 +28,28 @@ export function saveUser(userParam) {
   userObj.registerDate = getCurDateString();
   userObj.registerTimestamp = Date.now();
 
+  console.log(userObj);
   // 현재 userList 에 저장
   const userList = findArrayInLocalStorage(dataKeyObj.USER_LIST);
   userList.push(userObj);
 
   // 다시 저장
-  saveDataInLocalStorage(dataKeyObj.USER_LIST, JSON.stringify(userList));
+  saveDataInLocalStorage(dataKeyObj.USER_LIST, userList);
 
   // 추후에 필수값 여부 체크하는 로직 추가
   return userObj;
-} 
 
 // userNo (PK) 로 유저 정보 조회
-export function findUserByUserNo(userNo) {
+export function findUserByUserNo(searchUserNo) {
 
     // 로컬 스토리지에서 user-list 값 가져오기
     const userList = findArrayInLocalStorage(dataKeyObj.USER_LIST);
-    
     let userObj = {};
-    
+
     for (let user of userList) {
-      if (user.userNo == userNo) {
+      if (user.userNo == searchUserNo) {
           userObj = user;
+          console.log(user.userNo);
           break;
       } 
     }
@@ -55,7 +57,7 @@ export function findUserByUserNo(userNo) {
 
 }
 // userId로 조회
-export function findUserByUserId(userId) {
+export function findUserByUserId(searechUserId) {
 
     // 로컬 스토리지에서 user-list 값 가져오기
     const userList = findArrayInLocalStorage(dataKeyObj.USER_LIST);
@@ -63,7 +65,7 @@ export function findUserByUserId(userId) {
     let userObj = {};
     
     for (let user of userList) {
-      if (user.userId == userId) {
+      if (user.userId == searechUserId) {
           userObj = user;
           break;
       } 
@@ -72,7 +74,7 @@ export function findUserByUserId(userId) {
 }
 
 // ID 찾기
-export function findUserId(email, telNumber) {
+export function findUserId(searchEmail, inTelNumber) {
 
   const userList = findArrayInLocalStorage(dataKeyObj.USER_LIST);
   
@@ -81,7 +83,7 @@ export function findUserId(email, telNumber) {
 
     // 전화번호는 - 제외하고 비교
     // 첫번째 찾아지면 그냥 반환
-    if (user.email == email && user.telNumber.replace("-", "") == telNumber.replace("-", "")) {
+    if (user.email == searchEmail && user.telNumber.replace("-", "") == inTelNumber.replace("-", "")) {
       userObj = user;
       break;
     } 
@@ -99,10 +101,10 @@ export function updateUser(updateParam) {
   // userParam 에 있는 값만 저장
   for (let key in updateParam) {
       
-      const paramVal = updateParam.key;
+      const paramVal = updateParam[key];
 
-      if (paramVal != null || paramVal != undefined) {
-          curUser.key = paramVal;
+      if (paramVal != null && paramVal != undefined) {
+          curUser[key] = paramVal;
       }
   }  
   // user-list 해당 위치에 교체
@@ -110,7 +112,7 @@ export function updateUser(updateParam) {
 
   let isSuccess = false;
   for (let idx in userList) {
-    if (userList[idx].userNo == curUser.userNo) {
+    if (userList[idx].userNo == curUser[userNo]) {
       userList[idx] = curUser;
       isSuccess = true;
     }

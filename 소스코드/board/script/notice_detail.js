@@ -8,7 +8,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const boardNo = urlParams.get('boardNo');
 const boardObj = BOARD_MODULE.findBoardByBoardNo(boardNo);
 
-//setBoardDetail();
+setBoardDetail();
 
 /* 
     함수
@@ -21,13 +21,16 @@ function setBoardDetail() {
     }
     const userObj = findUserByUserNo(boardObj.userNo);
     const boardCount = boardObj.boardCount;
+    const categoryText = BOARD_MODULE.boardCategory[boardObj.categoryNo];
 
     // 글 배치
-    document.getElementById('userName').innerText(userObj.userName);
-    document.getElementById('userId').innerText(userObj.userId);
-    document.getElementById('insertDate').innerText(boardObj.insertDate);
-    document.getElementById('boardCount').innerText(boardCount+1);
-    document.getElementById('contents').innerHTML(boardObj.content);
+    document.getElementById('boardTitle').innerText = boardObj.title;
+    document.getElementById('category').innerText = categoryText;
+    document.getElementById('userName').innerText = userObj.userName;
+    document.getElementById('userId').innerText = userObj.userId;
+    document.getElementById('insertDate').innerText = boardObj.insertDate;
+    document.getElementById('boardCount').innerText = boardCount+1;
+    document.getElementById('contents').innerHTML = boardObj.content;   
 
     // 카운팅
     BOARD_MODULE.addBoardCount(boardObj);

@@ -1,12 +1,9 @@
 import {userAuth, dataKeyObj, findObjectInLocalStorage, findArrayInLocalStorage, saveDataInLocalStorage} from "../../module/commonModule.js";
 import * as BOARD_MODULE from "../../module/boardModule.js"; 
-import { saveUser } from "../../module/userModule.js";  // 테스트용 테스트후 삭제
+import { saveUser, findUserByUserNo } from "../../module/userModule.js";  // 테스트용 테스트후 삭제
 
 // 초기 세팅
 init();
-
-// 테스트용
-test();
 
 /*
   함수
@@ -172,7 +169,9 @@ function setPaging(boardList, pageNum) {
         
         // 이름
         const nameTag = document.createElement('td'); 
-        nameTag.innerText = board.userName;
+
+        const userObj = findUserByUserNo(board.userNo);
+        nameTag.innerText = userObj.userName;
 
         // 등록 시간
         const timeTag = document.createElement('td');      

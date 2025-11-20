@@ -21,13 +21,18 @@ function setBoardDetail() {
     }
     const userObj = findUserByUserNo(boardObj.userNo);
     const boardCount = boardObj.boardCount;
+    const categoryText = BOARD_MODULE.boardCategory[boardObj.categoryNo];
 
     // 글 배치
-    document.getElementById('userName').innerText(userObj.userName);
-    document.getElementById('userId').innerText(userObj.userId);
-    document.getElementById('insertDate').innerText(boardObj.insertDate);
-    document.getElementById('boardCount').innerText(boardCount+1);
-    document.getElementById('contents').innerHTML(boardObj.content);
+    document.getElementById('boardTitle').innerText = boardObj.title;
+    document.getElementById('category').innerText = categoryText;
+    document.getElementById('userName').innerText = userObj.userName;
+    document.getElementById('userId').innerText = userObj.userId;
+    document.getElementById('insertDate').innerText = boardObj.insertDate;
+    document.getElementById('boardCount').innerText = boardCount+1;
+    document.getElementById('contents').innerHTML = boardObj.content;
+    document.getElementById('startDate').innerText = boardObj.startDate;
+    document.getElementById('endDate').innerText = boardObj.endDate;
 
     // 카운팅
     BOARD_MODULE.addBoardCount(boardObj);
