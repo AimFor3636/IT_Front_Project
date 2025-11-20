@@ -34,12 +34,10 @@ export function findArrayInLocalStorage(dataKey) {
   if (tmpJson != undefined && tmpJson != null) {
     dataList = JSON.parse(tmpJson);
   }
-
   // localStorage.getItem(dataKey) 에 'null' 이나 {} 이 반환되는 경우 체크
-  if (!Array.isArray(dataList)) {
+  if (!dataList || dataList == 'null') {
     dataList = [];
   }
-
   return dataList;
 }
 

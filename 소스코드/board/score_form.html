@@ -218,13 +218,13 @@
                                   <label for="title" class="pt-2">시작시간</label>
                               </div>
                               <div class="col-md-3">
-                                  <input class="form-control" type="datetime-local" id="title" name="title" value="">
+                                  <input class="form-control" type="datetime-local" id="startDate" name="title" value="">
                               </div>
                               <div class="col-md-1 text-center">
                                   <label for="title" class="pt-2">종료시간</label>
                               </div>
                               <div class="col-md-3">
-                                  <input class="form-control" type="datetime-local" id="title" name="title" value="">
+                                  <input class="form-control" type="datetime-local" id="endDate" name="title" value="">
                               </div>                              
                           </div>
                           <div class="row mb-3">
@@ -247,7 +247,10 @@
             <div class="col-lg-8">
               <button class="btn btn-primary my-3 col-2 submit-btn" type="button" id="createBoard">
                 작성
-              </button>                 
+              </button>       
+              <button class="btn btn-secondary my-3 col-2" type="button" id="goToList">
+                돌아가기
+              </button>                               
             </div>
           </div>
           <!-- 콘텐츠 엔드 -->
@@ -267,6 +270,7 @@
     crossorigin="anonymous"></script>
   <!-- Sweet Alert2  -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+  <script type="module" src="./script/score_form.js"></script>
 </body>
 
 </html>

@@ -15,10 +15,10 @@ export function saveBoard(boardParam) {
   // userParam 에 있는 값만 저장
   for (let key in boardObj) {
       
-      const paramVal = boardParam.key;
-
+      const paramVal = boardParam[key];
+      
       if (paramVal != null && paramVal != undefined) {
-          boardObj.key = paramVal;
+          boardObj[key] = paramVal;
       }
   }
 
@@ -29,7 +29,7 @@ export function saveBoard(boardParam) {
   boardObj.insertTimeStamp = Date.now();
   boardObj.updateTimeStamp = Date.now();
 
-  const boardList = localStorage.getItem(dataKeyObj.BOARD_LIST);
+  const boardList = findArrayInLocalStorage(dataKeyObj.BOARD_LIST);
   boardList.push(boardObj);
 
   // 다시 저장
@@ -41,15 +41,21 @@ export function saveBoard(boardParam) {
 // 게시글 수정 ( 제목, 내용, 수정일자 update)
 export function updateBoard(updateParam) {
 
-  const boardObj = getBoardByBoardNo(updateParam.boardNo);
+  const boardObj = getBoardByBoardNo(updateParam[boardNo]);
 
   if (boardObj == null || boardObj == undefined) {
     return false;
   }
-  boardObj.title = updateParam.title;
-  boardObj.content = updateParam.content
+  boardObj.title = updateParam[title];
+  boardObj.content = updateParam[content]
   boardObj.updateDate = getCurDateString();
   boardObj.updateTimeStamp = Date.now();
+
+  // 평가 게시판은 시작, 종료시간
+  if (boardObj.categoryNo == categoryMapping.IT_SCORE || boardObj.categoryNo == categoryMapping.JP_SCORE) {
+    boardObj.startDate = updateParam[startDate];
+    boardObj.endDate = updateParam[endDate];
+  }
 
   const boardList = findArrayInLocalStorage(dataKeyObj.BOARD_LIST);
 
@@ -63,13 +69,13 @@ export function updateBoard(updateParam) {
 }
 
 // boardNo (pk) 값으로 조회
-export function findBoardByBoardNo(boardNo) {
+export function findBoardByBoardNo(searchBoardNo) {
   const boardList = findArrayInLocalStorage(dataKeyObj.BOARD_LIST);
 
   let boardObj = {};
 
   for (let board of boardList) {
-    if (board.boardNo == boardNo) {
+    if (board.boardNo == searchBoardNo) {
       boardObj = board;
       break;
     } 
@@ -77,13 +83,13 @@ export function findBoardByBoardNo(boardNo) {
   return boardObj;
 }
 
-export function findBoardByCategory(category) {
+export function findBoardByCategory(searchCategory) {
   
   let searchBoardList = [];
   const boardList = findArrayInLocalStorage(dataKeyObj.BOARD_LIST);
   
   searchBoardList = boardList.filter((board) => {
-    return board.categoryNo == category; 
+    return board.categoryNo == searchCategory; 
   }).sort((boardA, boardB) => { // 작성일 기준 내림차순
     return boardB.registerTimestamp - boardA.registerTimestamp;
   })
@@ -92,7 +98,7 @@ export function findBoardByCategory(category) {
 }
 
 // 게시글 제목 조회 LIKE 검색
-export function findBoardListByTitle(searchTitle, category) {
+export function findBoardListByTitle(searchTitle, searchCategory) {
 
   let searchBoardList = [];
   const boardList = findArrayInLocalStorage(dataKeyObj.BOARD_LIST);
@@ -100,7 +106,7 @@ export function findBoardListByTitle(searchTitle, category) {
   searchBoardList = boardList.filter((board) => {
     // 대문자로 LIKE 검색
     const boardTitle = board.title.toUpperCase();
-    return (boardTitle.indexOf(searchTitle.toUpperCase()) != -1 && board.categoryNo == category)
+    return (boardTitle.indexOf(searchTitle.toUpperCase()) != -1 && board.categoryNo == searchCategory)
   }).sort((boardA, boardB) => { // 작성일 기준 내림차순
     return boardB.registerTimestamp - boardA.registerTimestamp;
   })
@@ -110,7 +116,7 @@ export function findBoardListByTitle(searchTitle, category) {
 }
 
 // 게시글 내용 조회 LIKE 검색
-export function findBoardListByContent(searchContent, category) {
+export function findBoardListByContent(searchContent, searchCategory) {
 
   let searchBoardList = [];
   const boardList = findArrayInLocalStorage(dataKeyObj.BOARD_LIST);
@@ -118,7 +124,7 @@ export function findBoardListByContent(searchContent, category) {
   searchBoardList = boardList.filter((board) => {
     // 대문자로 LIKE 검색
     const boardContent = board.content.toUpperCase();
-    return (boardContent.indexOf(searchContent.toUpperCase()) != -1 && board.categoryNo == category)
+    return (boardContent.indexOf(searchContent.toUpperCase()) != -1 && board.categoryNo == searchCategory)
   }).sort((boardA, boardB) => { // 작성일 기준 내림차순
     return boardB.registerTimestamp - boardA.registerTimestamp;
   })
@@ -127,7 +133,7 @@ export function findBoardListByContent(searchContent, category) {
   return searchBoardList;
 }
 // 게시글 userId 조회 일치하는 경우에만 검색
-export function findBoardListByUserId(searchUserId, category) {
+export function findBoardListByUserId(searchUserId, searchCategory) {
 
   let searchBoardList = [];
   const boardList = findArrayInLocalStorage(dataKeyObj.BOARD_LIST);
@@ -135,7 +141,7 @@ export function findBoardListByUserId(searchUserId, category) {
   searchBoardList = boardList.filter((board) => {
     
     // userId 일치하는 경우만 
-    return (board.userId == searchUserId  && board.categoryNo == category);
+    return (board.userId == searchUserId  && board.categoryNo == searchCategory);
   }).sort((boardA, boardB) => { // 작성일 기준 내림차순
     return boardB.registerTimestamp - boardA.registerTimestamp;
   })
@@ -169,8 +175,10 @@ export function deleteBoard(boardObj) {
   const boardList = findArrayInLocalStorage(dataKeyObj.BOARD_LIST);
   for (let idx in boardList) {
     // 삭제
-    boardList.splice(idx, idx);
-    break;
+    if(boardObj.boardNo == boardList[idx].boardNo) {
+      boardList.splice(idx, idx);
+      break;
+    }
   }
   saveDataInLocalStorage(dataKeyObj.BOARD_LIST, boardList);
 }

@@ -18,14 +18,14 @@ export function saveMessage(messageParam) {
       const paramVal = messageParam[key];
 
       if (paramVal != null && paramVal != undefined) {
-          messageParam.key = paramVal;
+          messageObj[key] = paramVal;
       }
   }
 
   // messageNo 및 일자는 별도로 저장
   messageObj.messageNo = getMessagePk();
   messageObj.insertDate = getCurDateString();
-  messageObj.insertTimeStamp = Date.now();
+  messageObj.insertTimeStam = Date.now();
 
   const messageList = localStorage.getItem(dataKeyObj.MESSAGE_LIST);
   messageList.push(messageObj);
@@ -37,12 +37,12 @@ export function saveMessage(messageParam) {
 }
 
 // messageNo (PK) 값으로 조회
-export function getMessageByMessageNo(messageNo) {
+export function getMessageByMessageNo(searchMessageNo) {
   const messageList = findArrayInLocalStorage(dataKeyObj.MESSAGE_LIST);
 
   let messageObj = {};
   for (let message of messageList) {
-    if (message.messageNo == messageNo) {
+    if (message.messageNo == searchMessageNo) {
       messageObj = message;
       break;
     }
