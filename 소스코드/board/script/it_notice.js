@@ -41,7 +41,6 @@ function setBoardList(boardList) {
     const nextdBtnTag = document.querySelector('#fixed-header_next');
 
     let boardCnt = boardList.length;
-    //boardCnt = 35;
     const pagingTag = document.querySelector('.paginate_button.page-item.paging');
 
     // 글 10개 이하면 한페이지에서 끝남 따라서 prev , next 버튼 전부 감춤
@@ -151,9 +150,10 @@ function setPaging(boardList, pageNum) {
     dataBodyTag.innerHTML = '';
 
     // 데이터 세팅하여 추가
+    let idx = 1;
     for (const board of pagingBoardList) {
 
-        const curDataTag = dataFormTag.cloneNode(true);
+        const curDataTag = document.createElement('tr');
         curDataTag.innerHTML = '';
 
         // boardNo
@@ -181,6 +181,9 @@ function setPaging(boardList, pageNum) {
         curDataTag.appendChild(titleTag);
         curDataTag.appendChild(nameTag);
         curDataTag.appendChild(timeTag);
+
+        curDataTag.id = `data-form-${idx}`;
+        idx++;
 
         dataBodyTag.appendChild(curDataTag);
     }

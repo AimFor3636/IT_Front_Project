@@ -102,9 +102,6 @@
                   <li class="nav-item">
                     <a href="./sent_list.html" class="nav-link">보낸 메시지</a>
                   </li>
-                  <li class="nav-item">
-                    <a href="./alarm_list.html" class="nav-link">알림</a>
-                  </li>
                 </ul>
               </div>
             </li>
@@ -223,15 +220,13 @@
                             <th>보낸시간</th>
                           </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="data-body">
                           <tr>
                             <td>츨결증빙자료제출</td>
                             <td>
                               <a href="#">메시지 제목</a>
                             </td>
-                            <td>
-                              <span title="sypark" data-toggle="tooltip">박수연</span>
-                            </td>
+                            <td>박수연</td>
                             <td>25.11.12 08:43</td>
                           </tr>
                         </tbody>
@@ -251,15 +246,15 @@
                       <div class="gridjs-pagination">
                           <div class="gridjs-pages">
                               <div class="dataTables_paginate paging_simple_numbers" id="fixed-header_paginate">
-                                  <ul class="pagination d-flex justify-content-center">
+                                  <ul class="pagination d-flex justify-content-center" id="paging-body">
                                       <li class="paginate_button page-item previous" id="fixed-header_previous">
-                                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                        <a class="page-link" href="#">Previous</a>
                                       </li>
-                                      <li class="paginate_button page-item active">
+                                      <li class="paginate_button page-item paging active">
                                           <a href="#" aria-controls="fixed-header" tabindex="0" class="page-link">1</a>
                                       </li>
                                       <li class="paginate_button page-item next" id="fixed-header_next">        
-                                        <li class="page-item"><a class="page-link" href="#">Next</a></li>         
+                                        <a class="page-link" href="#">Next</a>         
                                       </li>
                                   </ul>
                               </div>
@@ -284,7 +279,8 @@
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>
   <!-- Sweet Alert2  -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>    
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+  <script type="module" src="./script/recieve_list.js"></script>
 </body>
 
 </html>

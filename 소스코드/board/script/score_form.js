@@ -76,6 +76,11 @@ function test() {
 
 // 신규 작성
 function saveBoard() {
+
+    // 유효성 체크
+    if (!checkValid()) {
+        return;
+    }
     const curUser = findObjectInLocalStorage(dataKeyObj.CUR_USER);
 
     const title = document.getElementById('title').value;
@@ -115,8 +120,15 @@ function saveBoard() {
 // 수정
 function updateBoard() {
 
+    // 유효성 체크
+    if (!checkValid()) {
+        return;
+    }
+
     const title = document.getElementById('title').value;
     const contents = document.getElementById('contents').value;
+    const startDate = document.getElementById('startDate').value;
+    const endDate = document.getElementById('endDate').value;    
 
     // param 배치
     const boardParam = {};
@@ -144,6 +156,71 @@ function updateBoard() {
         });
     }
 }
+
+
+// 유효성 검사
+// 제목, 내용 빈칸, 출발/종료 일자 관련 유효성 체크
+function checkValid() {
+
+    const title = document.getElementById('title').value;
+    const contents = document.getElementById('contents').value;
+    const startDateStr = document.getElementById('startDate').value;
+    const endDateStr = document.getElementById('endDate').value;        
+
+    if (title == null || title.trim() == '') {
+        
+        Swal.fire({
+        icon: "warning",
+        title: "제목이 비어있습니다.",
+        text: "제목에 내용을 입력해 주세요",
+        });
+        return false;
+    }
+
+    if (contents == null || contents.trim() == '') {
+        Swal.fire({
+        icon: "warning",
+        title: "본문이 비어있습니다.",
+        text: "본문에 내용을 입력해 주세요",
+        });
+        return false;
+    }
+
+    if (startDateStr == '' || startDateStr == null || endDateStr == '' || endDateStr == null ) {
+        Swal.fire({
+        icon: "warning",
+        title: "일정 입력 오류",
+        text: "시작일정, 종료일정을 입력해 주세요",
+        });
+        return false;
+    }
+
+
+    const startDate = new Date(startDateStr);
+    const endDate = new Date(endDateStr);
+    const curDate = new Date();
+
+    if (startDate >= endDate) {
+        Swal.fire({
+        icon: "warning",
+        title: "일정 입력 오류",
+        text: "종료 일정은 시작일정 이후여야 합니다.",
+        });
+        return false;
+    }
+
+    if (curDate >= startDate) {
+        Swal.fire({
+        icon: "warning",
+        title: "일정 입력 오류",
+        text: "시작 일정은 현재 일정 이후여야 합니다.",
+        });
+        return false;  
+    }
+
+    return true;
+}
+
 
 function routingPage() {
 

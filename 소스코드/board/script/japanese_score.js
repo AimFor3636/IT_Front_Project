@@ -145,16 +145,16 @@ function setPaging(boardList, pageNum) {
     })
 
     const dataBodyTag = document.getElementById('data-body');
-    const dataFormTag = document.getElementById('data-form');
     // slice (시작 인덱스, 종료 인덱스) 종료 인덱스는 포함 X
     const pagingBoardList = boardList.slice(startNum, endNum);
     
     dataBodyTag.innerHTML = '';
 
+    let idx = 1;
     // 데이터 세팅하여 추가
     for (const board of pagingBoardList) {
 
-        const curDataTag = dataFormTag.cloneNode(true);
+        const curDataTag = document.createElement('tr');
         curDataTag.innerHTML = '';
 
         // boardNo
@@ -181,6 +181,8 @@ function setPaging(boardList, pageNum) {
         curDataTag.appendChild(titleTag);
         curDataTag.appendChild(nameTag);
         curDataTag.appendChild(timeTag);
+        curDataTag.id = `data-form-${idx}`;
+        idx++;
 
         dataBodyTag.appendChild(curDataTag);
     }
