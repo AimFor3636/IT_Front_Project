@@ -61,10 +61,10 @@ function createBoardRowClickHandler(post) {
 
     if (post.index === "IT Test" || post.index === "Japanese Test") {
       // IT 혹은 일본어 평가/과제 게시판
-      redirectUrl = `./score_detail.html?boardNo=${boardNo || 1}`; // > boardNo가 없으면 1로 설정
+      redirectUrl = `./board/score_detail.html?boardNo=${boardNo || 1}`; // > boardNo가 없으면 1로 설정
     } else {
       // 일반 게시판(IT, 일본어, 공지사항)
-      redirectUrl = `./notice_detail.html?boardNo=${boardNo || 1}`; // > boardNo가 없으면 1로 설정
+      redirectUrl = `./board/notice_detail.html?boardNo=${boardNo || 1}`; // > boardNo가 없으면 1로 설정
     }
 
     console.log("📌 Redirecting to:", redirectUrl);
