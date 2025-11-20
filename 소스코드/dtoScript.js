@@ -9,7 +9,7 @@ export const userDto = {
     phoneNumber: '',    // 핸드폰 번호
     zipCode: '',        // 우편 주소
     address: '',        // 주소
-    userAuthor: '',     // 권한
+    userAuth: '',     // 권한
     registerDate: '',   // 가입 일자
     registerTimestamp: "", // 정렬용 일자
 };
@@ -46,13 +46,6 @@ export const messageFileDto = {
     filePath : '',          // 파일 경로
     insertDate: '',         // 생성 일자
     insertTimeStamp: ''     // 정렬용 생성일자
-}
-
-// 유저 권한
-export const userAuthor = {
-    ADMIN: 'admin',       // 학사 관리인
-    TEACHER: 'teacher',   // 교수
-    STUDENT: 'student'    // 학생
 }
 
 let userPk = 1;

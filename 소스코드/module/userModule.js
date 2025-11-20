@@ -176,6 +176,26 @@ export function logout() {
   localStorage.removeItem(dataKeyObj.CUR_USER);
 }
 
+
+// 전체 인원 조회 ( 권한부여 설정 확인 용)
+export function findUserAll() {
+
+  const userList = findArrayInLocalStorage(dataKeyObj.USER_LIST);
+
+  // 이름 오름차순
+  userList.sort((userA, userB) => {
+    if (userA.userName < userB.userName) {
+      return -1;
+    } else if (userA.userName > userB.userName) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+
+  return userList;
+}
+
 // 권한 설정 ( ADMIN 에게만 권한 부여 됨)
 // 'admin' : 학사관리인 / 'teacher' : 교수 / 'student' : 학생
 export function setUserAutor(userNo, author) {
@@ -183,7 +203,7 @@ export function setUserAutor(userNo, author) {
   const targetUser = findUserByUserNo(userNo);
 
   if (targetUser != null && targetUser != undefined) {
-    targetUser.userAuthor = author
+    targetUser.userAuth = author
     return true;
   }
   // 조회 안되면 false 반환 예외처리 해야함

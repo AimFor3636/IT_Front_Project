@@ -385,8 +385,25 @@ form .btn-primary {
   resize: none;
 }
 
+.detail-form-textarea {
+  border: none;
+  outline: none;
+  resize: none;
+  font-size: 0.8rem;
+}
+
+.detail-form-textarea:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
 .form-select option:hover {
   background-color: #3577f1;
+}
+
+.pagination a {
+  font-size: 0.8rem;
+  color: #405189;
 }
 
 /* ========================================

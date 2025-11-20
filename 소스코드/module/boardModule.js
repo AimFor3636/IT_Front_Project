@@ -17,7 +17,7 @@ export function saveBoard(boardParam) {
       
       const paramVal = boardParam.key;
 
-      if (paramVal != null || paramVal != undefined) {
+      if (paramVal != null && paramVal != undefined) {
           boardObj.key = paramVal;
       }
   }
@@ -63,7 +63,7 @@ export function updateBoard(updateParam) {
 }
 
 // boardNo (pk) 값으로 조회
-export function getBoardByBoardNo(boardNo) {
+export function findBoardByBoardNo(boardNo) {
   const boardList = findArrayInLocalStorage(dataKeyObj.BOARD_LIST);
 
   let boardObj = {};
@@ -77,58 +77,102 @@ export function getBoardByBoardNo(boardNo) {
   return boardObj;
 }
 
-// 게시글 제목 조회 LIKE 검색
-export function getBoardListByTitle(searchTitle) {
+export function findBoardByCategory(category) {
+  
+  let searchBoardList = [];
+  const boardList = findArrayInLocalStorage(dataKeyObj.BOARD_LIST);
+  
+  searchBoardList = boardList.filter((board) => {
+    return board.categoryNo == category; 
+  }).sort((boardA, boardB) => { // 작성일 기준 내림차순
+    return boardB.registerTimestamp - boardA.registerTimestamp;
+  })
 
-  const searchBoardList = [];
+  return searchBoardList;
+}
+
+// 게시글 제목 조회 LIKE 검색
+export function findBoardListByTitle(searchTitle, category) {
+
+  let searchBoardList = [];
   const boardList = findArrayInLocalStorage(dataKeyObj.BOARD_LIST);
 
-  for (let board of boardList) {
-
-    // 대문자 부분비교
+  searchBoardList = boardList.filter((board) => {
+    // 대문자로 LIKE 검색
     const boardTitle = board.title.toUpperCase();
-     
-    // indexOf 있으면 첫번째 발견위치,  없으면 -1 반환
-    if (boardTitle.indexOf(searchTitle.toUpperCase()) != -1) {
-      searchBoardList.push(board);
-    }
-  }
+    return (boardTitle.indexOf(searchTitle.toUpperCase()) != -1 && board.categoryNo == category)
+  }).sort((boardA, boardB) => { // 작성일 기준 내림차순
+    return boardB.registerTimestamp - boardA.registerTimestamp;
+  })
+
+
   return searchBoardList;
 }
 
 // 게시글 내용 조회 LIKE 검색
-export function getBoardListByContent(searchContent) {
+export function findBoardListByContent(searchContent, category) {
 
-  const searchBoardList = [];
+  let searchBoardList = [];
   const boardList = findArrayInLocalStorage(dataKeyObj.BOARD_LIST);
 
-  for (let board of boardList) {
-
-    // 대문자 부분비교
+  searchBoardList = boardList.filter((board) => {
+    // 대문자로 LIKE 검색
     const boardContent = board.content.toUpperCase();
-     
-    // indexOf 있으면 첫번째 발견위치,  없으면 -1 반환
-    if (boardContent.indexOf(searchContent.toUpperCase()) != -1) {
-      searchBoardList.push(board);
-    }
-  }
+    return (boardContent.indexOf(searchContent.toUpperCase()) != -1 && board.categoryNo == category)
+  }).sort((boardA, boardB) => { // 작성일 기준 내림차순
+    return boardB.registerTimestamp - boardA.registerTimestamp;
+  })
+
+
+  return searchBoardList;
+}
+// 게시글 userId 조회 일치하는 경우에만 검색
+export function findBoardListByUserId(searchUserId, category) {
+
+  let searchBoardList = [];
+  const boardList = findArrayInLocalStorage(dataKeyObj.BOARD_LIST);
+
+  searchBoardList = boardList.filter((board) => {
+    
+    // userId 일치하는 경우만 
+    return (board.userId == searchUserId  && board.categoryNo == category);
+  }).sort((boardA, boardB) => { // 작성일 기준 내림차순
+    return boardB.registerTimestamp - boardA.registerTimestamp;
+  })
+
   return searchBoardList;
 }
 
-// 게시글 userId 조회 일치하는 경우에만 검색
-export function getBoardListByUserId(searchUserId) {
+// 게시글 조회수 증가
+export function addBoardCount(boardObj) {
 
-  const searchBoardList = [];
+  boardObj.boardCount = boardObj.boardCount+1;
+
   const boardList = findArrayInLocalStorage(dataKeyObj.BOARD_LIST);
-
-  for (let board of boardList) {
-
-    // userId 일치하는 경우만 
-    if (board.userId == searchUserId) {
-      searchBoardList.push(board);
+  for (let idx in boardList) {
+    if (boardList[idx].boardNo == boardObj.boardNo) {
+      boardList[idx] = boardObj;
+      break;
     }
   }
-  return searchBoardList;
+  saveDataInLocalStorage(dataKeyObj.BOARD_LIST, boardList);
+
+}
+
+// 게시글 삭제
+export function deleteBoard(boardObj) {
+
+  if (!boardObj || boardObj == null || boardObj == undefined) {
+    return;
+  }
+
+  const boardList = findArrayInLocalStorage(dataKeyObj.BOARD_LIST);
+  for (let idx in boardList) {
+    // 삭제
+    boardList.splice(idx, idx);
+    break;
+  }
+  saveDataInLocalStorage(dataKeyObj.BOARD_LIST, boardList);
 }
 
 export const categoryMapping = {

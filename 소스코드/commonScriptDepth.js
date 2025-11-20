@@ -205,6 +205,12 @@
         document.querySelectorAll(".navbar-nav .nav-link").forEach(l => l.classList.remove("active"));
       });
     });
+
+    // 로그아웃, cur-user 날리고 로그인 페이지로
+    document.getElementById("logout").addEventListener("click", () => {
+      localStorage.removeItem("cur-user");
+      window.location.href = "../login.html";
+    })
   };
 
   const updateBreadcrumb = (parentMenu, currentMenu) => {

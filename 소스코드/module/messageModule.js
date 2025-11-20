@@ -17,7 +17,7 @@ export function saveMessage(messageParam) {
       
       const paramVal = messageParam[key];
 
-      if (paramVal != null || paramVal != undefined) {
+      if (paramVal != null && paramVal != undefined) {
           messageParam.key = paramVal;
       }
   }
@@ -44,6 +44,7 @@ export function getMessageByMessageNo(messageNo) {
   for (let message of messageList) {
     if (message.messageNo == messageNo) {
       messageObj = message;
+      break;
     }
   }
 
