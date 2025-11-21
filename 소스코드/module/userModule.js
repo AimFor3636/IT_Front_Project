@@ -20,7 +20,7 @@ export function saveUser(userParam) {
           userObj[key] = paramVal;
       }
   }
-}
+
   // userNo (PK) 값, password 및 일자 별도로 저장
   userObj.userNo = getUserPk();
   // 암호화하여 저장
@@ -38,6 +38,7 @@ export function saveUser(userParam) {
 
   // 추후에 필수값 여부 체크하는 로직 추가
   return userObj;
+}
 
 // userNo (PK) 로 유저 정보 조회
 export function findUserByUserNo(searchUserNo) {
