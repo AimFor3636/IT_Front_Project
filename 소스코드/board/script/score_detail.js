@@ -8,7 +8,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const boardNo = urlParams.get('boardNo');
 const boardObj = BOARD_MODULE.findBoardByBoardNo(boardNo);
 
-//setBoardDetail();
+setBoardDetail();
 
 /* 
     함수
@@ -19,6 +19,7 @@ function setBoardDetail() {
     if (boardNo == null || boardNo == undefined) {
         return;
     }
+    
     const userObj = findUserByUserNo(boardObj.userNo);
     const boardCount = boardObj.boardCount;
     const categoryText = BOARD_MODULE.boardCategory[boardObj.categoryNo];
@@ -55,6 +56,19 @@ function checkAuthority(boardObj) {
         }
         return;        
     }
+
+    // 기한 지났으면 예외처리로 화면 전환
+    const endDateStr = boardObj.endDate;
+
+    const endDate = new Date(endDateStr);
+    const curDate = new Date();
+
+    // 기한 지났으면 예외처리로 화면 전환
+    if (endDate < curDate) {
+        window.location.href = './exception.html';
+        return;
+    }
+
 
     const curUser = findObjectInLocalStorage(dataKeyObj.CUR_USER);
     const btnGroup = document.getElementById('detailBtnGroup');
