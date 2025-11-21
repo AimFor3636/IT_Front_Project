@@ -27,7 +27,7 @@ export function saveMessage(messageParam) {
   messageObj.insertDate = getCurDateString();
   messageObj.insertTimeStam = Date.now();
 
-  const messageList = localStorage.getItem(dataKeyObj.MESSAGE_LIST);
+  const messageList = findArrayInLocalStorage(dataKeyObj.MESSAGE_LIST);
   messageList.push(messageObj);
 
   // 다시 저장
@@ -37,7 +37,7 @@ export function saveMessage(messageParam) {
 }
 
 // messageNo (PK) 값으로 조회
-export function getMessageByMessageNo(searchMessageNo) {
+export function findMessageByMessageNo(searchMessageNo) {
   const messageList = findArrayInLocalStorage(dataKeyObj.MESSAGE_LIST);
 
   let messageObj = {};
@@ -52,10 +52,10 @@ export function getMessageByMessageNo(searchMessageNo) {
 }
 
 // 제목 검색 LIKE 검색 진행
-export function getMessageListByTitle(searchTitle) {
+export function findMessageListByTitle(searchTitle, isSend) {
 
-  const searchMessageList = [];
-  const messageList = findArrayInLocalStorage(dataKeyObj.MESSAGE_LIST);
+  let searchMessageList = [];
+  const messageList =  isSend ? findSendMessageList() : findRecieveMessageList();
 
   for (let message of messageList) {
 
@@ -71,8 +71,8 @@ export function getMessageListByTitle(searchTitle) {
 }
 
 // 받은 메시지 목록 ( 이 사이트는 수신인이 학사 관리인으로 정해져 있음 따라서 admin 인경우만 리스트 반환)
-export function getRecieveMessageList() {
-  const recevieMessageList = [];
+export function findRecieveMessageList() {
+  let recevieMessageList = [];
   
   const curUser = findObjectInLocalStorage(dataKeyObj.CUR_USER);
   const adminUser = findObjectInLocalStorage(dataKeyObj.ADMIN_USER);
@@ -85,8 +85,8 @@ export function getRecieveMessageList() {
 }
 
 // 내가 보낸 메시지 목록
-export function getSendMessageList() {
-  const sendMessageList = [];
+export function findSendMessageList() {
+  let sendMessageList = [];
 
   const curUser = findObjectInLocalStorage(dataKeyObj.CUR_USER);
   const totalMessageList = findArrayInLocalStorage(dataKeyObj.MESSAGE_LIST);
@@ -98,4 +98,14 @@ export function getSendMessageList() {
   }
 
   return sendMessageList;
+}
+
+export const messageCategory = {
+  'MSG0001': '상담신청',
+  'MSG0002': '성적관련',
+  'MSG0003': '개인자료제출',
+  'MSG0004': '츨결증빙자료제출',
+  'MSG0005': '출결증명서신청',
+  'MSG0006': '수강증명서신청',
+  'MSG0099': '기타학사관련'
 }

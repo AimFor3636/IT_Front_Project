@@ -19,9 +19,9 @@ function setBoardInfo() {
     // 존재하는 경우에만 세팅
     if (boardObj) {
         // 글 배치
+        document.getElementById('boardTitle').innerText = '게시글 수정';
         document.getElementById('title').value = boardObj.title;
         document.getElementById('contents').innerHTML = boardObj.content;
-
         document.getElementById('createBoard').innerText = '수정';
     }
 
@@ -42,13 +42,17 @@ function init() {
 
     // boardNo 들어오면 수정임, 없으면 신규 등록, 버튼 변경
     if (boardNo != null && boardNo != undefined) {
-        document.getElementById('boardTitle').innerText = '게시글 수정';
         setBoardInfo();
     }
 }
 
 // 신규 작성
 function saveBoard() {
+
+    // 유효성 체크
+    if (!checkValid()) {
+        return;
+    }
 
     const curUser = findObjectInLocalStorage(dataKeyObj.CUR_USER);
 
@@ -84,6 +88,11 @@ function saveBoard() {
 // 수정
 function updateBoard() {
 
+    // 유효성 체크
+    if (!checkValid()) {
+        return;
+    }    
+
     const title = document.getElementById('title').value;
     const contents = document.getElementById('contents').value;
 
@@ -110,6 +119,36 @@ function updateBoard() {
         text: "수정 과정에 오류가 발생하였습니다. 다시 시도해 주세요",
         });
     }
+}
+
+
+// 유효성 검사
+// 제목, 내용 빈칸 확인
+function checkValid() {
+
+    const title = document.getElementById('title').value;
+    const contents = document.getElementById('contents').value;
+
+    if (title == null || title.trim() == '') {
+        
+        Swal.fire({
+        icon: "warning",
+        title: "제목이 비어있습니다.",
+        text: "제목에 내용을 입력해 주세요",
+        });
+        return false;
+    }
+
+    if (contents == null || contents.trim() == '') {
+        Swal.fire({
+        icon: "warning",
+        title: "본문이 비어있습니다.",
+        text: "본문에 내용을 입력해 주세요",
+        });
+        return false;
+    }
+
+    return true;
 }
 
 function routingPage() {

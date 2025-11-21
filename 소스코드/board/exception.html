@@ -10,16 +10,15 @@
 
 
   <!-- Sweet Alert2 CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
   <!-- 부트스트랩 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-
   <!-- 부트스트랩 아이콘 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css" />
-
   <!-- 커스텀 CSS -->
   <link rel="stylesheet" href="../static/style.css" />
+
 </head>
 
 <body>
@@ -94,16 +93,13 @@
               <div class="collapse menu-dropdown" id="menuMessage">
                 <ul class="nav nav-sm flex-column">
                   <li class="nav-item">
-                    <a href="./message_form.html" class="nav-link">메시지 보내기</a>
+                    <a href="../message/message_form.html" class="nav-link">메시지 보내기</a>
                   </li>
                   <li class="nav-item">
-                    <a href="./recieve_list.html" class="nav-link">받은 메시지</a>
+                    <a href="../message/recieve_list.html" class="nav-link">받은 메시지</a>
                   </li>
                   <li class="nav-item">
-                    <a href="./sent_list.html" class="nav-link">보낸 메시지</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="./alarm_list.html" class="nav-link">알림</a>
+                    <a href="../message/sent_list.html" class="nav-link">보낸 메시지</a>
                   </li>
                 </ul>
               </div>
@@ -128,19 +124,19 @@
               <div class="collapse menu-dropdown" id="menuBoard">
                 <ul class="nav nav-sm flex-column">
                   <li class="nav-item">
-                    <a href="../board/notice.html" class="nav-link">공지사항</a>
+                    <a href="./it_notice.html" class="nav-link">공지사항</a>
                   </li>
                   <li class="nav-item">
-                    <a href="../board/it_notice.html" class="nav-link">IT 게시판</a>
+                    <a href="./it_notice.html" class="nav-link">IT 게시판</a>
                   </li>
                   <li class="nav-item">
-                    <a href="../board/it_score.html" class="nav-link">IT 평가/과제 게시판</a>
+                    <a href="./it_score.html" class="nav-link">IT 평가/과제 게시판</a>
                   </li>
                   <li class="nav-item">
-                    <a href="../board/japanese_notice.html" class="nav-link">일본어 게시판</a>
+                    <a href="./japanese_notice.html" class="nav-link">일본어 게시판</a>
                   </li>
                   <li class="nav-item">
-                    <a href="../board/japanese_score.html" class="nav-link">일본어 평가/과제 게시판</a>
+                    <a href="./japanese_score.html" class="nav-link">일본어 평가/과제 게시판</a>
                   </li>
                 </ul>
               </div>
@@ -177,8 +173,8 @@
                 <h4 class="mb-sm-0">SMART Cloud IT마스터 48기</h4>
                 <div class="page-title-right">
                   <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item">메시지</li>
-                    <li class="breadcrumb-item active">알림</li>
+                    <li class="breadcrumb-item">클래스룸</li>
+                    <li class="breadcrumb-item active">게시판</li>
                   </ol>
                 </div>
               </div>
@@ -186,84 +182,38 @@
           </div>
 
           <!-- 콘텐츠 영역 -->
-          <!-- TODO: 여기서부터 각자 추가하면 됩니다! -->
+          <!-- TODO: 여기서부터 각자 추가하면 됩니다! -->   
           <div class="row">
             <div class="col-lg-12">
               <div class="card">
-                <div class="card-header align-items-center d-flex">
-                  <h4 class="card-title mb-0 flex-grow-1">알림 목록</h4>
-                </div>
                 <!-- end card header -->
                 <div class="card-body">
-                  <div class="live-preview">
-                    <div class="table-responsive">
-                      <table class="table caption-top table-nowrap mb-0">
-                        <thead class="table-light">
-                          <tr>
-                            <th style="width:10%;">구분</th>
-                            <th>제목</th>
-                            <th>보낸시간</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>츨결증빙자료제출</td>
-                            <td>
-                              <a href="#">메시지 제목</a>
-                            </td>
-                            <td>25.11.12 08:43</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
+                  <div class="row h-50 text-center">
+                      <h2 class="text-muted" style="height:200px; padding-top:90px;" id="exception-text">평가시간이 아닙니다.</h2>
                   </div>
                 </div>
               </div>
             </div>
             <!--end col-->
           </div>
-          <!-- 페이지이동 -->
-          <div class="row">
-              <div class="col-lg-12">
-                  <!-- 페이지 이동 -->
-                  <div class="gridjs-footer my-3">
-                      <div class="gridjs-pagination">
-                          <div class="gridjs-pages">
-                              <div class="dataTables_paginate paging_simple_numbers" id="fixed-header_paginate">
-                                  <ul class="pagination d-flex justify-content-center">
-                                      <li class="paginate_button page-item previous" id="fixed-header_previous">
-                                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                      </li>
-                                      <li class="paginate_button page-item active">
-                                          <a href="#" aria-controls="fixed-header" tabindex="0" class="page-link">1</a>
-                                      </li>
-                                      <li class="paginate_button page-item next" id="fixed-header_next">        
-                                        <li class="page-item"><a class="page-link" href="#">Next</a></li>         
-                                      </li>
-                                  </ul>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <!-- 페이지 이동 끝 -->
-              </div>
-          </div>  
+          <!-- 콘텐츠 엔드 -->
         </div>
       </div>
     </div>
   </div>
   <!-- 레이아웃 끝 -->
-   
   <!-- 공통 js -->
   <script src="../commonScriptDepth.js"></script>
   <!-- CrpytoJS 암호화 툴 -->
    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.js"></script>  
+   
   <!-- 부트스트랩 Javascript  -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>
   <!-- Sweet Alert2  -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>    
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+  <script type="module" src="./script/exception.js"></script>
 </body>
 
 </html>
