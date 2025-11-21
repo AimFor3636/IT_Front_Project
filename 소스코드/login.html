@@ -20,8 +20,8 @@
 
     .card {
       place-items: center;
-       float: none;
-            margin-top: 30px;
+      float: none;
+      margin-top: 30px;
       width: 420px;
       /* 상자 가로 */
       max-width: calc(100% - 32px);
@@ -38,7 +38,7 @@
     }
 
     .firstname {
-      font-size:medium;
+      font-size: medium;
       font-weight: 700;
       color: #405189;
     }
@@ -59,15 +59,15 @@
       font-size: x-small;
       color: gray;
     }
-    #data{
-margin-top: 50px;
+
+    #data {
+      margin-top: 50px;
     }
-    #dontYouHave{
+
+    #dontYouHave {
       font-size: small;
     }
-    
   </style>
-
   <!-- Sweet Alert2 CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
   <!-- 부트스트랩 CSS -->
@@ -79,35 +79,29 @@ margin-top: 50px;
   <p><a href="" target="_blank"><img src="Datascience.png" id="data" width="170" height="20"></a></p>
   <div class="card">
     <p class="firstname">환영합니다 !</p><br>
-
     <form>
       <label for="userId" class="form-label"> Username </label>
       <p><input type="text" id="userId" class="box" placeholder="Enter Username"></p>
-
       <label class="form-label" for="userPassword">Password</label>
       <p><input type="password" id="userPassword" class="box" placeholder="Enter Password"></p>
-
       <label><input type="checkbox"> id 기억하기 </label></p>
-
       <button type="button"> 회원가입 </button>
-
     </form>
   </div>
   <br>
-  <span id = "dontYouHave">계정이 없으신가요 ? <a href="">회원가입</a></span>
+  <span id="dontYouHave">계정이 없으신가요 ? <a href="">회원가입</a></span>
   <span id="graycolor"><a href="">아이디 찾기</a>&nbsp;&nbsp;|&nbsp;&nbsp; <a href="">비밀번호 찾기</a></span>
-  
-  
+
   <!-- 공통 js -->
   <script src="./commonScript.js"></script>
   <!-- CrpytoJS 암호화 툴 -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.js"></script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.js"></script>
   <!-- 부트스트랩 Javascript  -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>
   <!-- Sweet Alert2  -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>    
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 </body>
 
 </html>
