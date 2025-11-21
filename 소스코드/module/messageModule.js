@@ -57,16 +57,14 @@ export function findMessageListByTitle(searchTitle, isSend) {
   let searchMessageList = [];
   const messageList =  isSend ? findSendMessageList() : findRecieveMessageList();
 
-  for (let message of messageList) {
-
+  searchMessageList = messageList.filter((message) => {
     // 대문자 부분비교
     const messageTitle = message.title.toUpperCase();
-     
-    // indexOf 있으면 첫번째 발견위치,  없으면 -1 반환
-    if (messageTitle.indexOf(searchTitle.toUpperCase()) != -1) {
-      searchMessageList.push(message);
-    }
-  }
+    return (messageTitle.indexOf(searchTitle.toUpperCase()) != -1)
+  }).sort((messageA, messageB) => { // 작성일 기준 내림차순
+    return messageA.insertTimeStamp - messageB.insertTimeStamp;
+  })
+
   return searchMessageList;
 }
 
@@ -81,6 +79,10 @@ export function findRecieveMessageList() {
   if (curUser.userNo == adminUser.userNo) {
     recevieMessageList = findArrayInLocalStorage(dataKeyObj.MESSAGE_LIST);
   }
+  recevieMessageList.sort((messageA, messageB) => {
+    return messageA.insertTimeStamp - messageB.insertTimeStamp;
+  })
+
   return recevieMessageList;
 }
 
@@ -96,6 +98,9 @@ export function findSendMessageList() {
       sendMessageList.push(message);
     }
   }
+  sendMessageList.sort((messageA, messageB) => {
+    return messageA.insertTimeStamp - messageB.insertTimeStamp;
+  })
 
   return sendMessageList;
 }

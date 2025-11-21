@@ -1,5 +1,5 @@
 import { userDto, getUserPk} from "../dtoScript.js";
-import { findArrayInLocalStorage, findObjectInLocalStorage, saveDataInLocalStorage, getCurDateString, dataKeyObj } from "./commonModule.js";
+import { findArrayInLocalStorage, findObjectInLocalStorage, saveDataInLocalStorage, getCurDateString, dataKeyObj, userAuth} from "./commonModule.js";
 
 
 //saveUser({userNo: '1', zipCode: '2'});
@@ -26,7 +26,9 @@ export function saveUser(userParam) {
   userObj.registerDate = getCurDateString();
   userObj.registerTimestamp = Date.now();
 
-  console.log(userObj);
+  // 권한은 학생이 기본
+  userObj.userAuth = userAuth.STUDENT;
+
   // 현재 userList 에 저장
   const userList = findArrayInLocalStorage(dataKeyObj.USER_LIST);
   userList.push(userObj);

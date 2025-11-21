@@ -91,7 +91,7 @@ export function findBoardByCategory(searchCategory) {
   searchBoardList = boardList.filter((board) => {
     return board.categoryNo == searchCategory; 
   }).sort((boardA, boardB) => { // 작성일 기준 내림차순
-    return boardB.registerTimestamp - boardA.registerTimestamp;
+    return boardB.insertTimeStamp - boardA.insertTimeStamp;
   })
 
   return searchBoardList;
@@ -108,7 +108,7 @@ export function findBoardListByTitle(searchTitle, searchCategory) {
     const boardTitle = board.title.toUpperCase();
     return (boardTitle.indexOf(searchTitle.toUpperCase()) != -1 && board.categoryNo == searchCategory)
   }).sort((boardA, boardB) => { // 작성일 기준 내림차순
-    return boardB.registerTimestamp - boardA.registerTimestamp;
+    return boardB.insertTimeStamp - boardA.insertTimeStamp;
   })
 
 
@@ -126,7 +126,7 @@ export function findBoardListByContent(searchContent, searchCategory) {
     const boardContent = board.content.toUpperCase();
     return (boardContent.indexOf(searchContent.toUpperCase()) != -1 && board.categoryNo == searchCategory)
   }).sort((boardA, boardB) => { // 작성일 기준 내림차순
-    return boardB.registerTimestamp - boardA.registerTimestamp;
+    return boardB.insertTimeStamp - boardA.insertTimeStamp;
   })
 
 
@@ -139,11 +139,10 @@ export function findBoardListByUserId(searchUserId, searchCategory) {
   const boardList = findArrayInLocalStorage(dataKeyObj.BOARD_LIST);
 
   searchBoardList = boardList.filter((board) => {
-    
     // userId 일치하는 경우만 
     return (board.userId == searchUserId  && board.categoryNo == searchCategory);
   }).sort((boardA, boardB) => { // 작성일 기준 내림차순
-    return boardB.registerTimestamp - boardA.registerTimestamp;
+    return boardB.insertTimeStamp - boardA.insertTimeStamp;
   })
 
   return searchBoardList;

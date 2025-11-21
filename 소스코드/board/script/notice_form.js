@@ -1,5 +1,4 @@
-import {userAuth, dataKeyObj, findObjectInLocalStorage, findArrayInLocalStorage, saveDataInLocalStorage} from "../../module/commonModule.js";
-import { findUserByUserNo, saveUser } from "../../module/userModule.js";
+import {dataKeyObj, findObjectInLocalStorage} from "../../module/commonModule.js";
 import * as BOARD_MODULE from "../../module/boardModule.js"; 
 
 
@@ -36,7 +35,7 @@ function init() {
     const categoryText = BOARD_MODULE.boardCategory[category];
     document.getElementById('category').innerText = categoryText;
     // category 도 없으면 그냥 무시
-    if (category == null || category == undefined) {
+    if (category == null || category == undefined || category == '') {
         return;
     }
 

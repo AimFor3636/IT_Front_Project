@@ -1,5 +1,4 @@
-import {userAuth, dataKeyObj, findObjectInLocalStorage, findArrayInLocalStorage, saveDataInLocalStorage} from "../../module/commonModule.js";
-import { findUserByUserNo, saveUser } from "../../module/userModule.js";
+import {dataKeyObj, findObjectInLocalStorage} from "../../module/commonModule.js";
 import * as BOARD_MODULE from "../../module/boardModule.js"; 
 
 
@@ -49,30 +48,7 @@ function init() {
         setBoardInfo();
     }
 
-    // 테스트용
-    //test();
 }   
-
-// 테스트용
-function test() {
-    const userObj = {
-        userName: '이상우',       // 성함
-        userId: 'okqwaszx',         // 유저 ID
-        password: '123123',       // 비밀번호 (암호화)
-        emailAddress: 'okqwaszx123@naver.com',   // 이메일 (암호화)
-        birthday: '19920626',       // 생년월일
-        telNumber: '',      // 전화번호
-        phoneNumber: '01053562594',    // 핸드폰 번호
-        zipCode: '12312',        // 우편 주소
-        address: '우리집 어디게',        // 주소
-        userAuth: userAuth.ADMIN,     // 권한
-        registerDate: '',   // 가입 일자
-        registerTimestamp: "", // 정렬용 일자
-    };
-
-    const res = saveUser(userObj);
-    saveDataInLocalStorage(dataKeyObj.CUR_USER, res);    
-}
 
 // 신규 작성
 function saveBoard() {

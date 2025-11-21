@@ -1,4 +1,4 @@
-import {userAuth, dataKeyObj, findObjectInLocalStorage, findArrayInLocalStorage, saveDataInLocalStorage} from "../../module/commonModule.js";
+import {userAuth, dataKeyObj, findObjectInLocalStorage, saveDataInLocalStorage} from "../../module/commonModule.js";
 import * as BOARD_MODULE from "../../module/boardModule.js"; 
 import { saveUser, findUserByUserNo } from "../../module/userModule.js";  // 테스트용 테스트후 삭제
 
