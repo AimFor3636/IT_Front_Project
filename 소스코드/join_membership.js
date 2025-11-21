@@ -16,7 +16,7 @@ function showError(input, message) {
   if (!input) return;
   input.classList.add("is-invalid");
 
-  // input 바로 옆이나, 부모 안에 있는 invalid-feedback 찾기
+  // input 바로 옆이나 부모 안에서 invalid-feedback 찾기
   let feedback = input.nextElementSibling;
   if (!feedback || !feedback.classList.contains("invalid-feedback")) {
     const parent = input.parentElement;
@@ -59,8 +59,11 @@ function validateForm({ userId, password, birth, phone, tel, email, zipcode }) {
   }
 
   // ✅ 중복확인 여부
-  if (!isIdChecked || !isIdAvailable) {
-    showError(userId, "아이디 중복 확인을 해주세요.");
+  if (!isIdChecked) {
+    showError(userId, "아이디 중복 확인 버튼을 눌러주세요.");
+    valid = false;
+  } else if (!isIdAvailable) {
+    showError(userId, "이미 사용 중인 아이디입니다. 다른 아이디를 입력하세요.");
     valid = false;
   }
 
@@ -143,9 +146,13 @@ function validateForm({ userId, password, birth, phone, tel, email, zipcode }) {
 // DOM 준비 후 실행
 window.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("joinForm");
+  if (!form) {
+    console.error("joinForm을 찾을 수 없습니다.");
+    return;
+  }
 
   const userId = document.getElementById("userId");
-  const checkUserIdBtn = document.getElementById("checkUserIdBtn");
+  const checkUserIdBtn = document.getElementById("checkIdBtn"); // ★ 버튼 id
   const password = document.getElementById("userPassword");
 
   const birth = document.getElementById("birthday");
@@ -155,11 +162,6 @@ window.addEventListener("DOMContentLoaded", () => {
   const zipcode = document.getElementById("zipCode");
   const address = document.getElementById("address");
   const detailAddress = document.getElementById("detail_address");
-
-  if (!form) {
-    console.error("form을 찾을 수 없습니다.");
-    return;
-  }
 
   // 아이디가 바뀌면 중복확인 다시 하도록 플래그 리셋
   userId.addEventListener("input", () => {
@@ -178,35 +180,41 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   // ✅ 중복확인 버튼 클릭
-  checkUserIdBtn.addEventListener("click", async () => {
-    const enteredId = userId.value.trim();
+  if (checkUserIdBtn) {
+    checkUserIdBtn.addEventListener("click", async () => {
+      const enteredId = userId.value.trim();
 
-    if (!enteredId) {
-      showError(userId, "아이디를 입력하세요.");
-      await showMessage("중복확인", "아이디를 먼저 입력하세요.", "warning");
-      return;
-    }
+      if (!enteredId) {
+        showError(userId, "아이디를 입력하세요.");
+        await showMessage("중복확인", "아이디를 먼저 입력하세요.", "warning");
+        return;
+      }
 
-    if (!ID_REGEX.test(enteredId)) {
-      showError(userId, "아이디는 영문/숫자 4~20자리로 입력하세요.");
-      await showMessage("중복확인", "아이디 형식을 다시 확인해주세요.", "warning");
-      return;
-    }
+      if (!ID_REGEX.test(enteredId)) {
+        showError(userId, "아이디는 영문/숫자 4~20자리로 입력하세요.");
+        await showMessage("중복확인", "아이디 형식을 다시 확인해주세요.", "warning");
+        return;
+      }
 
-    const existUser = findUserByUserId(enteredId);
+      const existUser = findUserByUserId(enteredId);
 
-    isIdChecked = true;
+      isIdChecked = true;
 
-    if (existUser && existUser.userId) {
-      isIdAvailable = false;
-      showError(userId, "이미 사용 중인 아이디입니다.");
-      await showMessage("중복확인", "이미 존재하는 아이디입니다.", "error");
-    } else {
-      isIdAvailable = true;
-      clearError(userId);
-      await showMessage("중복확인", "사용 가능한 아이디입니다.", "success");
-    }
-  });
+      if (existUser && existUser.userId) {
+        // 이미 있는 아이디
+        isIdAvailable = false;
+        showError(userId, "이미 사용 중인 아이디입니다. 다른 아이디를 입력하세요.");
+        await showMessage("중복확인", "이미 존재하는 아이디입니다.", "error");
+      } else {
+        // 사용 가능
+        isIdAvailable = true;
+        clearError(userId);
+        await showMessage("중복확인", "사용 가능한 아이디입니다.", "success");
+      }
+    });
+  } else {
+    console.warn("checkIdBtn 버튼을 찾을 수 없습니다.");
+  }
 
   // 제출 이벤트
   form.addEventListener("submit", async (event) => {
@@ -227,7 +235,8 @@ window.addEventListener("DOMContentLoaded", () => {
     const finalId = userId.value.trim();
     const existsAtSubmit = findUserByUserId(finalId);
     if (existsAtSubmit && existsAtSubmit.userId) {
-      showError(userId, "이미 사용 중인 아이디입니다.");
+      isIdAvailable = false;
+      showError(userId, "이미 사용 중인 아이디입니다. 다른 아이디를 입력하세요.");
       await showMessage("회원가입 실패", "이미 존재하는 아이디입니다.", "error");
       return;
     }
@@ -242,7 +251,7 @@ window.addEventListener("DOMContentLoaded", () => {
       telNumber: tel.value,
       zipCode: zipcode.value.trim(),
       address: address.value.trim(),
-      // detail_address는 dto에 없으니 필요하면 dto에 추가
+      // detailAddress 는 dto에 없으면 걍 무시
     };
 
     const newUser = saveUser(userParam);
