@@ -1,8 +1,7 @@
 // join_membership.js
 import { saveUser, findUserByUserId } from "./module/userModule.js";
-import { dataKeyObj } from "./module/commonModule.js";
 
-// SweetAlert 래퍼
+// 공통 알림
 function showMessage(title, text, icon = "info") {
   if (typeof Swal !== "undefined") {
     return Swal.fire(title, text, icon);
@@ -12,12 +11,20 @@ function showMessage(title, text, icon = "info") {
   }
 }
 
-// 에러 표시/삭제 함수 (Bootstrap용)
+// 에러 표시/삭제
 function showError(input, message) {
   if (!input) return;
   input.classList.add("is-invalid");
-  const feedback = input.nextElementSibling;
-  if (feedback && feedback.classList.contains("invalid-feedback")) {
+
+  // input 바로 옆이나, 부모 안에 있는 invalid-feedback 찾기
+  let feedback = input.nextElementSibling;
+  if (!feedback || !feedback.classList.contains("invalid-feedback")) {
+    const parent = input.parentElement;
+    if (parent) {
+      feedback = parent.querySelector(".invalid-feedback");
+    }
+  }
+  if (feedback) {
     feedback.textContent = message;
   }
 }
@@ -27,40 +34,34 @@ function clearError(input) {
   input.classList.remove("is-invalid");
 }
 
+// 아이디 정규식 (영문/숫자/언더바 4~20자)
+const ID_REGEX = /^[a-zA-Z0-9_]{4,20}$/;
+
+// 중복확인 상태 플래그
+let isIdChecked = false;     // 중복확인 버튼을 눌렀는지
+let isIdAvailable = false;   // 실제로 사용 가능한 아이디인지
+
 // 실제 검증 로직
-function validateForm({
-  userId,
-  userIdConfirm,
-  password,
-  birth,
-  phone,
-  tel,
-  email,
-  zipcode,
-}) {
+function validateForm({ userId, password, birth, phone, tel, email, zipcode }) {
   let valid = true;
 
-  // ✅ 아이디 (영문/숫자 4~20)
-  const idRegex = /^[a-zA-Z0-9_]{4,20}$/;
-  if (!userId.value.trim()) {
+  const idVal = userId.value.trim();
+
+  // ✅ 아이디 형식
+  if (!idVal) {
     showError(userId, "아이디를 입력하세요.");
     valid = false;
-  } else if (!idRegex.test(userId.value.trim())) {
+  } else if (!ID_REGEX.test(idVal)) {
     showError(userId, "아이디는 영문/숫자 4~20자리로 입력하세요.");
     valid = false;
   } else {
     clearError(userId);
   }
 
-  // ✅ 아이디 확인 (동일 여부)
-  if (!userIdConfirm.value.trim()) {
-    showError(userIdConfirm, "아이디를 한 번 더 입력하세요.");
+  // ✅ 중복확인 여부
+  if (!isIdChecked || !isIdAvailable) {
+    showError(userId, "아이디 중복 확인을 해주세요.");
     valid = false;
-  } else if (userId.value.trim() !== userIdConfirm.value.trim()) {
-    showError(userIdConfirm, "아이디가 일치하지 않습니다.");
-    valid = false;
-  } else {
-    clearError(userIdConfirm);
   }
 
   // ✅ 비밀번호 (6자리 이상)
@@ -144,7 +145,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("joinForm");
 
   const userId = document.getElementById("userId");
-  const userIdConfirm = document.getElementById("userIdConfirm");
+  const checkUserIdBtn = document.getElementById("checkUserIdBtn");
   const password = document.getElementById("userPassword");
 
   const birth = document.getElementById("birthday");
@@ -160,6 +161,12 @@ window.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
+  // 아이디가 바뀌면 중복확인 다시 하도록 플래그 리셋
+  userId.addEventListener("input", () => {
+    isIdChecked = false;
+    isIdAvailable = false;
+    clearError(userId);
+  });
 
   // 숫자만 입력 가능 (핸드폰/전화)
   phone.addEventListener("input", function () {
@@ -170,13 +177,43 @@ window.addEventListener("DOMContentLoaded", () => {
     this.value = this.value.replace(/[^0-9]/g, "");
   });
 
+  // ✅ 중복확인 버튼 클릭
+  checkUserIdBtn.addEventListener("click", async () => {
+    const enteredId = userId.value.trim();
+
+    if (!enteredId) {
+      showError(userId, "아이디를 입력하세요.");
+      await showMessage("중복확인", "아이디를 먼저 입력하세요.", "warning");
+      return;
+    }
+
+    if (!ID_REGEX.test(enteredId)) {
+      showError(userId, "아이디는 영문/숫자 4~20자리로 입력하세요.");
+      await showMessage("중복확인", "아이디 형식을 다시 확인해주세요.", "warning");
+      return;
+    }
+
+    const existUser = findUserByUserId(enteredId);
+
+    isIdChecked = true;
+
+    if (existUser && existUser.userId) {
+      isIdAvailable = false;
+      showError(userId, "이미 사용 중인 아이디입니다.");
+      await showMessage("중복확인", "이미 존재하는 아이디입니다.", "error");
+    } else {
+      isIdAvailable = true;
+      clearError(userId);
+      await showMessage("중복확인", "사용 가능한 아이디입니다.", "success");
+    }
+  });
+
   // 제출 이벤트
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     const isValid = validateForm({
       userId,
-      userIdConfirm,
       password,
       birth,
       phone,
@@ -186,26 +223,26 @@ window.addEventListener("DOMContentLoaded", () => {
     });
     if (!isValid) return;
 
-    // ✅ 아이디 중복 체크
-    const enteredId = userId.value.trim();
-    const existUser = findUserByUserId(enteredId);
-    if (existUser && existUser.userId) {
+    // 혹시 모를 최종 중복 체크 (로컬이라 거의 의미는 없지만 안전용)
+    const finalId = userId.value.trim();
+    const existsAtSubmit = findUserByUserId(finalId);
+    if (existsAtSubmit && existsAtSubmit.userId) {
       showError(userId, "이미 사용 중인 아이디입니다.");
       await showMessage("회원가입 실패", "이미 존재하는 아이디입니다.", "error");
       return;
     }
 
-    // saveUser에 넘길 데이터 세팅
+    // saveUser에 넘길 데이터 세팅 (userDto 필드 이름에 맞춤)
     const userParam = {
-      userId: enteredId,
-      password: password.value,
-      emailAddress: email.value.trim(),
+      userId: finalId,
+      password: password.value,          // userModule에서 SHA256 암호화
+      emailAddress: email.value.trim(),  // dto: emailAddress
       birthday: birth.value,
       phoneNumber: phone.value,
       telNumber: tel.value,
       zipCode: zipcode.value.trim(),
       address: address.value.trim(),
-      // detail_address 는 지금 dto에 없으니 필요하면 dto 쪽에 필드 추가
+      // detail_address는 dto에 없으니 필요하면 dto에 추가
     };
 
     const newUser = saveUser(userParam);
