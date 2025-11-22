@@ -100,7 +100,7 @@ function updateBoard() {
     if (!checkValid()) {
         return;
     }
-
+    const curUser = findObjectInLocalStorage(dataKeyObj.CUR_USER);
     const title = document.getElementById('title').value;
     const contents = document.getElementById('contents').value;
     const startDate = document.getElementById('startDate').value;
