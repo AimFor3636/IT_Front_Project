@@ -9,6 +9,7 @@ export const userDto = {
     phoneNumber: '',    // 핸드폰 번호
     zipCode: '',        // 우편 주소
     address: '',        // 주소
+    detailAddress: '',  // 상세 주소
     userAuth: '',     // 권한
     registerDate: '',   // 가입 일자
     registerTimestamp: "", // 정렬용 일자
