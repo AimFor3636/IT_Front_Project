@@ -11,13 +11,16 @@
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <style>
     body {
-      display: grid;
-      background-image: url(background.png);
-      background-size: cover;
-      place-items: center;
-      height: 100%;
-      margin: 0;
-      margin-top: 60px;
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding-top: 60px;   
+  background-image: url("background.png");
+  background-repeat: no-repeat;
+  background-position: top center;  
+  background-size: 100% auto;       
+  background-color: #ffffff;  
     }
 
     .card {
@@ -114,7 +117,7 @@
   </div>
   <br>
   <div id="question"><span id = "dontYouHave">계정이 없으신가요 ? <a href="./join_membership.html">회원가입</a></span></div>
-  <span id="graycolor"><a href="find_id.html">아이디 찾기</a>&nbsp;&nbsp;|&nbsp;&nbsp; <a href="">비밀번호 찾기</a></span>
+  <span id="graycolor"><a href="find_id.html">아이디 찾기</a>&nbsp;&nbsp;|&nbsp;&nbsp; <a href="./ex_file_join_membership.html">비밀번호 찾기</a></span>
   
   <!-- 공통 js -->
   <script src="./commonScript.js"></script>
