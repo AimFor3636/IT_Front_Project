@@ -224,3 +224,7 @@ document.getElementById('searchFormButton').addEventListener('click', () => {
 
     setMessageList(searchList);
 });
+
+document.getElementById('searchForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+})
