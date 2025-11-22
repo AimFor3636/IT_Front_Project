@@ -1,6 +1,15 @@
 /* ========================================
-   DSA Classroom - 커스텀 스타일
+   Aim Data Academy - 커스텀 스타일
    ======================================== */
+
+/* 폰트 */
+@font-face {
+  font-family: "Pretendard-regular";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Regular.woff2")
+    format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
 
 :root {
   /* 색상 변수 */
@@ -12,6 +21,18 @@
   --info-color: #299cdb;
   --dark-color: #212529;
   --light-color: #f3f6f9;
+  --class-color: #0ab39c;
+  --lecture-color: #299cdb;
+  --test-color: #f7b84b;
+  --holiday-color: #f06548;
+  --jobfair-color: #6f42c1;
+  --etc-color: #212529;
+
+  /* 배경 색상 변수 */
+  --bg-class-color: #daf4f0;
+  --bg-lecture-color: #dff0fa;
+  --bg-test-color: #fef4e4;
+  --bg-etc-color: #e9ebec;
 
   /* 사이드바 색상 */
   --sidebar-bg: #212529;
@@ -19,16 +40,25 @@
   --sidebar-menu-item-hover-bg: rgba(255, 255, 255, 0.05);
   --sidebar-menu-item-active-bg: rgba(255, 255, 255, 0.1);
 
+  --bg-holiday-color: #fde8e4;
+  --bg-jobfair-color: #e2e5ed;
   /* 텍스트 색상 */
   --text-muted: #878a99;
   --heading-color: #495057;
 
   /* 기타 */
+  --active-color: #e9ebec;
   --border-color: #e9ebec;
+  --hover-color: #d1e9ff;
   --card-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
-  
+
   /* 오버레이 색상 */
   --overlay-bg: rgba(0, 0, 0, 0.5);
+}
+
+/* 디폴트 폰트 */
+* {
+  font-family: "Pretendard-regular";
 }
 
 /* ========================================
@@ -39,13 +69,18 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
   color: #495057;
-  background-color: #f3f6f9;
+  background-color: #f3f3f9;
 }
 
 #layout-wrapper {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+
+a {
+  color: rgb(64, 81, 137);
+  text-decoration: none;
 }
 
 /* ========================================
@@ -64,7 +99,6 @@ body {
 
 .user-dropdown {
   background-color: var(--light-color);
-  
 }
 
 .navbar-header {
@@ -264,19 +298,23 @@ body {
 }
 
 .page-content {
-  padding: 1.5rem;
+  padding: 1rem;
 }
 
 /* 페이지 타이틀 */
 .page-title-box {
-  padding: 1.5rem 0;
+  padding: 1rem 1rem;
+  background-color: white;
+  margin: -1rem -1.65rem 2rem -1.65rem;
+  box-shadow: 0 1px 2px rgba(56, 65, 74, 0.15);
 }
 
 .page-title-box h4 {
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-family: Poppins, sans-serif;
   color: var(--heading-color);
-  margin: 0;
 }
 
 /* Breadcrumb */
@@ -293,6 +331,79 @@ body {
 
 .breadcrumb-item.active {
   color: var(--heading-color);
+}
+
+/* 게시판 card */
+.card {
+  border-radius: 0;
+  background-color: #fff;
+}
+.card-header {
+  background-color: #fff;
+  padding: 1.2rem;
+}
+.card-header h4 {
+  font-size: 1.1rem;
+  font-family: sans-serif;
+}
+
+.card-body {
+  font-size: 0.9rem;
+}
+
+.table-light {
+  --bs-table-bg: #f3f6f9;
+  --bs-table-border-color: #e9ebec;
+  color: #000;
+}
+
+form .btn-primary {
+  background-color: #405189;
+  border-color: #405189;
+}
+
+.btnGroup .btn-primary {
+  background-color: #405189;
+  border-color: #405189;
+}
+
+.active > .page-link {
+  background-color: #405189;
+  border-color: #405189;
+}
+
+.submit-btn {
+  background-color: #405189;
+  border-color: #405189;
+}
+
+.board-read {
+  font-size: 0.8rem;
+}
+
+.form-container textarea {
+  resize: none;
+}
+
+.detail-form-textarea {
+  border: none;
+  outline: none;
+  resize: none;
+  font-size: 0.8rem;
+}
+
+.detail-form-textarea:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.form-select option:hover {
+  background-color: #3577f1;
+}
+
+.pagination a {
+  font-size: 0.8rem;
+  color: #405189;
 }
 
 /* ========================================
@@ -383,4 +494,593 @@ body {
 
 .slide-in {
   animation: slideInRight 0.3s ease-out;
+}
+
+/* ========================================
+   캘린더 스타일
+   ======================================== */
+
+/* 캘린더 컨테이너 */
+.calendar-container {
+  background-color: var(--light-color);
+}
+
+/* 캘린더 그리드 */
+.calendar-grid {
+  width: 100%;
+  background-color: #fff;
+}
+
+/* 요일 헤더 */
+.calendar-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border-bottom: 2px solid var(--border-color);
+  background-color: var(--light-color);
+}
+
+.calendar-day-header {
+  padding: 12px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: #495057;
+  text-transform: uppercase;
+}
+
+/* 캘린더 본문 */
+.calendar-body {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 1px;
+  background-color: #e9ebec;
+  border: 1px solid #e9ebec;
+}
+
+/* 날짜 셀 */
+.calendar-cell {
+  background-color: #fff;
+  min-height: 100px;
+  padding: 8px;
+  position: relative;
+  transition: background-color 0.2s ease;
+  overflow: hidden;
+}
+
+.calendar-cell:hover {
+  background-color: #f8f9fa;
+}
+
+/* 비활성 날짜 셀 (이전/다음 달) */
+.calendar-cell.calendar-disabled {
+  background-color: #f1f3f5;
+  pointer-events: none;
+  cursor: default;
+}
+
+.calendar-cell.calendar-disabled:hover {
+  background-color: #f1f3f5;
+}
+
+.calendar-cell.calendar-disabled .calendar-date {
+  color: #adb5bd;
+}
+
+/* 날짜 번호 */
+.calendar-date {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: #212529;
+  border-radius: 50%;
+  margin-bottom: 4px;
+}
+
+/* 오늘 날짜 */
+.calendar-today {
+  background-color: #f0f7ff;
+}
+
+.calendar-today .calendar-date {
+  background-color: #405189;
+  color: #fff;
+}
+
+/* 이전/다음 달 날짜 */
+.calendar-cell.text-muted .calendar-date {
+  color: #adb5bd;
+}
+
+/* 캘린더 이벤트 */
+.calendar-event {
+  font-size: 0.75rem;
+  padding: 3px 6px;
+  margin-bottom: 3px;
+  border-radius: 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  white-space: nowrap;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.calendar-event:hover {
+  transform: translateX(2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 이벤트 타입별 색상 */
+.event-class {
+  background-color: var(--bg-class-color);
+  color: var(--class-color);
+}
+
+.event-lecture {
+  background-color: var(--bg-lecture-color);
+  color: var(--lecture-color);
+}
+
+.event-test {
+  background-color: var(--bg-test-color);
+  color: var(--test-color);
+}
+
+.event-holiday {
+  background-color: var(--bg-holiday-color);
+  color: var(--holiday-color);
+}
+
+.event-jobfair {
+  background-color: var(--bg-jobfair-color);
+  color: var(--jobfair-color);
+}
+
+.event-etc {
+  background-color: var(--bg-etc-color);
+  color: var(--etc-color);
+}
+
+/* ========================================
+   Index 패널 스타일
+   ======================================== */
+
+.index-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.index-item:hover {
+  background-color: var(--light-color);
+  transform: translateX(4px);
+}
+
+.index-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+/* Index 카테고리별 색상 */
+.index-class {
+  background-color: var(--bg-class-color);
+}
+
+.index-class .index-dot {
+  background-color: var(--class-color);
+}
+
+.index-lecture {
+  background-color: var(--bg-lecture-color);
+}
+
+.index-lecture .index-dot {
+  background-color: var(--lecture-color);
+}
+
+.index-test {
+  background-color: var(--bg-test-color);
+}
+
+.index-test .index-dot {
+  background-color: var(--test-color);
+}
+
+.index-holiday {
+  background-color: var(--bg-holiday-color);
+}
+
+.index-holiday .index-dot {
+  background-color: var(--holiday-color);
+}
+
+.index-jobfair {
+  background-color: var(--bg-jobfair-color);
+}
+
+.index-jobfair .index-dot {
+  background-color: var(--jobfair-color);
+}
+
+.index-etc {
+  background-color: var(--bg-etc-color);
+}
+
+.index-etc .index-dot {
+  background-color: var(--etc-color);
+}
+
+/* ========================================
+   캘린더 반응형
+   ======================================== */
+
+/* 태블릿 */
+@media (max-width: 991.98px) {
+  .calendar-cell {
+    min-height: 80px;
+    padding: 6px;
+  }
+
+  .calendar-event {
+    font-size: 0.7rem;
+    padding: 2px 4px;
+  }
+}
+
+/* 모바일 */
+@media (max-width: 767.98px) {
+  .calendar-day-header {
+    font-size: 0.75rem;
+    padding: 8px 4px;
+  }
+
+  .calendar-cell {
+    min-height: 60px;
+    padding: 4px;
+  }
+
+  .calendar-date {
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 0.75rem;
+  }
+
+  .calendar-event {
+    font-size: 0.65rem;
+    padding: 2px 3px;
+    margin-bottom: 2px;
+  }
+
+  /* 모바일에서 Index 패널 하단 배치 */
+  .col-lg-3 {
+    order: 2;
+  }
+
+  .col-lg-9 {
+    order: 1;
+  }
+}
+
+/* ========================================
+   List 뷰 스타일
+   ======================================== */
+
+.list-view {
+  padding: 1rem 0;
+}
+
+.list-date-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: var(--light-color);
+  border-radius: 6px;
+  margin-bottom: 8px;
+  margin-top: 16px;
+}
+
+.list-date-header:first-child {
+  margin-top: 0;
+}
+
+.list-date {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.list-day {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.list-event {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: #fff;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  border: 1px solid var(--border-color);
+  transition: all 0.2s ease;
+}
+
+.list-event:hover {
+  background-color: var(--hover-color);
+  transform: translateX(4px);
+}
+
+.list-event.event-class {
+  background-color: var(--bg-class-color);
+}
+
+.list-event.event-lecture {
+  background-color: var(--bg-lecture-color);
+}
+
+.list-event.event-test {
+  background-color: var(--bg-test-color);
+}
+
+.list-event.event-holiday {
+  background-color: var(--bg-holiday-color);
+}
+
+.list-event.event-jobfair {
+  background-color: var(--bg-jobfair-color);
+}
+
+.list-event.event-etc {
+  background-color: var(--bg-etc-color);
+}
+
+.list-time {
+  font-size: 0.875rem;
+  min-width: 140px;
+  margin-right: 16px;
+}
+
+.list-time.event-class {
+  color: var(--class-color);
+}
+
+.list-time.event-lecture {
+  color: var(--lecture-color);
+}
+
+.list-time.event-test {
+  color: var(--test-color);
+}
+
+.list-time.event-holiday {
+  color: var(--holiday-color);
+}
+
+.list-time.event-jobfair {
+  color: var(--jobfair-color);
+}
+
+.list-time.event-etc {
+  color: var(--etc-color);
+}
+
+.list-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+/* List 뷰 이벤트 타입별 색상 */
+.list-dot.event-class {
+  background-color: var(--class-color);
+}
+
+.list-dot.event-lecture {
+  background-color: var(--lecture-color);
+}
+
+.list-dot.event-test {
+  background-color: var(--test-color);
+}
+
+.list-dot.event-holiday {
+  background-color: var(--holiday-color);
+}
+
+.list-dot.event-jobfair {
+  background-color: var(--jobfair-color);
+}
+
+.list-dot.event-etc {
+  background-color: var(--etc-color);
+}
+
+.list-event-name {
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+/* ========================================
+   Index 필터 활성화 스타일
+   ======================================== */
+
+.index-item.index-active {
+  background-color: var(--active-color);
+  border: 1px solid var(--info-color);
+}
+
+.index-item.index-active:hover {
+  background-color: var(--hover-color);
+}
+
+/* ========================================
+   커스텀 체크박스
+   ======================================== */
+
+.form-check-input:checked {
+  background-color: var(--primary-color, #405189);
+  border-color: var(--primary-color, #405189);
+}
+
+/* ========================================
+   게시판 스타일
+   ======================================== */
+
+/* 게시판 컨테이너 */
+.board-container {
+  background-color: var(--light-color);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+/* 게시판 헤더 */
+.board-header h5 {
+  color: var(--heading-color);
+  font-family: Poppins, sans-serif;
+}
+
+.board-header a {
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.board-header a:hover {
+  color: var(--primary-color) !important;
+}
+
+/* 게시판 테이블 */
+.board-table {
+  width: 100%;
+}
+
+.board-table-header {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 2fr 0.5fr 0.5fr;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  background-color: #f3f6f9;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+}
+
+.board-table-body {
+  min-height: 100px;
+}
+
+/* 게시판 행 */
+.board-row {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 2fr 0.5fr 0.5fr;
+  gap: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.board-row:hover {
+  background-color: #f8f9fa;
+}
+
+.board-row:last-child {
+  border-bottom: none;
+}
+
+/* 게시판 컬럼 */
+.board-col-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.board-col-title a {
+  display: block;
+  line-height: 1.5;
+  font-size: 13px;
+}
+
+.board-col-title p {
+  display: block;
+  line-height: 1.5;
+  font-size: 12px;
+}
+
+.board-col-id {
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+}
+
+.board-col-date {
+  text-align: right;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+}
+
+/* 빈 상태 */
+.board-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px;
+  padding: 2rem;
+}
+
+.board-empty p {
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+}
+
+/* 반응형 디자인 */
+@media (max-width: 991.98px) {
+  .board-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .board-container {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .board-table-header,
+  .board-row {
+    grid-template-columns: 1fr 0.5fr 0.5fr;
+    gap: 0.5rem;
+  }
+
+  .board-col-id,
+  .board-col-date {
+    text-align: left;
+    justify-content: flex-start;
+  }
 }

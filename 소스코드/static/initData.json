@@ -1,0 +1,544 @@
+{
+  "calendar": [
+    {
+      "name": "JAVA",
+      "date": "2025-09-03~2025-10-14",
+      "time": "09:00 ~ 12:50",
+      "description": "JAVA 기초 프로그래밍",
+      "domain": "IT",
+      "index": "수업"
+    },
+    {
+      "name": "DataBase",
+      "date": "2025-10-15~2025-10-28",
+      "time": "09:00 ~ 12:50",
+      "description": "데이터베이스 기초",
+      "domain": "IT",
+      "index": "수업"
+    },
+    {
+      "name": "Web Frontend",
+      "date": "2025-10-29~2025-11-11",
+      "time": "09:00 ~ 12:50",
+      "description": "HTML, CSS, JS 기초",
+      "domain": "IT",
+      "index": "수업"
+    },
+    {
+      "name": "Web Backend",
+      "date": "2025-11-12~2026-01-14",
+      "time": "09:00 ~ 12:50",
+      "description": "Spring Boot 기초",
+      "domain": "IT",
+      "index": "수업"
+    },
+    {
+      "name": "팀 프로젝트",
+      "date": "2026-01-16~2026-03-09",
+      "time": "09:00 ~ 12:50",
+      "description": "팀 프로젝트",
+      "domain": "IT",
+      "index": "수업"
+    },
+    {
+      "name": "Linux",
+      "date": "2026-03-25~2026-04-17",
+      "time": "09:00 ~ 12:50",
+      "description": "Linux 기초",
+      "domain": "IT",
+      "index": "수업"
+    },
+    {
+      "name": "Cloud",
+      "date": "2026-04-20~2026-04-30",
+      "time": "09:00 ~ 12:50",
+      "description": "Cloud 기초",
+      "domain": "IT",
+      "index": "수업"
+    },
+    {
+      "name": "기술면접 대비",
+      "date": "2026-03-11~2026-03-24",
+      "time": "09:00 ~ 12:50",
+      "description": "기술면접 대비",
+      "domain": "IT",
+      "index": "수업"
+    },
+    {
+      "name": "혼시츠 일본어 초/중/고",
+      "date": "2025-09-03~2025-12-08",
+      "time": "14:00 ~ 16:50",
+      "description": "수준별 일본어 수업",
+      "domain": "일본어",
+      "index": "수업"
+    },
+    {
+      "name": "실전 IT 비즈니스 및 일본문화",
+      "date": "2026-04-10~2026-04-30",
+      "time": "14:00 ~ 16:50",
+      "description": "실전 IT 비즈니스 및 일본문화",
+      "domain": "일본어",
+      "index": "수업"
+    },
+    {
+      "name": "취업전략",
+      "date": "2025-12-09~2026-04-09",
+      "time": "14:00 ~ 16:50",
+      "description": "취업전략",
+      "domain": "일본어",
+      "index": "수업"
+    },
+    {
+      "name": "센터 휴강",
+      "date": "2025-10-01~2025-10-02",
+      "time": "09:00 ~ 10:00",
+      "description": "휴강",
+      "domain": "센터",
+      "index": "휴강/공휴일"
+    },
+    {
+      "name": "개천절",
+      "date": "2025-10-03",
+      "time": "09:00 ~ 10:00",
+      "description": "공휴일",
+      "domain": "센터",
+      "index": "휴강/공휴일"
+    },
+    {
+      "name": "추석 연휴",
+      "date": "2025-10-06~2025-10-07",
+      "time": "09:00 ~ 10:00",
+      "description": "공휴일",
+      "domain": "센터",
+      "index": "휴강/공휴일"
+    },
+    {
+      "name": "센터 휴강",
+      "date": "2025-10-08",
+      "time": "09:00 ~ 10:00",
+      "description": "휴강",
+      "domain": "센터",
+      "index": "휴강/공휴일"
+    },
+    {
+      "name": "한글날",
+      "date": "2025-10-09",
+      "time": "09:00 ~ 10:00",
+      "description": "공휴일",
+      "domain": "센터",
+      "index": "휴강/공휴일"
+    },
+    {
+      "name": "센터 휴강",
+      "date": "2025-10-10",
+      "time": "09:00 ~ 10:00",
+      "description": "휴강",
+      "domain": "센터",
+      "index": "휴강/공휴일"
+    },
+    {
+      "name": "크리스마스",
+      "date": "2025-12-25",
+      "time": "09:00 ~ 10:00",
+      "description": "공휴일",
+      "domain": "센터",
+      "index": "휴강/공휴일"
+    },
+    {
+      "name": "신정",
+      "date": "2026-01-01",
+      "time": "09:00 ~ 10:00",
+      "description": "공휴일",
+      "domain": "센터",
+      "index": "휴강/공휴일"
+    },
+    {
+      "name": "센터 휴강",
+      "date": "2026-01-02",
+      "time": "09:00 ~ 10:00",
+      "description": "휴강",
+      "domain": "센터",
+      "index": "휴강/공휴일"
+    },
+    {
+      "name": "설 연휴",
+      "date": "2026-02-16~2026-02-18",
+      "time": "09:00 ~ 10:00",
+      "description": "공휴일",
+      "domain": "센터",
+      "index": "휴강/공휴일"
+    },
+    {
+      "name": "삼일절",
+      "date": "2026-03-02",
+      "time": "09:00 ~ 10:00",
+      "description": "공휴일",
+      "domain": "센터",
+      "index": "휴강/공휴일"
+    },
+    {
+      "name": "혼시츠 일본어 평가",
+      "date": "2025-11-06~2025-11-07",
+      "time": "14:00 ~ 16:50",
+      "description": "혼시츠 일본어 평가",
+      "domain": "일본어",
+      "index": "시험"
+    },
+    {
+      "name": "기초 평가",
+      "date": "2025-11-24",
+      "time": "09:00 ~ 12:50",
+      "description": "IT 기초 평가",
+      "domain": "IT",
+      "index": "시험"
+    },
+    {
+      "name": "IT 종합역량평가",
+      "date": "2026-01-15",
+      "time": "09:00 ~ 17:50",
+      "description": "IT 종합 역량 평가",
+      "domain": "IT",
+      "index": "시험"
+    },
+    {
+      "name": "프레젠테이션 평가",
+      "date": "2026-01-22~2026-01-23",
+      "time": "14:00 ~ 17:50",
+      "description": "自己PR プレゼン",
+      "domain": "일본어",
+      "index": "시험"
+    },
+    {
+      "name": "일본어 종합평가(모의면접)",
+      "date": "2026-03-18~2026-03-19",
+      "time": "09:00 ~ 17:50",
+      "description": "일본어 종합평가(모의면접)",
+      "domain": "일본어",
+      "index": "시험"
+    },
+    {
+      "name": "팀 프로젝트 발표",
+      "date": "2026-03-10",
+      "time": "09:00 ~ 17:50",
+      "description": "팀 프로젝트 발표",
+      "domain": "IT",
+      "index": "특강/행사"
+    }
+  ],
+  "users": [
+    {
+      "userNo": "1",
+      "userName": "박수연",
+      "userId": "sooyeon",
+      "password": "password",
+      "email": "sooyeon@example.com",
+      "telNumber": "010-1234-5678",
+      "userAuth": "teacher"
+    },
+    {
+      "userNo": "2",
+      "userName": "김기열",
+      "userId": "kiyeol",
+      "password": "password",
+      "email": "kiyeol@example.com",
+      "telNumber": "010-2345-6789",
+      "userAuth": "teacher"
+    },
+    {
+      "userNo": "3",
+      "userName": "이길아",
+      "userId": "gila",
+      "password": "password",
+      "email": "gila@example.com",
+      "telNumber": "010-3456-7890",
+      "userAuth": "teacher"
+    },
+    {
+      "userNo": "4",
+      "userName": "서울DSA",
+      "userId": "dsa",
+      "password": "password",
+      "email": "dsa@example.com",
+      "telNumber": "010-4567-8901",
+      "userAuth": "admin"
+    }
+  ],
+  "board": [
+    {
+      "boardNo": 11,
+      "title": "Thymeleaf 참고 자료",
+      "content": "Thymeleaf 참고 자료",
+      "userId": "sooyeon",
+      "userNo": "1",
+      "insertDate": "2025-11-18 08:50",
+      "index": "IT",
+      "categoryNo": "board02",
+      "boardCount": 0,
+      "isOpened": true
+    },
+    {
+      "boardNo": 10,
+      "title": "IntelliJ 설정 참고",
+      "content": "설정 참고사항입니다.",
+      "userId": "kiyeol",
+      "userNo": "2",
+      "insertDate": "2025-11-14 12:53",
+      "index": "IT",
+      "categoryNo": "board02",
+      "boardCount": 0,
+      "isOpened": true
+    },
+    {
+      "boardNo": 9,
+      "title": "SpringBoot 수업 참고자료",
+      "content": "SpringBoot 수업 참고자료",
+      "userId": "sooyeon",
+      "userNo": "1",
+      "insertDate": "2025-11-12 08:43",
+      "index": "IT",
+      "categoryNo": "board02",
+      "boardCount": 0,
+      "isOpened": true
+    },
+    {
+      "boardNo": 8,
+      "title": "IntelliJ Community로 SpringBoot 프로젝트 생성하기",
+      "content": "IntelliJ Community로 SpringBoot 프로젝트 생성하기",
+      "userId": "sooyeon",
+      "userNo": "1",
+      "insertDate": "2025-11-11 17:39",
+      "index": "IT",
+      "categoryNo": "board02",
+      "boardCount": 0,
+      "isOpened": true
+    },
+    {
+      "boardNo": 7,
+      "title": "MySQL 과목평가 답안",
+      "content": "MySQL 과목평가 답안",
+      "userId": "sooyeon",
+      "userNo": "1",
+      "insertDate": "2025-11-10 11:23",
+      "index": "IT",
+      "categoryNo": "board02",
+      "boardCount": 0,
+      "isOpened": true
+    },
+    {
+      "boardNo": 6,
+      "title": "48기 자바 필기시험 답안",
+      "content": "48기 자바 필기 시험 문제 + 답안입니다.\n\n첨부된 파일의 내용을 확인하세요.",
+      "userId": "gila",
+      "userNo": "3",
+      "insertDate": "2025-10-31 09:26",
+      "index": "IT",
+      "categoryNo": "board02",
+      "boardCount": 0,
+      "isOpened": true
+    },
+    {
+      "boardNo": 5,
+      "title": "조별 과제 조편성",
+      "content": "조별 과제 조편성",
+      "userId": "sooyeon",
+      "userNo": "1",
+      "insertDate": "2025-10-29 10:08",
+      "index": "IT",
+      "categoryNo": "board02",
+      "boardCount": 0,
+      "isOpened": true
+    },
+    {
+      "boardNo": 4,
+      "title": "Visual Studio Code 설치",
+      "content": "Frontend 수업시간에 사용할 VSC 설치",
+      "userId": "sooyeon",
+      "userNo": "1",
+      "insertDate": "2025-10-29 08:48",
+      "index": "IT",
+      "categoryNo": "board02",
+      "boardCount": 0,
+      "isOpened": true
+    },
+    {
+      "boardNo": 3,
+      "title": "MySQL world 샘플데이터 구조",
+      "content": "MySQL world 샘플데이터 구조",
+      "userId": "sooyeon",
+      "userNo": "1",
+      "insertDate": "2025-10-23 12:29",
+      "index": "IT",
+      "categoryNo": "board02",
+      "boardCount": 0,
+      "isOpened": true
+    },
+    {
+      "boardNo": 2,
+      "title": "MySQL 수업자료",
+      "content": "아래 제공된 자료를 다운로드 하여 수업 시간 보조 교재로 활용하세요",
+      "userId": "gila",
+      "userNo": "3",
+      "insertDate": "2025-10-15 08:41",
+      "index": "IT",
+      "categoryNo": "board02",
+      "boardCount": 0,
+      "isOpened": true
+    },
+    {
+      "boardNo": 1,
+      "title": "MySQL, DBeaver 설치",
+      "content": "수업시간에 사용할 Database 환경 설정 문서입니다.",
+      "userId": "sooyeon",
+      "userNo": "1",
+      "insertDate": "2025-10-15 08:23",
+      "index": "IT",
+      "categoryNo": "board02",
+      "boardCount": 0,
+      "isOpened": true
+    },
+    {
+      "boardNo": 109,
+      "title": "[과목평가] JavaScript (B반)",
+      "content": "",
+      "userId": "gila",
+      "userNo": "3",
+      "insertDate": "2025-11-11 08:44",
+      "index": "IT Test",
+      "categoryNo": "board03",
+      "boardCount": 0,
+      "isOpened": false
+    },
+    {
+      "boardNo": 108,
+      "title": "[과목평가] HTML&CSS (B반)",
+      "content": "",
+      "userId": "gila",
+      "userNo": "3",
+      "insertDate": "2025-11-11 08:38",
+      "index": "IT Test",
+      "categoryNo": "board03",
+      "boardCount": 0,
+      "isOpened": false
+    },
+    {
+      "boardNo": 107,
+      "title": "[과목평가] JavaScript (A반)",
+      "content": "",
+      "userId": "sooyeon",
+      "userNo": "1",
+      "insertDate": "2025-11-11 08:29",
+      "index": "IT Test",
+      "categoryNo": "board03",
+      "boardCount": 0,
+      "isOpened": false
+    },
+    {
+      "boardNo": 106,
+      "title": "[과목평가] HTML&CSS (A반)",
+      "content": "",
+      "userId": "sooyeon",
+      "userNo": "1",
+      "insertDate": "2025-11-11 08:26",
+      "index": "IT Test",
+      "categoryNo": "board03",
+      "boardCount": 0,
+      "isOpened": false
+    },
+    {
+      "boardNo": 105,
+      "title": "조별 과제",
+      "content": "[ 과제 ]\n\n조별로 주제를 정하고 프론트엔드만 구현된 웹 사이트 개발.\n\n주제 및 개발도구, 사용 기술 모두 자유.\n\n인터넷 서비스나 개발툴, Open API, 기타 라이브러리 사용 가능.\n\n생성형AI를 이용하여 만드는 것만 제외하고, 어떤 방향으로 학습할 것인지 자유롭게 의논해서 완성합니다.\n\n\n[ 발표 및 평가 ]\n11월 24일 월요일 수업시간에 조별로 10~20분간 시연 발표.\n(조원소개 및 담당 부분, 주제 설명, 사용 기술 소개, 시연, 소감)\n\n별도의 발표 자료는 없어도 됩니다.",
+      "userId": "sooyeon",
+      "userNo": "1",
+      "insertDate": "2025-10-29 14:12",
+      "index": "IT Test",
+      "categoryNo": "board03",
+      "boardCount": 0,
+      "isOpened": true
+    },
+    {
+      "boardNo": 104,
+      "title": "[과목평가] MySQL (B반)",
+      "content": "",
+      "userId": "gila",
+      "userNo": "3",
+      "insertDate": "2025-10-28 08:38",
+      "index": "IT Test",
+      "categoryNo": "board03",
+      "boardCount": 0,
+      "isOpened": false
+    },
+    {
+      "boardNo": 103,
+      "title": "[과목평가] MySQL (A반)",
+      "content": "",
+      "userId": "sooyeon",
+      "userNo": "1",
+      "insertDate": "2025-10-28 08:24",
+      "index": "IT Test",
+      "categoryNo": "board03",
+      "boardCount": 0,
+      "isOpened": false
+    },
+    {
+      "boardNo": 102,
+      "title": "자바 과목평가(B반)",
+      "content": "",
+      "userId": "gila",
+      "userNo": "3",
+      "insertDate": "2025-10-14 08:54",
+      "index": "IT Test",
+      "categoryNo": "board03",
+      "boardCount": 0,
+      "isOpened": false
+    },
+    {
+      "boardNo": 101,
+      "title": "자바 과목평가(A반)",
+      "content": "",
+      "userId": "gila",
+      "userNo": "3",
+      "insertDate": "2025-10-14 08:50",
+      "index": "IT Test",
+      "categoryNo": "board03",
+      "boardCount": 0,
+      "isOpened": false
+    },
+    {
+      "boardNo": 201,
+      "title": "[일본어 평가시험 일정 안내]",
+      "content": "",
+      "userId": "dsa",
+      "userNo": "4",
+      "insertDate": "2025-10-17 17:13",
+      "index": "Japanese",
+      "categoryNo": "board04",
+      "boardCount": 0,
+      "isOpened": true
+    },
+    {
+      "boardNo": 302,
+      "title": "혼시츠 일본어 평가 Reading",
+      "content": "",
+      "userId": "dsa",
+      "userNo": "4",
+      "insertDate": "2025-11-11 14:58",
+      "index": "Japanese Test",
+      "categoryNo": "board05",
+      "boardCount": 0,
+      "isOpened": false
+    },
+    {
+      "boardNo": 301,
+      "title": "혼시츠 일본어 평가 Speaking&Listening",
+      "content": "",
+      "userId": "dsa",
+      "userNo": "4",
+      "insertDate": "2025-11-11 14:54",
+      "index": "Japanese Test",
+      "categoryNo": "board05",
+      "boardCount": 0,
+      "isOpened": false
+    }
+  ]
+}

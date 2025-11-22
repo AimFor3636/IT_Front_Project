@@ -7,6 +7,18 @@
   "use strict";
 
   // ========================================
+  // 경로 접두사 계산 (Depth 처리)
+  // ========================================
+  const getPathPrefix = () => {
+    const path = window.location.pathname;
+    // board, message, mypage 폴더 안에 있으면 상위 경로(../) 반환
+    if (path.includes("/board/") || path.includes("/message/") || path.includes("/mypage/")) {
+      return "../";
+    }
+    return "./";
+  };
+
+  // ========================================
   // 사이드바 토글
   // ========================================
   const initSidebar = () => {
@@ -17,12 +29,14 @@
 
     // 초기 로고 설정
     if (headerLogo) {
+      const prefix = getPathPrefix();
       if (window.innerWidth >= 992) {
         // 데스크톱: 사이드바 열린 상태이므로 logo
-        headerLogo.src = "./static/img/logo.png";
+        headerLogo.src = `${prefix}static/img/logo.png`;
+        if (logoBox) logoBox.style.display = 'block';
       } else {
-        // 모바일: 로고 삭제
-        logoBox.remove();
+        // 모바일: 로고 숨김 (remove() 대신 display: none 사용)
+        if (logoBox) logoBox.style.display = 'none';
       }
     }
 
@@ -40,12 +54,13 @@
 
         // 헤더 로고 이미지 변경 (데스크톱에서만)
         if (headerLogo && window.innerWidth >= 992) {
+          const prefix = getPathPrefix();
           if (isSidebarEnabled) {
             // sidebar-enable = 사이드바 닫힘 → logoSmall
-            headerLogo.src = "./static/img/logoSmall.png";
+            headerLogo.src = `${prefix}static/img/logoSmall.png`;
           } else {
             // sidebar-enable 해제 = 사이드바 열림 → logo
-            headerLogo.src = "./static/img/logo.png";
+            headerLogo.src = `${prefix}static/img/logo.png`;
           }
         }
 
@@ -72,7 +87,7 @@
 
         // 로고 복원 (데스크톱에서만) - sidebar-enable 제거 = 사이드바 열림 = logo
         if (headerLogo && window.innerWidth >= 992) {
-          headerLogo.src = "./static/img/logo.png";
+          headerLogo.src = `${getPathPrefix()}static/img/logo.png`;
         }
       });
     }
@@ -90,7 +105,7 @@
 
           // 로고 원래대로 복원 (데스크톱에서만)
           if (headerLogo && window.innerWidth >= 992) {
-            headerLogo.src = "./static/img/logo.png";
+            headerLogo.src = `${getPathPrefix()}static/img/logo.png`;
           }
         }
       }
@@ -105,6 +120,7 @@
     const menuLinks = document.querySelectorAll(".nav-link");
 
     menuLinks.forEach(link => {
+
       const href = link.getAttribute("href");
       if (href && currentPath.includes(href) && href !== "/") {
         link.classList.add("active");
@@ -160,7 +176,7 @@
 
     menuLinks.forEach(link => {
       link.addEventListener("click", e => {
-        e.preventDefault();
+        //e.preventDefault();
 
         // 메뉴 텍스트 가져오기
         const menuText = link.querySelector("span")?.textContent.trim() || link.textContent.trim();
@@ -190,7 +206,7 @@
     // 사용자 프로필 드롭다운 메뉴 이벤트 리스너
     userDropdownLinks.forEach(link => {
       link.addEventListener("click", e => {
-        e.preventDefault();
+        //e.preventDefault();
 
         // 메뉴 텍스트 가져오기 (아이콘 제외)
         const menuText = link.textContent.trim();
@@ -202,6 +218,12 @@
         document.querySelectorAll(".navbar-nav .nav-link").forEach(l => l.classList.remove("active"));
       });
     });
+
+    // 로그아웃, cur-user 날리고 로그인 페이지로
+    document.getElementById("logout").addEventListener("click", () => {
+      localStorage.removeItem("cur-user");
+      window.location.href = `${getPathPrefix()}login.html`;
+    })
   };
 
   const updateBreadcrumb = (parentMenu, currentMenu) => {
@@ -257,8 +279,11 @@
       }
 
       // 데스크톱: 로고 표시 (사이드바 열린 상태 = logo)
+      if (logoBox) {
+        logoBox.style.display = 'block';
+      }
       if (headerLogo) {
-        headerLogo.src = "./static/img/logo.png";
+        headerLogo.src = `${getPathPrefix()}static/img/logo.png`;
       }
     } else {
       // 모바일: 사이드바 숨김
@@ -270,8 +295,8 @@
         overlay.classList.remove("show");
       }
       // 모바일: 로고 숨김
-      if (headerLogo) {
-        logoBox.remove();
+      if (logoBox) {
+        logoBox.style.display = 'none';
       }
     }
   };
