@@ -268,17 +268,17 @@ function init() {
 */
 // 글 검색
 document.getElementById('searchFormButton').addEventListener('click', () => {
-    
+
     const searchOption = document.getElementById('searchType').value;
     const searchWord   = document.getElementById('searchWord').value;
 
     let searchList = [];
     switch (searchOption) {
-        case 'title': searchList = BOARD_MODULE.findBoardListByTitle(searchWord, BOARD_MODULE.categoryMapping.categoryMapping.IT_SCORE);
+        case 'title': searchList = BOARD_MODULE.findBoardListByTitle(searchWord, BOARD_MODULE.categoryMapping.IT_SCORE);
                     break;
-        case 'contents': searchList = BOARD_MODULE.findBoardListByContent(searchWord, BOARD_MODULE.categoryMapping.IT_SCORE); 
+        case 'contents': searchList = BOARD_MODULE.findBoardListByContent(searchWord, BOARD_MODULE.categoryMapping.IT_SCORE);
                     break;
-        case 'createId': searchList = BOARD_MODULE.findBoardListByUserId(searchWord, BOARD_MODULE.categoryMapping.IT_SCORE); 
+        case 'createId': searchList = BOARD_MODULE.findBoardListByUserId(searchWord, BOARD_MODULE.categoryMapping.IT_SCORE);
                     break;
     }
     setBoardList(searchList);
@@ -291,3 +291,7 @@ document.getElementById('createBoard').addEventListener('click', () => {
     window.location.href = `./notice_form.html?category=${BOARD_MODULE.categoryMapping.IT_SCORE}`;
 
 });
+
+document.getElementById('searchForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+})

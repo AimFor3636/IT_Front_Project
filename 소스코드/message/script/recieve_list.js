@@ -210,8 +210,6 @@ function init() {
 }
 
 
-
-
 /*
   이벤트 리스너
 */
@@ -223,3 +221,7 @@ document.getElementById('searchFormButton').addEventListener('click', () => {
 
     setMessageList(searchList);
 });
+
+document.getElementById('searchForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+})
