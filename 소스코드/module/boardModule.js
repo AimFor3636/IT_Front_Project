@@ -43,7 +43,7 @@ export function updateBoard(updateParam) {
 
   const boardObj = findBoardByBoardNo(updateParam.boardNo);
 
-  if (boardObj == null || boardObj == undefined) {
+  if (Object.keys(boardObj).length == 0) {
     return false;
   }
   boardObj.title = updateParam.title;
@@ -169,7 +169,7 @@ export function addBoardCount(boardObj) {
 // 게시글 삭제
 export function deleteBoard(boardObj) {
 
-  if (!boardObj || boardObj == null || boardObj == undefined) {
+  if (Object.keys(boardObj).length == 0) {
     return;
   }
 

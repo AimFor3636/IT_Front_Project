@@ -16,7 +16,7 @@ function setBoardInfo() {
     const boardObj = BOARD_MODULE.findBoardByBoardNo(boardNo);
     
     // 존재하는 경우에만 세팅
-    if (boardObj) {
+    if (Object.keys(boardObj).length > 0) {
         // 글 배치
         document.getElementById('boardTitle').innerText = '게시글 수정';
         document.getElementById('title').value = boardObj.title;

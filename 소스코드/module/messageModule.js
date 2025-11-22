@@ -31,7 +31,7 @@ export function saveMessage(messageParam) {
   messageList.push(messageObj);
 
   // 다시 저장
-  saveDataInLocalStorage(dataKeyObj.MESSAGE_LIST, messageObj);
+  saveDataInLocalStorage(dataKeyObj.MESSAGE_LIST, messageList);
 
   return messageObj;
 }

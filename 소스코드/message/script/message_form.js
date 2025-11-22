@@ -60,15 +60,13 @@ function searchRecieveUser() {
     const searchText = document.getElementById('searchText').value.trim();
 
     const userObj = findUserByUserId(searchText);
-
-    if (userObj) {
+    if (Object.keys(userObj).length > 0) {
         Swal.fire({
         icon: "success",
         title: "조회 성공"
         });
         // 수신자 수정
         receiveUserNo = userObj.userNo;
-
     } else {
         Swal.fire({
         icon: "warning",
@@ -114,7 +112,7 @@ function saveMessage() {
 
     const messageParam = {};
     messageParam.title = title;
-    messageParam.contents = contents;
+    messageParam.content = contents;
     messageParam.categoryNo = messageType;
     messageParam.sendUserNo = sendUserNo;
     messageParam.receiveUserNo = receiveUserNo;

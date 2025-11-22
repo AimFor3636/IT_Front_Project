@@ -133,7 +133,7 @@ function setPaging(messageList, pageNum) {
 
         // 카테고리
         const categoryTag = document.createElement('td');
-        categoryTag.innerText = MESSAGE_MODULE.messageCategory(message.categoryNo);
+        categoryTag.innerText = MESSAGE_MODULE.messageCategory[message.categoryNo];
 
         // 제목
         const titleTag = document.createElement('td');

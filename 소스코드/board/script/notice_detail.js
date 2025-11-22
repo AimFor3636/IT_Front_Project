@@ -48,7 +48,7 @@ function checkAuthority(boardObj) {
     const curUser = findObjectInLocalStorage(dataKeyObj.CUR_USER);
     const btnGroup = document.getElementById('detailBtnGroup');
     // boardObj 비어있으면 그냥 버튼 가리고 종료
-    if (!boardObj) {
+    if (Object.keys(boardObj).length == 0) {
         // 없으면 추가
         if (!btnGroup.className.includes('invisible')) {
             btnGroup.classList.toggle('invisible');
@@ -71,7 +71,7 @@ function checkAuthority(boardObj) {
 
 function routingPage() {
     let locationPath = '';
-    if (!boardObj) {
+    if (Object.keys(boardObj).length == 0) {
         locationPath = '../main_page.html';
     } else {
         const category = boardObj.categoryNo;
@@ -108,7 +108,7 @@ function routingPage() {
 // 수정
 document.getElementById('updateBoard').addEventListener('click', () => {
     
-    if (!boardObj) {
+    if (Object.keys(boardObj).length == 0) {
         return;
     }
     const category = boardObj.categoryNo;

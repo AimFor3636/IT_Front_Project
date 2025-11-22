@@ -406,7 +406,9 @@
       "index": "IT Test",
       "categoryNo": "board03",
       "boardCount": 0,
-      "isOpened": false
+      "isOpened": false,
+      "startDate": "2025-11-23 00:27",
+      "endDate": "2025-11-26 09:35"
     },
     {
       "boardNo": 108,
@@ -418,7 +420,9 @@
       "index": "IT Test",
       "categoryNo": "board03",
       "boardCount": 0,
-      "isOpened": false
+      "isOpened": false,
+      "startDate": "2025-11-21 02:40",
+      "endDate": "2025-11-27 15:43"
     },
     {
       "boardNo": 107,
@@ -430,7 +434,9 @@
       "index": "IT Test",
       "categoryNo": "board03",
       "boardCount": 0,
-      "isOpened": false
+      "isOpened": false,
+      "startDate": "2025-11-21 16:35",
+      "endDate": "2025-11-26 13:02"
     },
     {
       "boardNo": 106,
@@ -442,7 +448,9 @@
       "index": "IT Test",
       "categoryNo": "board03",
       "boardCount": 0,
-      "isOpened": false
+      "isOpened": false,
+      "startDate": "2025-11-24 16:20",
+      "endDate": "2025-11-28 09:22"
     },
     {
       "boardNo": 105,
@@ -454,7 +462,9 @@
       "index": "IT Test",
       "categoryNo": "board03",
       "boardCount": 0,
-      "isOpened": true
+      "isOpened": true,
+      "startDate": "2025-11-24 07:12",
+      "endDate": "2025-11-27 15:52"
     },
     {
       "boardNo": 104,
@@ -466,7 +476,9 @@
       "index": "IT Test",
       "categoryNo": "board03",
       "boardCount": 0,
-      "isOpened": false
+      "isOpened": false,
+      "startDate": "2025-11-24 16:03",
+      "endDate": "2025-11-28 07:54"
     },
     {
       "boardNo": 103,
@@ -478,7 +490,9 @@
       "index": "IT Test",
       "categoryNo": "board03",
       "boardCount": 0,
-      "isOpened": false
+      "isOpened": false,
+      "startDate": "2025-11-23 04:54",
+      "endDate": "2025-11-26 10:45"
     },
     {
       "boardNo": 102,
@@ -490,7 +504,9 @@
       "index": "IT Test",
       "categoryNo": "board03",
       "boardCount": 0,
-      "isOpened": false
+      "isOpened": false,
+      "startDate": "2025-11-22 03:05",
+      "endDate": "2025-11-27 06:14"
     },
     {
       "boardNo": 101,
@@ -502,7 +518,9 @@
       "index": "IT Test",
       "categoryNo": "board03",
       "boardCount": 0,
-      "isOpened": false
+      "isOpened": false,
+      "startDate": "2025-11-21 02:49",
+      "endDate": "2025-11-26 01:21"
     },
     {
       "boardNo": 201,
@@ -526,7 +544,9 @@
       "index": "Japanese Test",
       "categoryNo": "board05",
       "boardCount": 0,
-      "isOpened": false
+      "isOpened": false,
+      "startDate": "2025-11-22 17:15",
+      "endDate": "2025-11-28 02:46"
     },
     {
       "boardNo": 301,
@@ -538,7 +558,9 @@
       "index": "Japanese Test",
       "categoryNo": "board05",
       "boardCount": 0,
-      "isOpened": false
+      "isOpened": false,
+      "startDate": "2025-11-20 01:21",
+      "endDate": "2025-11-26 15:40"
     }
   ]
 }
