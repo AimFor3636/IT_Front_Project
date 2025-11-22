@@ -232,8 +232,9 @@
       "userId": "sooyeon",
       "password": "password",
       "email": "sooyeon@example.com",
-      "telNumber": "010-1234-5678",
-      "userAuth": "teacher"
+      "phoneNumber": "010-1234-5678",
+      "userAuth": "teacher",
+      "birthday": "1984-03-22"
     },
     {
       "userNo": "2",
@@ -241,8 +242,9 @@
       "userId": "kiyeol",
       "password": "password",
       "email": "kiyeol@example.com",
-      "telNumber": "010-2345-6789",
-      "userAuth": "teacher"
+      "phoneNumber": "010-2345-6789",
+      "userAuth": "teacher",
+      "birthday": "1989-11-17"
     },
     {
       "userNo": "3",
@@ -250,8 +252,9 @@
       "userId": "gila",
       "password": "password",
       "email": "gila@example.com",
-      "telNumber": "010-3456-7890",
-      "userAuth": "teacher"
+      "phoneNumber": "010-3456-7890",
+      "userAuth": "teacher",
+      "birthday": "1982-02-08"
     },
     {
       "userNo": "4",
@@ -259,8 +262,9 @@
       "userId": "dsa",
       "password": "password",
       "email": "dsa@example.com",
-      "telNumber": "010-4567-8901",
-      "userAuth": "admin"
+      "phoneNumber": "010-4567-8901",
+      "userAuth": "admin",
+      "birthday": "1991-01-03"
     }
   ],
   "board": [

@@ -25,7 +25,7 @@ const updateBtn = document.getElementById('formSubmitButton');
 if (updateBtn) {
     updateBtn.addEventListener('click', function(e) {
         e.preventDefault(); // 폼의 기본 전송 기능 막기
-
+        console.log(document.getElementById('birthday').value);
         // [수정] HTML에 있는 모든 필드 값을 객체로 만듭니다.
         // (User 객체의 속성명도 이와 같다고 가정합니다)
         const updateParam = {
