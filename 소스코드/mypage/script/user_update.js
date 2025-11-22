@@ -1,5 +1,5 @@
 import { updateUser} from '../../module/userModule.js';
-import { dataKeyObj, findObjectInLocalStorage} from "../../module/commonModule";
+import { dataKeyObj, findObjectInLocalStorage} from "../../module/commonModule.js";
 
 // 1. 페이지 로딩 시: 현재 사용자 정보를 인풋창에 채워넣기
 window.addEventListener('DOMContentLoaded', () => {
@@ -7,13 +7,13 @@ window.addEventListener('DOMContentLoaded', () => {
 
     if (curUser) {
         // (데이터가 없는 경우를 대비해 || "" 처리)
-        document.getElementById('birth').value = curUser.birth || "";
-        document.getElementById('mobile').value = curUser.mobile || "";
-        document.getElementById('phone').value = curUser.phone || "";
-        document.getElementById('email').value = curUser.email || "";
-        document.getElementById('address1').value = curUser.address1 || "";
-        document.getElementById('address2').value = curUser.address2 || "";
-        document.getElementById('address3').value = curUser.address3 || "";
+        document.getElementById('birthday').value = curUser.birthday || "";
+        document.getElementById('phoneNumber').value = curUser.phoneNumber || "";
+        document.getElementById('telNumber').value = curUser.telNumber || "";
+        document.getElementById('emailAddress').value = curUser.email|| "";
+        document.getElementById('zipCode').value = curUser.zipCode || "";
+        document.getElementById('address').value = curUser.address || "";
+        document.getElementById('detailAddress').value = curUser.detailAddress || "";
     }
 });
 
@@ -29,13 +29,13 @@ if (updateBtn) {
         // [수정] HTML에 있는 모든 필드 값을 객체로 만듭니다.
         // (User 객체의 속성명도 이와 같다고 가정합니다)
         const updateParam = {
-            birth: document.getElementById('birth').value,
-            mobile: document.getElementById('mobile').value,
-            phone: document.getElementById('phone').value,
-            email: document.getElementById('email').value,
-            address1: document.getElementById('address1').value,
-            address2: document.getElementById('address2').value,
-            address3: document.getElementById('address3').value
+            birth: document.getElementById('birthday').value,
+            mobile: document.getElementById('phoneNumber').value,
+            phone: document.getElementById('telNumber').value,
+            email: document.getElementById('emailAddress').value,
+            address1: document.getElementById('zipCode').value,
+            address2: document.getElementById('address').value,
+            address3: document.getElementById('detailAddress').value
         };
 
         // 유효성 검사 (필수값 체크)
