@@ -10,7 +10,7 @@ function fnCheckAuth() {
     const curUser = findObjectInLocalStorage(dataKeyObj.CUR_USER);
 
     // curUser 비어있거나,  admin 아니면 전부 권한없음으로 돌리기
-    if (!curUser || curUser.userAuth != userAuthMap.ADMIN) {
+    if (Object.keys(curUser).length == 0 || curUser.userAuth != userAuthMap.ADMIN) {
         window.location.href = './board/exception.html?reason=auth';
         return;
     }
@@ -41,13 +41,13 @@ function setUserList() {
 
         noTag.innerText = user.userNo;
         idTag.innerText = user.userId;
-        nameTag.innerText = user.userNo;
+        nameTag.innerText = user.userName;
 
         const authOptions = [{auth: 'teacher', text: '교사'}, {auth: 'student', text: '학생'}];
 
         const optionTags = authOptions.map((option) => {
             const isSelect = user.userAuth == option.auth ? 'selected' : '';
-            return `<option value="${option.auth}">${option.text}</option>`;
+            return `<option value="${option.auth}" ${isSelect}>${option.text}</option>`;
         });
         authTag.innerHTML = `<select name="userAuth" class="form-select">
                                 ${optionTags}

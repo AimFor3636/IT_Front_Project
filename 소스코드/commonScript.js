@@ -144,7 +144,6 @@
   // ========================================
   const initDropdownMenu = () => {
     const dropdownToggles = document.querySelectorAll('[data-bs-toggle="collapse"]');
-
     dropdownToggles.forEach(toggle => {
       // Bootstrap collapse 이벤트 리스너
       const targetId = toggle.getAttribute("href");

@@ -50,7 +50,9 @@ export function saveDataInLocalStorage(dataKey, data) {
 // 현재 일자 yyyy-mm-dd hh:mm 형태로 반환
 export function getCurDateString() {
   const today = new Date();
-  const month = today.getMonth() < 10 ? `0${today.getMonth()}` : today.getMonth();
+
+  const tMonth = today.getMonth()+1;
+  const month = tMonth < 10 ? `0${tMonth}` : tMonth;
   const date = today.getDate() < 10 ? `0${today.getDate()}` : today.getDate();
 
   return `${today.getFullYear()}-${month}-${date} ${today.getHours()}:${today.getMinutes()}`;
