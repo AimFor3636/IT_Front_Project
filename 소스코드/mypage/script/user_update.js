@@ -29,18 +29,18 @@ if (updateBtn) {
         // [수정] HTML에 있는 모든 필드 값을 객체로 만듭니다.
         // (User 객체의 속성명도 이와 같다고 가정합니다)
         const updateParam = {
-            birth: document.getElementById('birthday').value,
-            mobile: document.getElementById('phoneNumber').value,
-            phone: document.getElementById('telNumber').value,
-            email: document.getElementById('emailAddress').value,
-            address1: document.getElementById('zipCode').value,
-            address2: document.getElementById('address').value,
-            address3: document.getElementById('detailAddress').value
+            birthday: document.getElementById('birthday').value,
+            phoneNumber: document.getElementById('phoneNumber').value,
+            telNumber: document.getElementById('telNumber').value,
+            emailAddress: document.getElementById('emailAddress').value,
+            zipCode: document.getElementById('zipCode').value,
+            address: document.getElementById('address').value,
+            detailAddress: document.getElementById('detailAddress').value
         };
 
         // 유효성 검사 (필수값 체크)
         // HTML에 (* 필수)라고 되어있는 birth, mobile, email만 체크
-        if (!updateParam.birth || !updateParam.mobile || !updateParam.email) {
+        if (!updateParam.birthday || !updateParam.phoneNumber || !updateParam.emailAddress) {
             Swal.fire({
                 icon: "warning",
                 title: "입력 오류",
