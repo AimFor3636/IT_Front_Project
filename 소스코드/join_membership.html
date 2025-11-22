@@ -15,13 +15,21 @@
 
   <style>
     body {
-      display: grid;
-      background-image: url(background.png);
-      background-size: cover;
-      place-items: center;
-      height: 100%;
-      margin: 0;
-      margin-top: 60px;
+    margin: 0;
+  /* 화면 기준 높이 확보 */
+  min-height: 100vh;
+
+  /* 카드 위치 */
+  display: grid;
+  place-items: center;
+  padding-top: 60px;   /* 예전 margin-top 60px 느낌 유지하고 싶으면 */
+
+  /* 배경 이미지 */
+  background-image: url("background.png");
+  background-repeat: no-repeat;
+  background-position: top center;  /* 윗부분 기준으로 고정 */
+  background-size: 100% auto;       /* 가로 꽉 채우고 세로는 비율대로 */
+  background-color: #ffffff;  
     }
 
     .card {
@@ -224,7 +232,6 @@
       <button type="submit">가입하기</button>
     </form>
   </div>
-
   <br>
 
   <!-- CrpytoJS 암호화 툴 -->
