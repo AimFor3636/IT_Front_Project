@@ -19,6 +19,54 @@
   };
 
   // ========================================
+  // 사용자 프로필 로드 및 표시
+  // ========================================
+  const translateUserAuth = (userAuth) => {
+    const authMap = {
+      student: "학생",
+      admin: "학사 관리인",
+      teacher: "교수"
+    };
+    return authMap[userAuth] || "사용자";
+  };
+
+  const loadUserProfile = () => {
+    try {
+      // localStorage에서 cur-user 읽기
+      const curUserRaw = localStorage.getItem("cur-user");
+      if (!curUserRaw) {
+        console.warn("로그인된 사용자 정보 없음");
+        return null;
+      }
+
+      const curUser = JSON.parse(curUserRaw);
+      return curUser;
+    } catch (e) {
+      console.error("사용자 정보 파싱 에러:", e);
+      return null;
+    }
+  };
+
+  const updateProfileDisplay = () => {
+    const user = loadUserProfile();
+    if (!user) return;
+
+    // userId 업데이트 (.d-block.fw-medium)
+    const userNameDisplay = document.querySelector(".user-dropdown .d-block.fw-medium");
+    if (userNameDisplay) {
+      userNameDisplay.textContent = user.userId || "사용자";
+    }
+
+    // userAuth 번역 후 업데이트 (.d-block.fs-13.text-muted)
+    const userAuthDisplay = document.querySelector(".user-dropdown .d-block.fs-13.text-muted");
+    if (userAuthDisplay) {
+      userAuthDisplay.textContent = translateUserAuth(user.userAuth);
+    }
+
+    console.log("✅ User profile updated:", user.userId, translateUserAuth(user.userAuth));
+  };
+
+  // ========================================
   // 사이드바 토글
   // ========================================
   const initSidebar = () => {
@@ -326,6 +374,9 @@
   // ========================================
   const init = () => {
     console.log("Aim Data Academy initialized");
+
+    // 사용자 프로필 업데이트
+    updateProfileDisplay();
 
     // 사이드바 초기화
     initSidebar();

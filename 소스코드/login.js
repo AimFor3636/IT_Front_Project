@@ -111,6 +111,12 @@ window.addEventListener("DOMContentLoaded", () => {
     // 4) 현재 로그인한 유저 정보 저장 (CUR_USER)
     saveDataInLocalStorage(dataKeyObj.CUR_USER, user);
 
+    // 4-1) admin 사용자인 경우 'admin-user'에도 저장
+    if (user.userAuth === "admin") {
+      localStorage.setItem("admin-user", JSON.stringify(user));
+      console.log("✅ Admin user stored in 'admin-user' key");
+    }
+
     // 5) 'id 기억하기' 체크 처리
     if (rememberCheckbox && rememberCheckbox.checked) {
       localStorage.setItem(REMEMBER_KEY, userId);
