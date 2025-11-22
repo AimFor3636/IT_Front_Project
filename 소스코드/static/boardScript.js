@@ -62,7 +62,7 @@ async function loadBoardData() {
 
       localStorage.setItem("user-list", JSON.stringify(userData));
       console.log("✅ Initialized user-list in LocalStorage");
-      
+
 
     }
 
