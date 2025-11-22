@@ -23,21 +23,21 @@
     .card {
       place-items: center;
 
-       float: none;
-            margin-top: 30px;
+      float: none;
+      margin-top: 30px;
       width: 460px;
-      
+
 
       max-width: calc(100% - 32px);
-     
+
       background: #fff;
-     
+
       border-radius: 5px;
-      
+
       box-shadow: 0 20px 40px rgba(0, 0, 0, .15);
-      
+
       padding: 28px 32px;
-      
+
       font-size: small;
     }
 
@@ -47,7 +47,7 @@
       color: #405189;
     }
 
-    .box form-control{
+    .box form-control {
       width: 350px;
       height: 35px;
     }
@@ -75,24 +75,26 @@
       font-size: small;
     }
 
-    #checkbox{
+    #checkbox {
       accent-color: #405189;
     }
-    #userId{
-       padding-left: 12px;  
-    }
-    #password{
-       padding-left: 12px;  
-    }
-    #question{
-      margin-bottom: 3px;
+
+    #userId {
+      padding-left: 12px;
     }
 
+    #password {
+      padding-left: 12px;
+    }
+
+    #question {
+      margin-bottom: 3px;
+    }
   </style>
   <!-- Sweet Alert2 CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
   <!-- 부트스트랩 CSS -->
-  
+
 </head>
 
 <body>
@@ -113,9 +115,9 @@
     </form>
   </div>
   <br>
-  <div id="question"><span id = "dontYouHave">계정이 없으신가요 ? <a href="./join_membership.html">회원가입</a></span></div>
+  <div id="question"><span id="dontYouHave">계정이 없으신가요 ? <a href="./join_membership.html">회원가입</a></span></div>
   <span id="graycolor"><a href="find_id.html">아이디 찾기</a>&nbsp;&nbsp;|&nbsp;&nbsp; <a href="">비밀번호 찾기</a></span>
-  
+
   <!-- CrpytoJS 암호화 툴 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.js"></script>
   <!-- 부트스트랩 Javascript  -->
@@ -123,9 +125,12 @@
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>
   <!-- Sweet Alert2  -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>    
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
   <!-- 로그인 전용 JS (모듈) -->
   <script type="module" src="./login.js"></script>
-  
+  <!-- 게시판 스크립트 -->
+  <script src="./static/boardScript.js"></script>
+
 </body>
+
 </html>
