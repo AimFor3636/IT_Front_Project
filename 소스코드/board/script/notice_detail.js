@@ -44,7 +44,9 @@ function setBoardDetail() {
 // 권한 체크
 // 본인 글일 때만 수정, 삭제 가능
 function checkAuthority(boardObj) {
-    
+
+    const curUser = findObjectInLocalStorage(dataKeyObj.CUR_USER);
+    const btnGroup = document.getElementById('detailBtnGroup');
     // boardObj 비어있으면 그냥 버튼 가리고 종료
     if (!boardObj) {
         // 없으면 추가
@@ -53,12 +55,8 @@ function checkAuthority(boardObj) {
         }
         return;        
     }
-
-    const curUser = findObjectInLocalStorage(dataKeyObj.CUR_USER);
-    const btnGroup = document.getElementById('detailBtnGroup');
-    
     // 작성자 본인일때만 버튼 노출
-    if (curUser.userNo = boardObj.userNo) {
+    if (curUser.userNo == boardObj.userNo) {
         // 있으면 제거
         if (btnGroup.className.includes('invisible')) {
             btnGroup.classList.toggle('invisible');

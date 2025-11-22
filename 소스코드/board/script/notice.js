@@ -52,9 +52,12 @@ function setBoardList(boardList) {
         if (!nextdBtnTag.className.includes('invisible')) {
             nextdBtnTag.classList.toggle('invisible');
         }                        
-    } else {   
+    } else {
 
-        const pagingCnt = Math.floor(boardCnt/10);
+        let pagingCnt = Math.floor(boardCnt/10);
+        if (boardCnt%10) {
+            pagingCnt++;
+        }
         
         const pagingBodyTag = document.getElementById('paging-body');
         pagingBodyTag.innerHTML = '';
@@ -203,7 +206,25 @@ function setPagingBtn(boardList) {
             setPaging(boardList, pagingNum)
         })
     });
+    const prevBtnTag = document.querySelector('#fixed-header_previous');
+    const nextBtnTag = document.querySelector('#fixed-header_next');
+    let pagingCnt = Math.floor(boardList.length/10);
+    if (boardList.length%10) {
+        pagingCnt++;
+    }
+    let curPagingNo = document.querySelector('.paging.active').querySelector('.page-link').innerText;
+    curPagingNo = Number(curPagingNo);
 
+    prevBtnTag.addEventListener('click', () => {
+        if (curPagingNo > 1) {
+            setPaging(boardList, curPagingNo-1);
+        }
+    })
+    nextBtnTag.addEventListener('click', () => {
+        if (curPagingNo < pagingCnt) {
+            setPaging(boardList, curPagingNo+1);
+        }
+    })
 }
 
 // 테스트용

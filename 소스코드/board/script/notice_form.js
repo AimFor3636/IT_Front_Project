@@ -90,8 +90,8 @@ function updateBoard() {
     // 유효성 체크
     if (!checkValid()) {
         return;
-    }    
-
+    }
+    const curUser = findObjectInLocalStorage(dataKeyObj.CUR_USER);
     const title = document.getElementById('title').value;
     const contents = document.getElementById('contents').value;
 

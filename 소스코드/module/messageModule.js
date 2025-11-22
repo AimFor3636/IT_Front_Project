@@ -62,7 +62,9 @@ export function findMessageListByTitle(searchTitle, isSend) {
     const messageTitle = message.title.toUpperCase();
     return (messageTitle.indexOf(searchTitle.toUpperCase()) != -1)
   }).sort((messageA, messageB) => { // 작성일 기준 내림차순
-    return messageA.insertTimeStamp - messageB.insertTimeStamp;
+      const aDate = new Date(messageA.insertDate);
+      const bDate = new Date(messageB.insertDate);
+      return bDate - aDate;
   })
 
   return searchMessageList;
@@ -80,7 +82,9 @@ export function findRecieveMessageList() {
     recevieMessageList = findArrayInLocalStorage(dataKeyObj.MESSAGE_LIST);
   }
   recevieMessageList.sort((messageA, messageB) => {
-    return messageA.insertTimeStamp - messageB.insertTimeStamp;
+      const aDate = new Date(messageA.insertDate);
+      const bDate = new Date(messageB.insertDate);
+      return bDate - aDate;
   })
 
   return recevieMessageList;
@@ -99,7 +103,9 @@ export function findSendMessageList() {
     }
   }
   sendMessageList.sort((messageA, messageB) => {
-    return messageA.insertTimeStamp - messageB.insertTimeStamp;
+      const aDate = new Date(messageA.insertDate);
+      const bDate = new Date(messageB.insertDate);
+      return bDate - aDate;
   })
 
   return sendMessageList;

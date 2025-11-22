@@ -36,9 +36,9 @@ function checkAuthority(){
 
 // 글 배치
 function setBoardList(boardList) {
-    
+    console.log(boardList);
     const prevBtnTag = document.querySelector('#fixed-header_previous');
-    const nextdBtnTag = document.querySelector('#fixed-header_next');
+    const nextBtnTag = document.querySelector('#fixed-header_next');
 
     let boardCnt = boardList.length;
     const pagingTag = document.querySelector('.paginate_button.page-item.paging');
@@ -49,12 +49,15 @@ function setBoardList(boardList) {
         if (!prevBtnTag.className.includes('invisible')) {
             prevBtnTag.classList.toggle('invisible');
         }
-        if (!nextdBtnTag.className.includes('invisible')) {
-            nextdBtnTag.classList.toggle('invisible');
+        if (!nextBtnTag.className.includes('invisible')) {
+            nextBtnTag.classList.toggle('invisible');
         }                        
     } else {   
 
-        const pagingCnt = Math.floor(boardCnt/10);
+        let pagingCnt = Math.floor(boardCnt/10);
+        if (boardCnt%10) {
+            pagingCnt++;
+        }
         
         const pagingBodyTag = document.getElementById('paging-body');
         pagingBodyTag.innerHTML = '';
@@ -67,18 +70,18 @@ function setBoardList(boardList) {
             
             pagingBodyTag.appendChild(nPagingTag);
         }
-        pagingBodyTag.appendChild(nextdBtnTag);
+        pagingBodyTag.appendChild(nextBtnTag);
 
     }
     // 기본은 1페이지로 세팅
-    setPaging(boardList, 1);    
+    setPaging(boardList, 1);
 }
 
 function setPaging(boardList, pageNum) {
     // 10개 단위
     const boardCnt = boardList.length;
     const prevBtnTag = document.querySelector('#fixed-header_previous');
-    const nextdBtnTag = document.querySelector('#fixed-header_next');
+    const nextBtnTag = document.querySelector('#fixed-header_next');
 
     // 1페이지 (1 ~ 10 => 인덱스 기준 0 ~ 9)
     // 2페이지 (11 ~ 20 => 인덱스 기준 10 ~ 19)...
@@ -102,8 +105,8 @@ function setPaging(boardList, pageNum) {
             prevBtnTag.classList.toggle('invisible');
         }
         // invisible 있으면 삭제
-        if (nextdBtnTag.className.includes('invisible')) {
-            nextdBtnTag.classList.toggle('invisible');
+        if (nextBtnTag.className.includes('invisible')) {
+            nextBtnTag.classList.toggle('invisible');
         }       
     } else if (pageNum != 1 && isLastPage) { // Prev 만 노출
         // invisible 있으면 삭제
@@ -111,8 +114,8 @@ function setPaging(boardList, pageNum) {
             prevBtnTag.classList.toggle('invisible');
         }
         // invisible 없으면 추가
-        if (!nextdBtnTag.className.includes('invisible')) {
-            nextdBtnTag.classList.toggle('invisible');
+        if (!nextBtnTag.className.includes('invisible')) {
+            nextBtnTag.classList.toggle('invisible');
         }  
     } else { // 버튼 둘다 노출
         // invisible 없으면 추가
@@ -120,8 +123,8 @@ function setPaging(boardList, pageNum) {
             prevBtnTag.classList.toggle('invisible');
         }
         // invisible 없으면 추가
-        if (!nextdBtnTag.className.includes('invisible')) {
-            nextdBtnTag.classList.toggle('invisible');
+        if (!nextBtnTag.className.includes('invisible')) {
+            nextBtnTag.classList.toggle('invisible');
         }  
     }
 
@@ -193,9 +196,9 @@ function setPaging(boardList, pageNum) {
 }
 
 function setPagingBtn(boardList) {
-    
+
     const pagingBtnList = document.querySelectorAll('.paginate_button.page-item.paging');
-    
+
     // 페이징에 따른 이벤트 장착
     pagingBtnList.forEach((pagingBtn) => {
         const aTag = pagingBtn.querySelector('.page-link');
@@ -205,6 +208,25 @@ function setPagingBtn(boardList) {
         })
     });
 
+    const prevBtnTag = document.querySelector('#fixed-header_previous');
+    const nextBtnTag = document.querySelector('#fixed-header_next');
+    let pagingCnt = Math.floor(boardList.length/10);
+    if (boardList.length%10) {
+        pagingCnt++;
+    }
+    let curPagingNo = document.querySelector('.paging.active').querySelector('.page-link').innerText;
+    curPagingNo = Number(curPagingNo);
+
+    prevBtnTag.addEventListener('click', () => {
+        if (curPagingNo > 1) {
+            setPaging(boardList, curPagingNo-1);
+        }
+    })
+    nextBtnTag.addEventListener('click', () => {
+        if (curPagingNo < pagingCnt) {
+            setPaging(boardList, curPagingNo+1);
+        }
+    })
 }
 
 // 테스트용

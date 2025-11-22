@@ -41,20 +41,20 @@ export function saveBoard(boardParam) {
 // 게시글 수정 ( 제목, 내용, 수정일자 update)
 export function updateBoard(updateParam) {
 
-  const boardObj = getBoardByBoardNo(updateParam[boardNo]);
+  const boardObj = findBoardByBoardNo(updateParam.boardNo);
 
   if (boardObj == null || boardObj == undefined) {
     return false;
   }
-  boardObj.title = updateParam[title];
-  boardObj.content = updateParam[content]
+  boardObj.title = updateParam.title;
+  boardObj.content = updateParam.content
   boardObj.updateDate = getCurDateString();
   boardObj.updateTimeStamp = Date.now();
 
   // 평가 게시판은 시작, 종료시간
   if (boardObj.categoryNo == categoryMapping.IT_SCORE || boardObj.categoryNo == categoryMapping.JP_SCORE) {
-    boardObj.startDate = updateParam[startDate];
-    boardObj.endDate = updateParam[endDate];
+    boardObj.startDate = updateParam.startDate;
+    boardObj.endDate = updateParam.endDate;
   }
 
   const boardList = findArrayInLocalStorage(dataKeyObj.BOARD_LIST);
@@ -91,7 +91,9 @@ export function findBoardByCategory(searchCategory) {
   searchBoardList = boardList.filter((board) => {
     return board.categoryNo == searchCategory; 
   }).sort((boardA, boardB) => { // 작성일 기준 내림차순
-    return boardB.insertTimeStamp - boardA.insertTimeStamp;
+    const aDate = new Date(boardA.insertDate);
+    const bDate = new Date(boardB.insertDate);
+    return bDate - aDate;
   })
 
   return searchBoardList;

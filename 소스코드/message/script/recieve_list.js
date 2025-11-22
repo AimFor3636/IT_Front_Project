@@ -26,8 +26,11 @@ function setMessageList(messageList) {
         }                        
     } else {   
 
-        const pagingCnt = Math.floor(messageCnt/10);
-        
+        let pagingCnt = Math.floor(messageCnt/10);
+        if (messageCnt%10) {
+            pagingCnt++;
+        }
+
         const pagingBodyTag = document.getElementById('paging-body');
         pagingBodyTag.innerHTML = '';
 
@@ -176,6 +179,25 @@ function setPagingBtn(messageList) {
         })
     });
 
+    const prevBtnTag = document.querySelector('#fixed-header_previous');
+    const nextBtnTag = document.querySelector('#fixed-header_next');
+    let pagingCnt = Math.floor(messageList.length/10);
+    if (messageList.length%10) {
+        pagingCnt++;
+    }
+    let curPagingNo = document.querySelector('.paging.active').querySelector('.page-link').innerText;
+    curPagingNo = Number(curPagingNo);
+
+    prevBtnTag.addEventListener('click', () => {
+        if (curPagingNo > 1) {
+            setPaging(messageList, curPagingNo-1);
+        }
+    })
+    nextBtnTag.addEventListener('click', () => {
+        if (curPagingNo < pagingCnt) {
+            setPaging(messageList, curPagingNo+1);
+        }
+    })
 }
 
 

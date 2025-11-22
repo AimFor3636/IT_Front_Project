@@ -24,7 +24,7 @@ init();
 // Admin 수신자 설정 가능
 function checkAuth() {
 
-    const recieveTag = document.getElementById('recieve-row');
+    const recieveTag = document.getElementById('recieve');
     // d-none 없으면 추가
     if (!recieveTag.className.includes('d-none')) {
         recieveTag.classList.toggle('d-none');
@@ -108,7 +108,7 @@ function saveMessage() {
         return;
     }
 
-    const messageType = document.getElementById('receiveUserNo').value;
+    const messageType = document.getElementById('messageType').value;
     const title = document.getElementById('title').value;
     const contents = document.getElementById('contents').value;
 
@@ -141,7 +141,7 @@ function saveMessage() {
 
 
 function checkValid() {
-    const messageType = document.getElementById('receiveUserNo').value;
+    const messageType = document.getElementById('messageType').value;
     const title = document.getElementById('title').value;
     const contents = document.getElementById('contents').value;
 
