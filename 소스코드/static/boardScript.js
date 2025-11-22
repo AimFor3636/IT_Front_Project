@@ -8,24 +8,57 @@
 // ========================================
 
 let boardData = []; // > 게시판 데이터를 저장할 배열
+let userData = []; // > 유저 데이터를 저장할 배열
 
 // ========================================
 // 함수 정의
 // ========================================
 
 /*
-@description initData.json 로드
+@description initData.json 로드 및 로컬스토리지 초기화
 @returns {Promise<void>}
 */
 async function loadBoardData() {
   try {
-    const response = await fetch("./static/initData.json"); // > initData.json 파일을 가져옴
-    if (!response.ok) {
-      // > 응답이 성공적이지 않은 경우
-      throw new Error("Failed to load board data");
+    // 1. 로컬스토리지에서 데이터 확인
+    const storedBoardList = localStorage.getItem("board-list"); // > 게시판 데이터를 로컬스토리지에서 가져옴
+    const storedUserList = localStorage.getItem("user-list"); // > 유저 데이터를 로컬스토리지에서 가져옴
+
+    let needFetch = true; // > Fetch 필요 여부 확인(기본값: true)
+
+    if (storedBoardList && storedUserList) {
+      // > 데이터가 이미 있으면 로드
+      boardData = JSON.parse(storedBoardList); // > JSON 데이터를 JavaScript 객체로 변환
+      userData = JSON.parse(storedUserList); // > JSON 데이터를 JavaScript 객체로 변환
+
+      // 데이터가 비어있지 않은 경우에만 로드 성공으로 처리
+      if (boardData.length > 0 && userData.length > 0) {
+        needFetch = false; // > Fetch 필요 없음
+        console.log("✅ Loaded data from LocalStorage");
+      }
     }
-    const data = await response.json(); // > 응답 데이터를 JSON으로 파싱
-    boardData = data.board || []; // > board 속성에서 게시판 데이터 추출 (없으면 빈 배열)
+
+    if (needFetch) {
+      // > Fetch가 필요한 경우
+      // > (로컬 스토리지의 board-list 및 user-list가 가 없으면), initData.json에서 로드하여 저장
+      const response = await fetch("./static/initData.json"); // > initData.json 파일을 가져옴
+      if (!response.ok) {
+        // > 요청이 실패하면 에러를 발생시킴
+        throw new Error("Failed to load board data");
+      }
+      const data = await response.json(); // > JSON 데이터를 JavaScript 객체로 변환
+
+      // boardData 초기화
+      boardData = data.board || []; // > 게시판 데이터를 boardData에 저장
+      userData = data.users || []; // > 유저 데이터를 userData에 저장
+
+      // 로컬스토리지에 저장
+      localStorage.setItem("board-list", JSON.stringify(boardData));
+      console.log("✅ Initialized board-list in LocalStorage");
+
+      localStorage.setItem("user-list", JSON.stringify(userData));
+      console.log("✅ Initialized user-list in LocalStorage");
+    }
 
     console.log("✅ Board data loaded:", boardData.length, "items");
     renderAllBoards(); // > 모든 게시판 렌더링
@@ -57,7 +90,7 @@ function createBoardRowClickHandler(post) {
     let redirectUrl = "";
 
     // 게시글 번호
-    let boardNo = post.no;
+    let boardNo = post.boardNo;
 
     if (post.index === "IT Test" || post.index === "Japanese Test") {
       // IT 혹은 일본어 평가/과제 게시판
@@ -107,10 +140,10 @@ function createBoardRow(post) {
 
   // 오늘 날짜인지 확인하여 New 라벨 추가
   const today = new Date(); // > 현재 날짜 객체 생성
-  const postDateStr = post.date.split(" ")[0]; // > 게시글 날짜 문자열에서 날짜 부분만 추출 (예: "25.11.18")
-  const [year, month, day] = postDateStr.split("."); // > 날짜 문자열을 년, 월, 일로 분리
+  const postDateStr = post.insertDate.split(" ")[0]; // > 게시글 날짜 문자열에서 날짜 부분만 추출 (예: "25.11.18")
+  const [year, month, day] = postDateStr.split("-"); // > 날짜 문자열을 년, 월, 일로 분리
   const postDate = new Date( // > 게시글 날짜 객체 생성
-    2000 + parseInt(year), // > 년도: "25" -> 2025
+    parseInt(year), // > 년도: "2025"
     parseInt(month) - 1, // > 월: JavaScript Date는 0부터 시작하므로 -1
     parseInt(day) // > 일
   );
@@ -145,12 +178,15 @@ function createBoardRow(post) {
   // ID 컬럼 - 게시글 작성자 표시
   const idCol = document.createElement("div"); // > ID 컬럼 div 요소 생성
   idCol.className = "board-col-id";
-  idCol.textContent = post.id; // > 작성자 이름을 텍스트로 설정
+
+  // userNo로 유저 이름 찾기
+  const user = userData.find(u => u.userNo == post.userNo);
+  idCol.textContent = user ? user.userName : post.userId; // > 작성자 이름을 텍스트로 설정
 
   // DATE 컬럼 - 게시글 작성일 표시
   const dateCol = document.createElement("div"); // > 날짜 컬럼 div 요소 생성
   dateCol.className = "board-col-date";
-  const dateOnly = post.date.split(" ")[0]; // > 날짜 포맷 변경: "25.11.14 12:53" -> "25.11.14"
+  const dateOnly = post.insertDate.split(" ")[0]; // > 날짜 포맷 변경: "25.11.14 12:53" -> "25.11.14"
   dateCol.textContent = dateOnly; // > 날짜를 텍스트로 설정
 
   // 게시글 행에 각 컬럼 추가 (TITLE, ID, DATE 순서)
