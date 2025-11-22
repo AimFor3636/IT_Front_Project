@@ -162,9 +162,11 @@ export function login(id, password) {
 
   const userObj = findUserByUserId(id);
 
+  console.log(`입력받은 pass = ${password}`)
   // 입력받은 비밀번호 SHA256 암호화 한후 비교
   const passwordEnc = CryptoJS.SHA256(password).toString();
-
+  console.log(`암호화 pass = ${passwordEnc}`)
+  console.log(`기존 password = ${userObj.password}`);
   if (userObj != null && userObj != undefined) {
     // password 동일여부 비교
     if (userObj.password == passwordEnc) {
