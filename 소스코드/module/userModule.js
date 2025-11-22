@@ -115,7 +115,7 @@ export function updateUser(updateParam) {
 
   let isSuccess = false;
   for (let idx in userList) {
-    if (userList[idx].userNo == curUser[userNo]) {
+    if (userList[idx].userNo == curUser.userNo) {
       userList[idx] = curUser;
       isSuccess = true;
     }
