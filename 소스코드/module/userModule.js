@@ -222,9 +222,21 @@ export function setUserAutor(userNo, author) {
 
   const targetUser = findUserByUserNo(userNo);
 
-  if (targetUser != null && targetUser != undefined) {
-    targetUser.userAuth = author
-    return true;
+  if (targetUser) {
+
+      targetUser.userAuth = author
+
+      const userList = findArrayInLocalStorage(dataKeyObj.USER_LIST);
+
+      for (let idx in userList) {
+          if (userList[idx].userNo == targetUser.userNo) {
+              userList[idx] = targetUser;
+              break;
+          }
+      }
+      // 다시 저장
+      saveDataInLocalStorage(dataKeyObj.USER_LIST, userList);
+      return true;
   }
   // 조회 안되면 false 반환 예외처리 해야함
   return false;

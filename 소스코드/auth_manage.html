@@ -181,35 +181,34 @@
                                         <table class="table caption-top table-nowrap mb-0">
                                             <colgroup>
                                                 <col style="width:15%;">
-                                                <col style="width:30%;">
                                                 <col style="width:15%;">
+                                                <col style="width:30%;">
                                                 <col style="width:20%;">
                                                 <col style="width:20%;">
                                             </colgroup>
                                             <thead class="table-light">
                                             <tr>
-                                                <th style="width:5%;">ID</th>
+                                                <th>유저 No</th>
+                                                <th>아이디</th>
                                                 <th>이름</th>
                                                 <th>권한</th>
-                                                <th>가입일자</th>
                                                 <th>Date</th>
                                             </tr>
                                             </thead>
                                             <tbody id="data-body">
-                                            <tr id="data-form">
-                                                <td>378</td>
-                                                <td>okqwaszx</td>
-                                                <td>
-                                                    <select id="searchType" name="searchType" class="form-select">
-                                                        <option value="teacher">교사</option>
-                                                        <option value="student" selected>학생</option>
-                                                    </select>
-                                                </td>
-                                                <td>1992</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-primary auth-change" style="background-color: #405189;">Primary</button>
-                                                </td>
-                                            </tr>
+                                                <tr id="data-form">
+                                                    <td>378</td>
+                                                    <td>이상우</td>
+                                                    <td>
+                                                        <select name="userAuth" class="form-select">
+                                                            <option value="teacher">교사</option>
+                                                            <option value="student" selected>학생</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-primary auth-change" style="background-color: #405189;">Primary</button>
+                                                    </td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -226,6 +225,7 @@
 </div>
 <!-- 레이아웃 끝 -->
 
+<script src="./commonScript.js"></script>
 <!-- 부트스트랩 Javascript  -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"

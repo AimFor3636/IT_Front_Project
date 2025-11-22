@@ -65,7 +65,7 @@ function checkAuthority(boardObj) {
 
     // 기한 지났으면 예외처리로 화면 전환
     if (endDate < curDate) {
-        window.location.href = './exception.html';
+        window.location.href = `./exception.html?reason=expired`;
         return;
     }
 
