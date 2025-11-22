@@ -16,6 +16,24 @@ function setMessageList(messageList) {
     let messageCnt = messageList.length;
     const pagingTag = document.querySelector('.paginate_button.page-item.paging');
 
+    let pagingCnt = Math.floor(messageCnt/10);
+    if (messageCnt%10) {
+        pagingCnt++;
+    }
+
+    const pagingBodyTag = document.getElementById('paging-body');
+    pagingBodyTag.innerHTML = '';
+
+    pagingBodyTag.appendChild(prevBtnTag);
+    for (let i = 0; i < pagingCnt; i++) {
+        const nPagingTag = pagingTag.cloneNode(true);
+        const nATag = nPagingTag.querySelector('.page-link');
+        nATag.innerText = i+1;
+
+        pagingBodyTag.appendChild(nPagingTag);
+    }
+    pagingBodyTag.appendChild(nextdBtnTag);
+
     // 글 10개 이하면 한페이지에서 끝남 따라서 prev , next 버튼 전부 감춤
     if (messageCnt < 10) {
         // invisible 없으면 추가
@@ -24,30 +42,10 @@ function setMessageList(messageList) {
         }
         if (!nextdBtnTag.className.includes('invisible')) {
             nextdBtnTag.classList.toggle('invisible');
-        }                        
-    } else {
-
-        let pagingCnt = Math.floor(messageCnt/10);
-        if (messageCnt%10) {
-            pagingCnt++;
         }
-        
-        const pagingBodyTag = document.getElementById('paging-body');
-        pagingBodyTag.innerHTML = '';
-
-        pagingBodyTag.appendChild(prevBtnTag);
-        for (let i = 0; i < pagingCnt; i++) {
-            const nPagingTag = pagingTag.cloneNode(true);
-            const nATag = nPagingTag.querySelector('.page-link');
-            nATag.innerText = i+1;
-            
-            pagingBodyTag.appendChild(nPagingTag);
-        }
-        pagingBodyTag.appendChild(nextdBtnTag);
-
     }
     // 기본은 1페이지로 세팅
-    setPaging(messageList, 1);   
+    setPaging(messageList, 1);
 
 }
 
