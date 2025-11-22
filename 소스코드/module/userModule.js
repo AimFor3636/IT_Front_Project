@@ -1,5 +1,5 @@
 import { userDto, getUserPk} from "../dtoScript.js";
-import { findArrayInLocalStorage, findObjectInLocalStorage, saveDataInLocalStorage, getCurDateString, dataKeyObj, userAuth} from "./commonModule.js";
+import { findArrayInLocalStorage, findObjectInLocalStorage, saveDataInLocalStorage, getCurDateString, dataKeyObj, userAuthMap} from "./commonModule.js";
 
 
 //saveUser({userNo: '1', zipCode: '2'});
@@ -29,7 +29,7 @@ export function saveUser(userParam) {
   userObj.registerTimestamp = Date.now();
 
   // 권한은 학생이 기본
-  userObj.userAuth = userAuth.STUDENT;
+  userObj.userAuth = userAuthMap.STUDENT;
 
   // 현재 userList 에 저장
   const userList = findArrayInLocalStorage(dataKeyObj.USER_LIST);
@@ -182,13 +182,28 @@ export function logout() {
 }
 
 
-// 전체 인원 조회 ( 권한부여 설정 확인 용)
+// 전체 인원 조회 ( 권한부여 설정 확인 용, admin 은 제외)
 export function findUserAll() {
 
   const userList = findArrayInLocalStorage(dataKeyObj.USER_LIST);
 
-  // 이름 오름차순
-  userList.sort((userA, userB) => {
+  let searchList = userList.filter((user) => {
+      return user.userAuth != userAuthMap.ADMIN;
+  }).sort((userA, userB) => {
+
+    const priority = {
+        'teacher': 1,
+        'student': 0
+    }
+
+    const authA = priority[userA.userAuth];
+    const authB = priority[userB.userAuth];
+
+    // 권한 큰 순으로 내림차순
+    if (authA != authB) {
+        return authB - authA;
+    }
+
     if (userA.userName < userB.userName) {
       return -1;
     } else if (userA.userName > userB.userName) {
@@ -198,7 +213,7 @@ export function findUserAll() {
     }
   });
 
-  return userList;
+  return searchList;
 }
 
 // 권한 설정 ( ADMIN 에게만 권한 부여 됨)

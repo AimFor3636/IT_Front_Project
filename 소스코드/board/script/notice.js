@@ -1,4 +1,4 @@
-import {userAuth, dataKeyObj, findObjectInLocalStorage, saveDataInLocalStorage} from "../../module/commonModule.js";
+import {userAuthMap, dataKeyObj, findObjectInLocalStorage, saveDataInLocalStorage} from "../../module/commonModule.js";
 import * as BOARD_MODULE from "../../module/boardModule.js"; 
 import { saveUser, findUserByUserNo } from "../../module/userModule.js";  // 테스트용 테스트후 삭제
 
@@ -12,7 +12,7 @@ init();
 function checkAuthority(){
 
     const curUser = findObjectInLocalStorage(dataKeyObj.CUR_USER);
-    const authCheck = [userAuth.ADMIN, userAuth.TEACHER];
+    const authCheck = [userAuthMap.ADMIN, userAuthMap.TEACHER];
 
     const createBtnTag = document.getElementById('createBoard');
     // 클래스 이름 전체가 나옴
@@ -221,7 +221,7 @@ function test() {
         phoneNumber: '01053562594',    // 핸드폰 번호
         zipCode: '12312',        // 우편 주소
         address: '우리집 어디게',        // 주소
-        userAuth: userAuth.ADMIN,     // 권한
+        userAuth: userAuthMap.ADMIN,     // 권한
         registerDate: '',   // 가입 일자
         registerTimestamp: "", // 정렬용 일자
     };
@@ -250,7 +250,7 @@ document.getElementById('searchFormButton').addEventListener('click', () => {
     const searchOption = document.getElementById('searchType').value;
     const searchWord   = document.getElementById('searchWord').value;
 
-    const searchList = [];
+    let searchList = [];
     switch (searchOption) {
         case 'title': searchList = BOARD_MODULE.findBoardListByTitle(searchWord, BOARD_MODULE.categoryMapping.NOTICE);
                     break;

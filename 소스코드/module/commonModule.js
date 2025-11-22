@@ -57,7 +57,7 @@ export function getCurDateString() {
 }
 
 // 유저 권한
-export const userAuth = {
+export const userAuthMap = {
     ADMIN: 'admin',       // 학사 관리인
     TEACHER: 'teacher',   // 교수
     STUDENT: 'student'    // 학생

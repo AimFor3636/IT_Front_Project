@@ -1,4 +1,4 @@
-import {userAuth, dataKeyObj, findObjectInLocalStorage} from "../../module/commonModule.js";
+import {userAuthMap, dataKeyObj, findObjectInLocalStorage} from "../../module/commonModule.js";
 import { findUserByUserId } from "../../module/userModule.js";
 import * as MESSAGE_MODULE from "../../module/messageModule.js"; 
 
@@ -30,7 +30,7 @@ function checkAuth() {
         recieveTag.classList.toggle('d-none');
     }
 
-    if (curUser && curUser.userAuth == userAuth.ADMIN) {
+    if (curUser && curUser.userAuth == userAuthMap.ADMIN) {
 
         // 최초 메시지면 수신자 설정
         if (messageNo == null || messageNo == undefined || messageNo == '') {
