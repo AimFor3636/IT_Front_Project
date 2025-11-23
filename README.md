@@ -2,8 +2,6 @@
 
 #### Aim Data Academy ( 클론 코딩)
 
-
-
 ### 프로젝트 목표
 
 : Data Science Academy 를 참고한 클론코딩 진행을 통하여 
@@ -31,8 +29,6 @@
 2. 메인페이지 및 일정 관리
 
 3. 게시판 및 메시지 기능
-
-
 
 #### 프로젝트 파일구조
 
@@ -142,7 +138,26 @@
 
 #### 
 
-#### 코드규칙 및 스타일가이드
+#### 추후 개선 방향
+
+- MVC 패턴을 적용하여 리팩토링 진행
+  
+  - Spring 및 JPA 를 활용하여 MVC 패턴을 지키는 코드로 리팩토링 진행
+  
+  - 타임리프를 활용한 SSR (서버사이드렌더링) 구현
+
+- 구현 생략한 기능들 실제로 적용
+  
+  - 메신저 본문에 위지윅(WYSIWYG) 에디터 적용
+  
+  - 첨부파일 저장 되도록 구현
+    
+        
+    
+    
+       
+
+##### 기타. 코드규칙 및 스타일가이드
 
 참고 사이트 [FrontEnd Coding Convention · FrontEnd Coding Convention](https://jeonghakhur.gitbooks.io/frontend-coding-convention/content/)
 
