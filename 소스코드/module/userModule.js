@@ -86,7 +86,7 @@ export function findUserId(searchEmail, inTelNumber) {
 
     // 전화번호는 - 제외하고 비교
     // 첫번째 찾아지면 그냥 반환
-    if (user.email == searchEmail && user.telNumber.replace("-", "") == inTelNumber.replace("-", "")) {
+    if (user.email == searchEmail && user.phoneNumber.replaceAll("-", "") == inTelNumber.replaceAll("-", "")) {
       userObj = user;
       break;
     } 

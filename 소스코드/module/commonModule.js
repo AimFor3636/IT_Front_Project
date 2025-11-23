@@ -54,8 +54,10 @@ export function getCurDateString() {
   const tMonth = today.getMonth()+1;
   const month = tMonth < 10 ? `0${tMonth}` : tMonth;
   const date = today.getDate() < 10 ? `0${today.getDate()}` : today.getDate();
+  const hour = today.getHours() < 10 ? `0${today.getHours()}` : today.getHours();
+  const minute = today.getMinutes() < 10 ? `0${today.getMinutes()}` : today.getMinutes();
 
-  return `${today.getFullYear()}-${month}-${date} ${today.getHours()}:${today.getMinutes()}`;
+  return `${today.getFullYear()}-${month}-${date} ${hour}:${minute}`;
 }
 
 // 유저 권한

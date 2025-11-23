@@ -67,10 +67,10 @@ window.addEventListener("DOMContentLoaded", () => {
     console.log("현재 USER_LIST:", userList);
 
     const user = userList.find(
-      (u) =>
-        (u.emailAddress === email || u.email === email) && // emailAddress 또는 email 둘 다 대응
-        (u.phoneNumber === phone ||
-          (u.telNumber && u.telNumber.replace(/[^0-9]/g, "") === phone))
+      (u) => {
+        return ((u.emailAddress === email || u.email === email) && // emailAddress 또는 email 둘 다 대응
+        (u.phoneNumber.replaceAll("-", "") === phone.replaceAll("-", ""))); // 하이픈 무시하여 비교
+      }
     );
 
     console.log("조회 결과:", user);

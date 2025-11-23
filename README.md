@@ -2,21 +2,15 @@
 
 #### : Aim Data Academy
 
-
-
 ### 프로젝트 목표
 
 : Data Science Academy 를 참고하여 클론코딩 
 
 해당 작업을 통하여 **HTML/CSS/JavaScript 에 대한 이해도 향상 **
 
-
-
 ### 프로젝트 기간
 
 : 2025년 11월 10일 ~ 11월 23일 ( 2주간 )
-
-
 
 #### 프로젝트 파일구조
 
@@ -74,8 +68,6 @@
  ┗ 📜main_page.html                      // 메인 페이지
 ```
 
-
-
 ### 사용 기술
 
 <div>
@@ -105,8 +97,6 @@
 [Github 주소]([GitHub - AimFor3636/IT_Front_Project](https://github.com/AimFor3636/IT_Front_Project))
 
 [Figma 주소](https://www.figma.com/board/HjCDS0Uq5DKsqQjRaGbHwS/ICT-Front-Project?node-id=0-1&p=f&t=EP5EYYNF9KwMWMRO-0)
-
-
 
 #### 코드규칙 및 스타일가이드
 

@@ -81,6 +81,7 @@ export function findRecieveMessageList() {
   recevieMessageList = messageList.filter((message) => {
     // 내가 수신자인 경우에 데이터들 가져오기
     return (message.receiveUserNo == curUser.userNo);
+    
   }).sort((messageA, messageB) => {
       const aDate = new Date(messageA.insertDate);
       const bDate = new Date(messageB.insertDate);

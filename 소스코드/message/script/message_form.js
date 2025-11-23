@@ -47,7 +47,7 @@ function checkAuth() {
             
             const messageObj = MESSAGE_MODULE.findMessageByMessageNo(messageNo);
 
-            receiveUserNo = messageObj.receiveUserNo;
+            receiveUserNo = messageObj.sendUserNo;  // 현재 메시지의 발신자가 수신자
             
         }
 
