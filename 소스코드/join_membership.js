@@ -43,7 +43,7 @@ let isIdAvailable = false;   // 실제 사용 가능 상태인지
 let lastCheckedId = "";      // 마지막으로 체크한 아이디
 
 // 폼 전체 검증
-function validateForm({ userId, password, birth, phone, tel, email, zipcode }) {
+function validateForm({ userId, password, birth, phone, tel, email, zipcode, name }) {
   let valid = true;
   const idVal = userId.value.trim();
 
@@ -76,6 +76,14 @@ function validateForm({ userId, password, birth, phone, tel, email, zipcode }) {
     valid = false;
   } else {
     clearError(password);
+  }
+
+  // ✅ 이름 (필수)  ← ★ 추가
+  if (!name.value.trim()) {
+    showError(name, "이름은 필수 입력 항목입니다.");
+    valid = false;
+  } else {
+    clearError(name);
   }
 
   // ✅ 생년월일
@@ -163,6 +171,8 @@ window.addEventListener("DOMContentLoaded", () => {
   const address = document.getElementById("address");
   const detailAddress = document.getElementById("detail_address");
 
+  const nameInput = document.getElementById("userName");  // ← ★ 이름 요소 추가
+
   // 아이디가 바뀌면 중복확인 다시 하도록 플래그 리셋
   userId.addEventListener("input", () => {
     isIdChecked = false;
@@ -232,13 +242,14 @@ window.addEventListener("DOMContentLoaded", () => {
       tel,
       email,
       zipcode,
+      name: nameInput,   // ← ★ 이름도 검증에 포함
     });
     if (!isValid) {
       console.log("[회원가입] 유효성 검사 실패");
       return;
     }
 
-    // ===== 여기부터 추가: 이메일 / 휴대폰 중복 방지 =====
+    // ===== 이메일 / 휴대폰 중복 방지 =====
     const emailVal = email.value.trim();
     const phoneVal = phone.value.trim();
     const phonePure = phoneVal.replace(/[^0-9]/g, "");
@@ -288,6 +299,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const userParam = {
       userId: finalId,
       password: password.value,
+      userName: nameInput.value.trim(),   // ← ★ 이름 저장
       emailAddress: emailVal,
       birthday: birth.value,
       phoneNumber: phoneVal,
