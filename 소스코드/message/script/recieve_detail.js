@@ -1,3 +1,4 @@
+import { userAuthMap, dataKeyObj, findObjectInLocalStorage } from "../../module/commonModule.js";
 import { findUserByUserNo } from "../../module/userModule.js";
 import * as MESSAGE_MODULE from "../../module/messageModule.js"; 
 
@@ -31,6 +32,22 @@ function setMessage() {
     // 내용
     document.getElementById('contents').innerHTML = messageObj.content;
 
+    // 답장은 admin 일때만 노출
+    const curUser = findObjectInLocalStorage(dataKeyObj.CUR_USER);
+    const replyBtn = document.getElementById('replyBtn');
+
+    if (curUser.userAuth == userAuthMap.ADMIN) {
+        // 있으면 제거
+        if (replyBtn.className.includes('invisible')) {
+            replyBtn.classList.toggle('invisible');
+        }        
+    } else {
+        // 없으면 추가
+        if (!replyBtn.className.includes('invisible')) {
+            replyBtn.classList.toggle('invisible');
+        }             
+    }
+    
 }
 
 

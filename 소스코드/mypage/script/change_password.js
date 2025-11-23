@@ -42,9 +42,18 @@ btn.addEventListener('click', function(event) {
     const result = updateUserPassword(curPwd, newPwd);
 
     if (result === false) {
-        alert("현재 비밀번호가 틀렸습니다.");
+        Swal.fire({
+            icon: "error",    // 에러 aler면 요거 사용
+            title: "기존 비밀번호 불일치",    // 요건 타이틀
+            text: "현재 비밀번호가 틀렸습니다.",  // 요게 내용
+        });
     } else {
-        alert("비밀번호가 성공적으로 변경되었습니다.");
-        window.location.href = '../main_page.html';
+        Swal.fire({
+            icon: "success",    // 에러 aler면 요거 사용
+            title: "비밀번호 변경 성공",    // 요건 타이틀
+            text: "비밀번 호가 성공적으로 변경되었습니다.",  // 요게 내용
+        }).then((result) => {
+            window.location.href = '../main_page.html';
+        });
     }
 });

@@ -25,7 +25,7 @@
   padding-top: 60px;   /* 예전 margin-top 60px 느낌 유지하고 싶으면 */
 
   /* 배경 이미지 */
-  background-image: url("background.png");
+  background-image: url("./static/img/background.png");
   background-repeat: no-repeat;
   background-position: top center;  /* 윗부분 기준으로 고정 */
   background-size: 100% auto;       /* 가로 꽉 채우고 세로는 비율대로 */
@@ -125,7 +125,7 @@
 <body>
   <p>
     <a href="./login.html">
-      <img src="Datascience.png" id="data" width="190" height="21">
+      <img src="./static/img/Datascience.png" id="data" width="190" height="21">
     </a>
   </p>
 
@@ -175,6 +175,16 @@
         <div class="invalid-feedback">생년월일을 입력하세요.</div>
       </p>
 
+<label for="userName" class="form-label">이름</label>
+      <span class="redstar">* 필수</span>
+      <p>
+        <input type="text"
+               id="userName"
+               class="box form-control"
+               placeholder="이름을 입력하세요">
+        <div class="invalid-feedback">성함을 입력하세요.</div>
+      </p>
+      
       <label for="phoneNumber" class="form-label">휴대폰번호</label>
       <span class="redstar">* 필수</span>
       <p>

@@ -1,36 +1,102 @@
-## IT Front Project
+### 프로젝트명
 
-##### Aim Data Academy ( 클론 코딩 )
+#### : Aim Data Academy
+
+### 프로젝트 목표
+
+: Data Science Academy 를 참고하여 클론코딩 
+
+해당 작업을 통하여 **HTML/CSS/JavaScript 에 대한 이해도 향상 **
+
+### 프로젝트 기간
+
+: 2025년 11월 10일 ~ 11월 23일 ( 2주간 )
 
 #### 프로젝트 파일구조
 
 ```
-소스코드
-├─ attendance.html            // 출결 정보 화면   
-├─ board
-│  ├─ it_notice.html          // IT 게시판 화면
-│  ├─ it_score.html           // IT 평가 화면
-│  ├─ japanese_notice.html    // 일본어 게시판 화면
-│  ├─ japanese_score.html     // 일본어 평가 화면
-│  └─ notice_html             // 공지사항 화면
-├─ calendar.html              // 일정 화면
-├─ commonScript.js            // 공통 Script 파일
-├─ find_id.html               // ID 찾기 화면
-├─ login.html                 // 로그인 화면
-├─ main_page.html             // 메인 페이지 화면
-├─ message
-│  ├─ message_form.html       // 메시지 보내기 화면
-│  ├─ recieve_list.html       // 받은 메시지 화면 
-│  └─ sent_list.html          // 보낸 메시지 화면
-├─ mypage
-│  ├─ change_password.html    // 비밀번호 변경 화면
-│  └─ user_update.html        // 개인정보 수정 화면
-├─ score_info.html            // 성적 정보 화면
-└─ static                     // 정적 데이터 폴더
-   ├─ img
-   │  └─ favicon.png
-   └─ initData.json
+📦프로젝트 폴더
+ ┣ 📂board                       // 게시판
+ ┃ ┣ 📂script                    // 게시판 Script
+ ┃ ┣ 📜exception.html
+ ┃ ┣ 📜it_notice.html
+ ┃ ┣ 📜it_score.html
+ ┃ ┣ 📜japanese_notice.html
+ ┃ ┣ 📜japanese_score.html
+ ┃ ┣ 📜notice.html
+ ┃ ┣ 📜notice_detail.html
+ ┃ ┣ 📜notice_form.html
+ ┃ ┣ 📜score_detail.html
+ ┃ ┗ 📜score_form.html
+ ┣ 📂message                    // 메시지
+ ┃ ┣ 📂script                   // 메시지 Script
+ ┃ ┣ 📜message_form.html
+ ┃ ┣ 📜recieve_detail.html
+ ┃ ┣ 📜recieve_list.html
+ ┃ ┣ 📜send_detail.html
+ ┃ ┗ 📜send_list.html
+ ┣ 📂module                    // 스크립트 Module
+ ┃ ┣ 📜boardModule.js          // 게시판 Module
+ ┃ ┣ 📜commonModule.js         // 공통 Module
+ ┃ ┣ 📜messageModule.js        // 메시지 Module  
+ ┃ ┗ 📜userModule.js           // 사용자 Module
+ ┣ 📂mypage                    // 사용자 관리 
+ ┃ ┣ 📂script                  // 사용자 관리 Script
+ ┃ ┣ 📜change_password.html
+ ┃ ┗ 📜user_update.html
+ ┣ 📂static                    // 정적 파일 경로
+ ┃ ┣ 📂img
+ ┃ ┣ 📜boardScript.js
+ ┃ ┣ 📜calendarScript.js
+ ┃ ┣ 📜initData.json
+ ┃ ┗ 📜style.css
+ ┣ 📜attendance.html                     // 출석 관
+ ┣ 📜auth_manage.html                    // 권한 관리
+ ┣ 📜auth_manage.js                     
+ ┣ 📜calendar.html                       // 일정
+ ┣ 📜commonScript.js                     // 공통 Script
+ ┣ 📜common_ui.html
+ ┣ 📜dtoScript.js
+ ┣ 📜ex_file_join_membership.html        
+ ┣ 📜find_id.html
+ ┣ 📜find_id.js                          // ID 찾기
+ ┣ 📜find_password.html                  // 비밀번호 찾기
+ ┣ 📜join_membership.html                // 회원가입
+ ┣ 📜join_membership.js
+ ┣ 📜login.html                          // 로그인
+ ┣ 📜login.js                          
+ ┗ 📜main_page.html                      // 메인 페이지
 ```
+
+### 사용 기술
+
+<div>
+<img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white"/>
+<img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"/>
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white"/>
+<img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white"/>
+<img src="https://img.shields.io/badge/Bootstrapap-7952B3?style=flat-square&logo=bootstrap&logoColor=white"/>
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black"/>
+<img src="https://img.shields.io/badge/JSON-000000?style=flat-square&logo=json&logoColor=white"/>
+</div>
+
+- **언어 기술** 
+  
+  - HTML / CSS / JavaScript
+
+- 써드 파티
+  
+  - BootStrap / SweetAlert / CryptoJS
+
+- 협업 Tool
+  
+  - Git / Github / Figma
+
+※ 참고 주소
+
+[Github 주소]([GitHub - AimFor3636/IT_Front_Project](https://github.com/AimFor3636/IT_Front_Project))
+
+[Figma 주소](https://www.figma.com/board/HjCDS0Uq5DKsqQjRaGbHwS/ICT-Front-Project?node-id=0-1&p=f&t=EP5EYYNF9KwMWMRO-0)
 
 #### 코드규칙 및 스타일가이드
 

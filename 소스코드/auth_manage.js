@@ -10,7 +10,7 @@ function fnCheckAuth() {
     const curUser = findObjectInLocalStorage(dataKeyObj.CUR_USER);
 
     // curUser 비어있거나,  admin 아니면 전부 권한없음으로 돌리기
-    if (!curUser || curUser.userAuth != userAuthMap.ADMIN) {
+    if (Object.keys(curUser).length == 0 || curUser.userAuth != userAuthMap.ADMIN) {
         window.location.href = './board/exception.html?reason=auth';
         return;
     }
@@ -36,18 +36,20 @@ function setUserList() {
         const noTag = document.createElement('td');
         const idTag = document.createElement('td');
         const nameTag = document.createElement('td');
+        const mailTag = document.createElement('td');
         const authTag = document.createElement('td');
         const btnTag = document.createElement('td');
 
         noTag.innerText = user.userNo;
         idTag.innerText = user.userId;
-        nameTag.innerText = user.userNo;
+        nameTag.innerText = user.userName;
+        mailTag.innerText = user.emailAddress;
 
         const authOptions = [{auth: 'teacher', text: '교사'}, {auth: 'student', text: '학생'}];
 
         const optionTags = authOptions.map((option) => {
             const isSelect = user.userAuth == option.auth ? 'selected' : '';
-            return `<option value="${option.auth}">${option.text}</option>`;
+            return `<option value="${option.auth}" ${isSelect}>${option.text}</option>`;
         });
         authTag.innerHTML = `<select name="userAuth" class="form-select">
                                 ${optionTags}
@@ -57,6 +59,7 @@ function setUserList() {
         trTag.appendChild(noTag);
         trTag.appendChild(idTag);
         trTag.appendChild(nameTag);
+        trTag.appendChild(mailTag);
         trTag.appendChild(authTag);
         trTag.appendChild(btnTag);
 

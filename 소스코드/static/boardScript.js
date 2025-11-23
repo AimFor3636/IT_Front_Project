@@ -52,6 +52,15 @@ async function loadBoardData() {
       boardData = data.board || []; // > 게시판 데이터를 boardData에 저장
       userData = data.users || []; // > 유저 데이터를 userData에 저장
 
+      for (let user of userData) {
+          user.password = CryptoJS.SHA256(user.password).toString();
+
+          // 관리자는 관리자 추적용 로컬스토리지에 추가
+          if (user.userAuth == "admin") {
+            localStorage.setItem("admin-user", JSON.stringify(user));
+          }
+      }
+
       // 로컬스토리지에 저장
       localStorage.setItem("board-list", JSON.stringify(boardData));
       console.log("✅ Initialized board-list in LocalStorage");

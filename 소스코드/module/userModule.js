@@ -60,7 +60,7 @@ export function findUserByUserNo(searchUserNo) {
 
 }
 // userId로 조회
-export function findUserByUserId(searechUserId) {
+export function findUserByUserId(searchUserId) {
 
     // 로컬 스토리지에서 user-list 값 가져오기
     const userList = findArrayInLocalStorage(dataKeyObj.USER_LIST);
@@ -68,7 +68,7 @@ export function findUserByUserId(searechUserId) {
     let userObj = {};
     
     for (let user of userList) {
-      if (user.userId == searechUserId) {
+      if (user.userId == searchUserId) {
           userObj = user;
           break;
       } 
@@ -86,7 +86,7 @@ export function findUserId(searchEmail, inTelNumber) {
 
     // 전화번호는 - 제외하고 비교
     // 첫번째 찾아지면 그냥 반환
-    if (user.email == searchEmail && user.telNumber.replace("-", "") == inTelNumber.replace("-", "")) {
+    if (user.emailAddress == searchEmail && user.phoneNumber.replaceAll("-", "") == inTelNumber.replaceAll("-", "")) {
       userObj = user;
       break;
     } 
@@ -115,7 +115,7 @@ export function updateUser(updateParam) {
 
   let isSuccess = false;
   for (let idx in userList) {
-    if (userList[idx].userNo == curUser[userNo]) {
+    if (userList[idx].userNo == curUser.userNo) {
       userList[idx] = curUser;
       isSuccess = true;
     }
@@ -162,10 +162,12 @@ export function login(id, password) {
 
   const userObj = findUserByUserId(id);
 
+  console.log(`입력받은 pass = ${password}`)
   // 입력받은 비밀번호 SHA256 암호화 한후 비교
   const passwordEnc = CryptoJS.SHA256(password).toString();
-
-  if (userObj != null && userObj != undefined) {
+  console.log(`암호화 pass = ${passwordEnc}`)
+  console.log(`기존 password = ${userObj.password}`);
+  if (Object.keys(userObj).length > 0) {
     // password 동일여부 비교
     if (userObj.password == passwordEnc) {
       // true 반환 후 localStrage에 현재 로그인한 유저정보 저장
@@ -222,7 +224,7 @@ export function setUserAutor(userNo, author) {
 
   const targetUser = findUserByUserNo(userNo);
 
-  if (targetUser) {
+  if (Object.keys(targetUser).length>0) {
 
       targetUser.userAuth = author
 
