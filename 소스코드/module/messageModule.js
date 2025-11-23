@@ -70,18 +70,18 @@ export function findMessageListByTitle(searchTitle, isSend) {
   return searchMessageList;
 }
 
-// 받은 메시지 목록 ( 이 사이트는 수신인이 학사 관리인으로 정해져 있음 따라서 admin 인경우만 리스트 반환)
+// 받은 메시지 목록
 export function findRecieveMessageList() {
   let recevieMessageList = [];
   
   const curUser = findObjectInLocalStorage(dataKeyObj.CUR_USER);
-  const adminUser = findObjectInLocalStorage(dataKeyObj.ADMIN_USER);
-
-  // 둘이 같은경우만 message 반환 ( Admin 이 유일한 수신자이므로 그냥 전체 반환 )
-  if (curUser.userNo == adminUser.userNo) {
-    recevieMessageList = findArrayInLocalStorage(dataKeyObj.MESSAGE_LIST);
-  }
-  recevieMessageList.sort((messageA, messageB) => {
+  
+  const messageList = findArrayInLocalStorage(dataKeyObj.MESSAGE_LIST);
+  
+  recevieMessageList = messageList.filter((message) => {
+    // 내가 수신자인 경우에 데이터들 가져오기
+    return (message.receiveUserNo == curUser.userNo);
+  }).sort((messageA, messageB) => {
       const aDate = new Date(messageA.insertDate);
       const bDate = new Date(messageB.insertDate);
       return bDate - aDate;
