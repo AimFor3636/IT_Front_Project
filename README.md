@@ -1,16 +1,38 @@
 ### 프로젝트명
 
-#### : Aim Data Academy
+#### Aim Data Academy ( 클론 코딩)
+
+
 
 ### 프로젝트 목표
 
-: Data Science Academy 를 참고하여 클론코딩 
+: Data Science Academy 를 참고한 클론코딩 진행을 통하여 
 
-해당 작업을 통하여 **HTML/CSS/JavaScript 에 대한 이해도 향상 **
+아래와 같은 목표를 달성하고자 함 
+
+1. 클론 코딩 작업을 통한 FrontEnd 이해도 및 숙련도 향상
+
+2. 단체 프로젝트 협업에 대한 경험치 획득 및 협업 Tool 에 대한 숙련도 향상 
+
+### 
 
 ### 프로젝트 기간
 
 : 2025년 11월 10일 ~ 11월 23일 ( 2주간 )
+
+#### 
+
+### 주요 기능
+
+※ Data Science Academy 의 서비스를 참고하여 구현
+
+1. 사용자 관련 기능
+
+2. 메인페이지 및 일정 관리
+
+3. 게시판 및 메시지 기능
+
+
 
 #### 프로젝트 파일구조
 
@@ -68,35 +90,57 @@
  ┗ 📜main_page.html                      // 메인 페이지
 ```
 
-### 사용 기술
+### 
 
-<div>
-<img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white"/>
-<img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"/>
-<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white"/>
-<img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white"/>
-<img src="https://img.shields.io/badge/Bootstrapap-7952B3?style=flat-square&logo=bootstrap&logoColor=white"/>
-<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black"/>
-<img src="https://img.shields.io/badge/JSON-000000?style=flat-square&logo=json&logoColor=white"/>
-</div>
+#### 팀원 소개
+
+이상우
+
+이민재
+
+김원형
+
+정원교
+
+
+
+### 사용 기술
 
 - **언어 기술** 
   
-  - HTML / CSS / JavaScript
-
-- 써드 파티
+  <div>
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white"/>
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white"/>
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black"/>
+  <img src="https://img.shields.io/badge/JSON-000000?style=flat-square&logo=json&logoColor=white"/>
   
-  - BootStrap / SweetAlert / CryptoJS
+  </div>
 
-- 협업 Tool
+- **써드 파티**
   
-  - Git / Github / Figma
+  <div>
+  <img src="https://img.shields.io/badge/Bootstrap-7952B3?style=flat-square&logo=bootstrap&logoColor=white"/>
+  <img src="https://img.shields.io/badge/CryptoJS-000000?style=flat-square&logo=crypto&logoColor=white"/>
+  <img src="https://img.shields.io/badge/SweetAlert2-E2463F?style=flat-square&logo=sweetalert2&logoColor=white"/>
+  </div>
+
+- **협업 Tool**
+  
+  <div>
+  <img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white"/>
+  <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"/>
+  <img src="https://img.shields.io/badge/figma-F24E1E.svg?style=flat-square&logo=figma&logoColor=white" />
+  <img src="https://img.shields.io/badge/Google%20Meet-00AC47?style=flat-square&logo=googlemeet&logoColor=white"/>
+  
+  </div>
 
 ※ 참고 주소
 
 [Github 주소]([GitHub - AimFor3636/IT_Front_Project](https://github.com/AimFor3636/IT_Front_Project))
 
 [Figma 주소](https://www.figma.com/board/HjCDS0Uq5DKsqQjRaGbHwS/ICT-Front-Project?node-id=0-1&p=f&t=EP5EYYNF9KwMWMRO-0)
+
+#### 
 
 #### 코드규칙 및 스타일가이드
 
