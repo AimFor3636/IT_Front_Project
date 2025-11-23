@@ -21,7 +21,6 @@ function setMessage() {
     const recieveUser = findUserByUserNo(messageObj.receiveUserNo);
 
     // 수신자
-    document.getElementById('userId').innerText = recieveUser.userId;
     document.getElementById('userName').innerText = recieveUser.userName;
 
     // 발신일

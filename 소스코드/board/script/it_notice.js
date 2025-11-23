@@ -36,14 +36,32 @@ function checkAuthority(){
 
 // 글 배치
 function setBoardList(boardList) {
-    
+
     const prevBtnTag = document.querySelector('#fixed-header_previous');
     const nextdBtnTag = document.querySelector('#fixed-header_next');
 
     let boardCnt = boardList.length;
+    //boardCnt = 35;
     const pagingTag = document.querySelector('.paginate_button.page-item.paging');
 
-    // 글 10개 이하면 한페이지에서 끝남 따라서 prev , next 버튼 전부 감춤
+    let pagingCnt = Math.floor(boardCnt/10);
+    if (boardCnt%10) {
+        pagingCnt++;
+    }
+    const pagingBodyTag = document.getElementById('paging-body');
+    pagingBodyTag.innerHTML = '';
+
+    pagingBodyTag.appendChild(prevBtnTag);
+    for (let i = 0; i < pagingCnt; i++) {
+        const nPagingTag = pagingTag.cloneNode(true);
+        const nATag = nPagingTag.querySelector('.page-link');
+        nATag.innerText = i+1;
+
+        pagingBodyTag.appendChild(nPagingTag);
+    }
+    pagingBodyTag.appendChild(nextdBtnTag);
+
+    // 글 10개 이하면 한페이지에서 그냥 1 만 노출
     if (boardCnt < 10) {
         // invisible 없으면 추가
         if (!prevBtnTag.className.includes('invisible')) {
@@ -51,34 +69,17 @@ function setBoardList(boardList) {
         }
         if (!nextdBtnTag.className.includes('invisible')) {
             nextdBtnTag.classList.toggle('invisible');
-        }                        
-    } else {   
-
-        const pagingCnt = Math.floor(boardCnt/10);
-        
-        const pagingBodyTag = document.getElementById('paging-body');
-        pagingBodyTag.innerHTML = '';
-
-        pagingBodyTag.appendChild(prevBtnTag);
-        for (let i = 0; i < pagingCnt; i++) {
-            const nPagingTag = pagingTag.cloneNode(true);
-            const nATag = nPagingTag.querySelector('.page-link');
-            nATag.innerText = i+1;
-            
-            pagingBodyTag.appendChild(nPagingTag);
         }
-        pagingBodyTag.appendChild(nextdBtnTag);
-
     }
     // 기본은 1페이지로 세팅
-    setPaging(boardList, 1);    
+    setPaging(boardList, 1);
 }
 
 function setPaging(boardList, pageNum) {
     // 10개 단위
     const boardCnt = boardList.length;
     const prevBtnTag = document.querySelector('#fixed-header_previous');
-    const nextdBtnTag = document.querySelector('#fixed-header_next');
+    const nextBtnTag = document.querySelector('#fixed-header_next');
 
     // 1페이지 (1 ~ 10 => 인덱스 기준 0 ~ 9)
     // 2페이지 (11 ~ 20 => 인덱스 기준 10 ~ 19)...
@@ -102,8 +103,8 @@ function setPaging(boardList, pageNum) {
             prevBtnTag.classList.toggle('invisible');
         }
         // invisible 있으면 삭제
-        if (nextdBtnTag.className.includes('invisible')) {
-            nextdBtnTag.classList.toggle('invisible');
+        if (nextBtnTag.className.includes('invisible')) {
+            nextBtnTag.classList.toggle('invisible');
         }       
     } else if (pageNum != 1 && isLastPage) { // Prev 만 노출
         // invisible 있으면 삭제
@@ -111,8 +112,8 @@ function setPaging(boardList, pageNum) {
             prevBtnTag.classList.toggle('invisible');
         }
         // invisible 없으면 추가
-        if (!nextdBtnTag.className.includes('invisible')) {
-            nextdBtnTag.classList.toggle('invisible');
+        if (!nextBtnTag.className.includes('invisible')) {
+            nextBtnTag.classList.toggle('invisible');
         }  
     } else { // 버튼 둘다 노출
         // invisible 없으면 추가
@@ -120,8 +121,8 @@ function setPaging(boardList, pageNum) {
             prevBtnTag.classList.toggle('invisible');
         }
         // invisible 없으면 추가
-        if (!nextdBtnTag.className.includes('invisible')) {
-            nextdBtnTag.classList.toggle('invisible');
+        if (!nextBtnTag.className.includes('invisible')) {
+            nextBtnTag.classList.toggle('invisible');
         }  
     }
 
@@ -193,9 +194,9 @@ function setPaging(boardList, pageNum) {
 }
 
 function setPagingBtn(boardList) {
-    
+
     const pagingBtnList = document.querySelectorAll('.paginate_button.page-item.paging');
-    
+
     // 페이징에 따른 이벤트 장착
     pagingBtnList.forEach((pagingBtn) => {
         const aTag = pagingBtn.querySelector('.page-link');
@@ -205,6 +206,25 @@ function setPagingBtn(boardList) {
         })
     });
 
+    const prevBtnTag = document.querySelector('#fixed-header_previous');
+    const nextBtnTag = document.querySelector('#fixed-header_next');
+    let pagingCnt = Math.floor(boardList.length/10);
+    if (boardList.length%10) {
+        pagingCnt++;
+    }
+    let curPagingNo = document.querySelector('.paging.active').querySelector('.page-link').innerText;
+    curPagingNo = Number(curPagingNo);
+
+    prevBtnTag.addEventListener('click', () => {
+        if (curPagingNo > 1) {
+            setPaging(boardList, curPagingNo-1);
+        }
+    })
+    nextBtnTag.addEventListener('click', () => {
+        if (curPagingNo < pagingCnt) {
+            setPaging(boardList, curPagingNo+1);
+        }
+    })
 }
 
 // 테스트용
@@ -247,17 +267,17 @@ function init() {
 */
 // 글 검색
 document.getElementById('searchFormButton').addEventListener('click', () => {
-    
+
     const searchOption = document.getElementById('searchType').value;
     const searchWord   = document.getElementById('searchWord').value;
 
     let searchList = [];
     switch (searchOption) {
-        case 'title': searchList = BOARD_MODULE.findBoardListByTitle(searchWord, BOARD_MODULE.categoryMapping.categoryMapping.IT_NOTICE);
+        case 'title': searchList = BOARD_MODULE.findBoardListByTitle(searchWord, BOARD_MODULE.categoryMapping.IT_NOTICE);
                     break;
-        case 'contents': searchList = BOARD_MODULE.findBoardListByContent(searchWord, BOARD_MODULE.categoryMapping.IT_NOTICE); 
+        case 'contents': searchList = BOARD_MODULE.findBoardListByContent(searchWord, BOARD_MODULE.categoryMapping.IT_NOTICE);
                     break;
-        case 'createId': searchList = BOARD_MODULE.findBoardListByUserId(searchWord, BOARD_MODULE.categoryMapping.IT_NOTICE); 
+        case 'createId': searchList = BOARD_MODULE.findBoardListByUserId(searchWord, BOARD_MODULE.categoryMapping.IT_NOTICE);
                     break;
     }
     setBoardList(searchList);
@@ -270,3 +290,7 @@ document.getElementById('createBoard').addEventListener('click', () => {
     window.location.href = `./notice_form.html?category=${BOARD_MODULE.categoryMapping.IT_NOTICE}`;
 
 });
+
+document.getElementById('searchForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+})

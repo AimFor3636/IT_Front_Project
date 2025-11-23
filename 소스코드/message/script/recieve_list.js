@@ -15,6 +15,24 @@ function setMessageList(messageList) {
     let messageCnt = messageList.length;
     const pagingTag = document.querySelector('.paginate_button.page-item.paging');
 
+    let pagingCnt = Math.floor(messageCnt/10);
+    if (messageCnt%10) {
+        pagingCnt++;
+    }
+
+    const pagingBodyTag = document.getElementById('paging-body');
+    pagingBodyTag.innerHTML = '';
+
+    pagingBodyTag.appendChild(prevBtnTag);
+    for (let i = 0; i < pagingCnt; i++) {
+        const nPagingTag = pagingTag.cloneNode(true);
+        const nATag = nPagingTag.querySelector('.page-link');
+        nATag.innerText = i+1;
+
+        pagingBodyTag.appendChild(nPagingTag);
+    }
+    pagingBodyTag.appendChild(nextdBtnTag);
+
     // 글 10개 이하면 한페이지에서 끝남 따라서 prev , next 버튼 전부 감춤
     if (messageCnt < 10) {
         // invisible 없으면 추가
@@ -23,27 +41,10 @@ function setMessageList(messageList) {
         }
         if (!nextdBtnTag.className.includes('invisible')) {
             nextdBtnTag.classList.toggle('invisible');
-        }                        
-    } else {   
-
-        const pagingCnt = Math.floor(messageCnt/10);
-        
-        const pagingBodyTag = document.getElementById('paging-body');
-        pagingBodyTag.innerHTML = '';
-
-        pagingBodyTag.appendChild(prevBtnTag);
-        for (let i = 0; i < pagingCnt; i++) {
-            const nPagingTag = pagingTag.cloneNode(true);
-            const nATag = nPagingTag.querySelector('.page-link');
-            nATag.innerText = i+1;
-            
-            pagingBodyTag.appendChild(nPagingTag);
         }
-        pagingBodyTag.appendChild(nextdBtnTag);
-
     }
     // 기본은 1페이지로 세팅
-    setPaging(messageList, 1);   
+    setPaging(messageList, 1);
 
 }
 
@@ -130,7 +131,7 @@ function setPaging(messageList, pageNum) {
 
         // 카테고리
         const categoryTag = document.createElement('td');
-        categoryTag.innerText = MESSAGE_MODULE.messageCategory(message.categoryNo);
+        categoryTag.innerText = MESSAGE_MODULE.messageCategory[message.categoryNo];
 
         // 제목
         const titleTag = document.createElement('td');
@@ -176,6 +177,25 @@ function setPagingBtn(messageList) {
         })
     });
 
+    const prevBtnTag = document.querySelector('#fixed-header_previous');
+    const nextBtnTag = document.querySelector('#fixed-header_next');
+    let pagingCnt = Math.floor(messageList.length/10);
+    if (messageList.length%10) {
+        pagingCnt++;
+    }
+    let curPagingNo = document.querySelector('.paging.active').querySelector('.page-link').innerText;
+    curPagingNo = Number(curPagingNo);
+
+    prevBtnTag.addEventListener('click', () => {
+        if (curPagingNo > 1) {
+            setPaging(messageList, curPagingNo-1);
+        }
+    })
+    nextBtnTag.addEventListener('click', () => {
+        if (curPagingNo < pagingCnt) {
+            setPaging(messageList, curPagingNo+1);
+        }
+    })
 }
 
 
@@ -186,8 +206,6 @@ function init() {
     // 데이터 세팅
     setMessageList(searchList);
 }
-
-
 
 
 /*
@@ -201,3 +219,7 @@ document.getElementById('searchFormButton').addEventListener('click', () => {
 
     setMessageList(searchList);
 });
+
+document.getElementById('searchForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+})

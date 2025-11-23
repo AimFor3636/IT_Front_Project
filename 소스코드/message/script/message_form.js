@@ -24,7 +24,7 @@ init();
 // Admin 수신자 설정 가능
 function checkAuth() {
 
-    const recieveTag = document.getElementById('recieve-row');
+    const recieveTag = document.getElementById('recieve');
     // d-none 없으면 추가
     if (!recieveTag.className.includes('d-none')) {
         recieveTag.classList.toggle('d-none');
@@ -60,15 +60,13 @@ function searchRecieveUser() {
     const searchText = document.getElementById('searchText').value.trim();
 
     const userObj = findUserByUserId(searchText);
-
-    if (userObj) {
+    if (Object.keys(userObj).length > 0) {
         Swal.fire({
         icon: "success",
         title: "조회 성공"
         });
         // 수신자 수정
         receiveUserNo = userObj.userNo;
-
     } else {
         Swal.fire({
         icon: "warning",
@@ -108,13 +106,13 @@ function saveMessage() {
         return;
     }
 
-    const messageType = document.getElementById('receiveUserNo').value;
+    const messageType = document.getElementById('messageType').value;
     const title = document.getElementById('title').value;
     const contents = document.getElementById('contents').value;
 
     const messageParam = {};
     messageParam.title = title;
-    messageParam.contents = contents;
+    messageParam.content = contents;
     messageParam.categoryNo = messageType;
     messageParam.sendUserNo = sendUserNo;
     messageParam.receiveUserNo = receiveUserNo;
@@ -141,7 +139,7 @@ function saveMessage() {
 
 
 function checkValid() {
-    const messageType = document.getElementById('receiveUserNo').value;
+    const messageType = document.getElementById('messageType').value;
     const title = document.getElementById('title').value;
     const contents = document.getElementById('contents').value;
 
