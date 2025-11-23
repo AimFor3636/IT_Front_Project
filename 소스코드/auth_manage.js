@@ -36,12 +36,14 @@ function setUserList() {
         const noTag = document.createElement('td');
         const idTag = document.createElement('td');
         const nameTag = document.createElement('td');
+        const mailTag = document.createElement('td');
         const authTag = document.createElement('td');
         const btnTag = document.createElement('td');
 
         noTag.innerText = user.userNo;
         idTag.innerText = user.userId;
         nameTag.innerText = user.userName;
+        mailTag.innerText = user.emailAddress;
 
         const authOptions = [{auth: 'teacher', text: '교사'}, {auth: 'student', text: '학생'}];
 
@@ -57,6 +59,7 @@ function setUserList() {
         trTag.appendChild(noTag);
         trTag.appendChild(idTag);
         trTag.appendChild(nameTag);
+        trTag.appendChild(mailTag);
         trTag.appendChild(authTag);
         trTag.appendChild(btnTag);
 

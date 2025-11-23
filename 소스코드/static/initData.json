@@ -231,7 +231,7 @@
       "userName": "박수연",
       "userId": "sooyeon",
       "password": "password",
-      "email": "sooyeon@example.com",
+      "emailAddress": "sooyeon@example.com",
       "phoneNumber": "010-1234-5678",
       "userAuth": "teacher",
       "birthday": "1984-03-22"
@@ -241,7 +241,7 @@
       "userName": "김기열",
       "userId": "kiyeol",
       "password": "password",
-      "email": "kiyeol@example.com",
+      "emailAddress": "kiyeol@example.com",
       "phoneNumber": "010-2345-6789",
       "userAuth": "teacher",
       "birthday": "1989-11-17"
@@ -251,7 +251,7 @@
       "userName": "이길아",
       "userId": "gila",
       "password": "password",
-      "email": "gila@example.com",
+      "emailAddress": "gila@example.com",
       "phoneNumber": "010-3456-7890",
       "userAuth": "teacher",
       "birthday": "1982-02-08"
@@ -261,7 +261,7 @@
       "userName": "서울DSA",
       "userId": "dsa",
       "password": "password",
-      "email": "dsa@example.com",
+      "emailAddress": "dsa@example.com",
       "phoneNumber": "010-4567-8901",
       "userAuth": "admin",
       "birthday": "1991-01-03"
