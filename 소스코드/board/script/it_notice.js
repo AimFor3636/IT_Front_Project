@@ -48,6 +48,7 @@ function setBoardList(boardList) {
     if (boardCnt%10) {
         pagingCnt++;
     }
+
     const pagingBodyTag = document.getElementById('paging-body');
     pagingBodyTag.innerHTML = '';
 
@@ -195,6 +196,11 @@ function setPaging(boardList, pageNum) {
 
 function setPagingBtn(boardList) {
 
+    // 글 없는 경우 무시
+    if (boardList.length == 0) {
+        return;
+    }
+
     const pagingBtnList = document.querySelectorAll('.paginate_button.page-item.paging');
 
     // 페이징에 따른 이벤트 장착
@@ -225,31 +231,6 @@ function setPagingBtn(boardList) {
             setPaging(boardList, curPagingNo+1);
         }
     })
-}
-
-// 테스트용
-function test() {
-    localStorage.clear();
-
-    const userObj = {
-        userNo: '',         // 유저 PK 값
-        userName: '이상우',       // 성함
-        userId: 'okqwaszx',         // 유저 ID
-        password: '123123',       // 비밀번호 (암호화)
-        emailAddress: 'okqwaszx123@naver.com',   // 이메일 (암호화)
-        birthday: '19920626',       // 생년월일
-        telNumber: '',      // 전화번호
-        phoneNumber: '01053562594',    // 핸드폰 번호
-        zipCode: '12312',        // 우편 주소
-        address: '우리집 어디게',        // 주소
-        userAuth: userAuthMap.ADMIN,     // 권한
-        registerDate: '',   // 가입 일자
-        registerTimestamp: "", // 정렬용 일자
-    };
-
-    saveUser(userObj);
-    saveDataInLocalStorage(dataKeyObj.CUR_USER, userObj);
-
 }
 
 function init() {

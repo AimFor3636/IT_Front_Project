@@ -165,7 +165,9 @@ function setPaging(messageList, pageNum) {
 }
 
 function setPagingBtn(messageList) {
-    
+    if (messageList.length == 0){
+        return;
+    }
     const pagingBtnList = document.querySelectorAll('.paginate_button.page-item.paging');
     
     // 페이징에 따른 이벤트 장착

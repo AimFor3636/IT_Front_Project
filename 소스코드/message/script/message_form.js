@@ -48,7 +48,7 @@ function checkAuth() {
             const messageObj = MESSAGE_MODULE.findMessageByMessageNo(messageNo);
 
             receiveUserNo = messageObj.sendUserNo;  // 현재 메시지의 발신자가 수신자
-            
+            document.getElementById('messageType').value = messageObj.categoryNo;   // 타이틀 자동 세팅
         }
 
     }

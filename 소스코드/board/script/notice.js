@@ -192,7 +192,10 @@ function setPaging(boardList, pageNum) {
 }
 
 function setPagingBtn(boardList) {
-    
+    // 글 없는 경우 무시
+    if (boardList.length == 0) {
+        return;
+    }
     const pagingBtnList = document.querySelectorAll('.paginate_button.page-item.paging');
     
     // 페이징에 따른 이벤트 장착
