@@ -54,6 +54,11 @@ async function loadBoardData() {
 
       for (let user of userData) {
           user.password = CryptoJS.SHA256(user.password).toString();
+
+          // 관리자는 관리자 추적용 로컬스토리지에 추가
+          if (user.userAuth == "admin") {
+            localStorage.setItem("admin-user", JSON.stringify(user));
+          }
       }
 
       // 로컬스토리지에 저장
