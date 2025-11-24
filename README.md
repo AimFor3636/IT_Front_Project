@@ -12,6 +12,8 @@
 
 2. 단체 프로젝트 협업에 대한 경험치 획득 및 협업 Tool 에 대한 숙련도 향상 
 
+3. localStroage를 활용하여 FrontEnd 만으로 구동되는 임시 사이트 완성
+
 ### 
 
 ### 프로젝트 기간
@@ -90,15 +92,10 @@
 
 #### 팀원 소개
 
-이상우
-
-이민재
-
-김원형
-
-정원교
-
-
+| 이상우                                                                                                                                                                                                                                      | 이민재                                                                                                                                | 김원형                                                                                                                                                                                                                                                                                                                                        | 정원교                                                                                                                                                                                                                                                                                 |
+|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| <img title="" src="https://mblogthumb-phinf.pstatic.net/MjAyNDA4MjNfMjc5/MDAxNzI0Mzg4MDAzOTA1.YgVOu83asT_E4Yu1KsB0urt2fbNle109VR6JBpIgBa8g.wG8a4NWuh1Sf97r1GIzXUznIJ_fI1X-hoZBmdqCjGWcg.JPEG/capybara.jpg?type=w800" alt="" width="135"> | <img title="" src="https://thumb.ac-illust.com/d1/d125c0dc06567d79747c0d8edbd4f30c_t.jpeg" alt="" width="152" data-align="center"> | <img title="" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNDA1MzFfMTk1%2FMDAxNzE3MTYzMjQxNzk3.unUv9Y-4_X-jaL2Rr5TSG9FSnqV-KtfE29YJSBtlTYQg.mwedxha1Yb7j93r6sp5Ocs9rgdRByUEUjkU7fMAAkHAg.JPEG%2F%25BA%25B8%25B3%25EB%25BA%25B8%25B3%25EB.jpg&type=sc960_832" alt="" width="153" data-align="center"> | <img title="" src="https://mblogthumb-phinf.pstatic.net/MjAxNzAyMjJfMTg3/MDAxNDg3NzI4NTQ2NjYz.PXKT8WOvIrVgUamJQqSIGdwjeUHlO6GKKQBJrcHejLsg.EgM4jWM1lZh3NGoC2BUgXQ2aFzqQnSCh8ivhMmT7wWUg.PNG.ioea65ztem/02.%EA%B5%AC%EA%B8%80.png?type=w800" alt="" width="134" data-align="center"> |
+| 스크립트 모듈 &<br/>전체 PM 역할 수행                                                                                                                                                                                                                | 공통 CSS 작성 &<br/>메인/일정 화면                                                                                                           | 로그인/회원가입 &<br/>게시판                                                                                                                                                                                                                                                                                                                         | 개인정보 관리 &<br/>메시지                                                                                                                                                                                                                                                                   |
 
 ### 사용 기술
 
@@ -132,7 +129,7 @@
 
 ※ 참고 주소
 
-[Github 주소]([GitHub - AimFor3636/IT_Front_Project](https://github.com/AimFor3636/IT_Front_Project))
+[Github 주소](https://github.com/AimFor3636/IT_Front_Project)
 
 [Figma 주소](https://www.figma.com/board/HjCDS0Uq5DKsqQjRaGbHwS/ICT-Front-Project?node-id=0-1&p=f&t=EP5EYYNF9KwMWMRO-0)
 
@@ -153,11 +150,8 @@
   - 첨부파일 저장 되도록 구현
     
         
-    
-    
-       
 
-##### 기타. 코드규칙 및 스타일가이드
+##### 코드규칙 및 스타일가이드
 
 참고 사이트 [FrontEnd Coding Convention · FrontEnd Coding Convention](https://jeonghakhur.gitbooks.io/frontend-coding-convention/content/)
 
