@@ -129,7 +129,7 @@
 
 ※ 참고 주소
 
-[Github 주소]([GitHub - AimFor3636/IT_Front_Project](https://github.com/AimFor3636/IT_Front_Project))
+[Github 주소](https://github.com/AimFor3636/IT_Front_Project)
 
 [Figma 주소](https://www.figma.com/board/HjCDS0Uq5DKsqQjRaGbHwS/ICT-Front-Project?node-id=0-1&p=f&t=EP5EYYNF9KwMWMRO-0)
 
